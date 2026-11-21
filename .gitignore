@@ -1,9 +1,31 @@
 node_modules/
 .next/
 .env
-.env.local
+.env.*
+!.env.example
 .local/
 test-results/
 playwright-report/
 *.tsbuildinfo
 api/behnosh-api
+
+# Next.js regenerates environment and route declarations locally.
+apps/web/next-env.d.ts
+
+# Local Python/editor/OS artifacts.
+__pycache__/
+*.py[cod]
+.DS_Store
+*.swp
+
+# Reproducible model previews, packaging, renders, and Blender backups.
+# Keep source .blend/.glb files, textures, metadata, and runtime assets tracked.
+output/**/*.html
+output/**/*.zip
+output/**/*.log
+output/**/*.blend[0-9]*
+output/**/web-*.png
+output/**/check-*.png
+output/**/delster-*-preview.png
+output/**/delster-*-angle.png
+output/**/delster-*-front.png

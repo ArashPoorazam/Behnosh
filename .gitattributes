@@ -1,0 +1,7 @@
+# Generated standalone previews embed model data and bundled viewer code.
+# Exclude them from statistics if a release intentionally force-adds a preview.
+output/**/*.html linguist-generated=true
+output/model-viewer.min.js linguist-vendored=true
+
+# Generated from the OpenAPI contract.
+apps/web/lib/api-schema.d.ts linguist-generated=true

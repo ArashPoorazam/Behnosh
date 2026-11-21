@@ -71,6 +71,8 @@ After changing the API contract: edit `scripts/api-contract.py`, run `python scr
 
 ## Asset regeneration
 
+Git tracks the editable Blender models, original GLBs, source textures, asset documentation, and optimized runtime assets. Generated standalone preview HTML, ZIP packages, studio renders, diagnostic screenshots, logs, and Blender backup files are ignored. They remain on disk when cleaning an existing checkout; a fresh clone can regenerate previews with `python package_preview.py`, `python package_can.py`, and `python package_can_hq.py`. The bundled `output/model-viewer.min.js` is retained as the offline packaging dependency and marked vendored for GitHub statistics. Render studio images from the saved Blender scenes before creating ZIP bundles. Nothing is removed from existing Git history by this cleanup.
+
 Shipped optimized GLBs and posters require no Blender at runtime. To regenerate, with Blender 4.3+ and source files present:
 
 ```bash
