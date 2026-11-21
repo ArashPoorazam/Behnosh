@@ -1,0 +1,18 @@
+[
+  {
+    "input": "output/tropical-can-hq/delster-tropical-can-hq.glb",
+    "output": "apps/web/public/assets/tropical-v1.glb",
+    "trianglesBefore": 121344,
+    "trianglesAfter": 28352,
+    "bytesBefore": 3303276,
+    "bytesAfter": 701516
+  },
+  {
+    "input": "output/delster-classic.glb",
+    "output": "apps/web/public/assets/classic-v1.glb",
+    "trianglesBefore": 43792,
+    "trianglesAfter": 10502,
+    "bytesBefore": 978292,
+    "bytesAfter": 234576
+  }
+]

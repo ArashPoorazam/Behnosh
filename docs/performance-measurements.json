@@ -1,0 +1,319 @@
+{
+  "environment": {
+    "browser": "155.0.8059.84",
+    "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "cores": 16,
+    "renderer": "SwiftShader software GPU",
+    "network": "localhost, unthrottled",
+    "mode": "Next production",
+    "date": "2026-11-21"
+  },
+  "runs": [
+    {
+      "name": "desktop",
+      "viewport": "1440x1000",
+      "lcpMs": 704,
+      "cls": 0,
+      "interactionMaxMs": 984,
+      "rafMedianMs": 266.60000000000036,
+      "rafP95Ms": 299.89999999999964,
+      "rafOver33ms": 11,
+      "frameCount": 21,
+      "resources": [
+        {
+          "name": "/assets/tropical-v1.webp",
+          "bytes": 85746,
+          "duration": 11.299999999988358
+        },
+        {
+          "name": "/_next/static/chunks/223p3wlcw8byi.css",
+          "bytes": 5962,
+          "duration": 12.099999999976717
+        },
+        {
+          "name": "/_next/static/chunks/310vm2bl3xxpt.js",
+          "bytes": 2270,
+          "duration": 12.399999999965075
+        },
+        {
+          "name": "/_next/static/chunks/1wnov70f88xjy.js",
+          "bytes": 7950,
+          "duration": 13.5
+        },
+        {
+          "name": "/_next/static/chunks/39_j1bdzreq0m.js",
+          "bytes": 72052,
+          "duration": 24.600000000034925
+        },
+        {
+          "name": "/_next/static/chunks/0c1ad7rcpjghx.js",
+          "bytes": 46746,
+          "duration": 23
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-2u1d16houkiyo.js",
+          "bytes": 4205,
+          "duration": 17.399999999965075
+        },
+        {
+          "name": "/_next/static/chunks/0tbvq6_ww02og.js",
+          "bytes": 800,
+          "duration": 16.400000000023283
+        },
+        {
+          "name": "/_next/static/chunks/3qfy96eoyh-ek.js",
+          "bytes": 3815,
+          "duration": 18.400000000023283
+        },
+        {
+          "name": "/_next/static/chunks/3zt_16xndew4w.js",
+          "bytes": 3602,
+          "duration": 21.20000000001164
+        },
+        {
+          "name": "/_next/static/chunks/08ge8-aor3wfn.js",
+          "bytes": 7218,
+          "duration": 26.400000000023283
+        },
+        {
+          "name": "/_next/static/chunks/0d83p9xwpervs.js",
+          "bytes": 51942,
+          "duration": 35.20000000001164
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-400-normal.2inz7brtub9j7.woff2",
+          "bytes": 21388,
+          "duration": 9.200000000011642
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-900-normal.1uik8dp5f8g5d.woff2",
+          "bytes": 21556,
+          "duration": 15.900000000023283
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-900-normal.13b2774d-j0g8.woff2",
+          "bytes": 16452,
+          "duration": 16.70000000001164
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-500-normal.20dkqqzdmx_iq.woff2",
+          "bytes": 22092,
+          "duration": 16.79999999998836
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-400-normal.0y6c5csm4-8ug.woff2",
+          "bytes": 16368,
+          "duration": 17.29999999998836
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-700-normal.159j05d0nixsj.woff2",
+          "bytes": 22028,
+          "duration": 17
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-500-normal.0w0ahz5i-1mue.woff2",
+          "bytes": 16656,
+          "duration": 47.5
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-700-normal.3-b3_g9gk_9e7.woff2",
+          "bytes": 16720,
+          "duration": 34.29999999998836
+        },
+        {
+          "name": "/api/v1/session",
+          "bytes": 390,
+          "duration": 18.29999999998836
+        },
+        {
+          "name": "/api/v1/catalog",
+          "bytes": 1176,
+          "duration": 15.900000000023283
+        },
+        {
+          "name": "/_next/static/chunks/2bkr55icioj0p.js",
+          "bytes": 246075,
+          "duration": 47.899999999965075
+        },
+        {
+          "name": "/",
+          "bytes": 471,
+          "duration": 14.799999999988358
+        },
+        {
+          "name": "/orders",
+          "bytes": 488,
+          "duration": 27.400000000023283
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 309,
+          "duration": 8.600000000034925
+        },
+        {
+          "name": "/api/v1/cart",
+          "bytes": 328,
+          "duration": 12.700000000011642
+        },
+        {
+          "name": "/",
+          "bytes": 1456,
+          "duration": 6.099999999976717
+        },
+        {
+          "name": "/orders",
+          "bytes": 1576,
+          "duration": 3.7000000000116415
+        },
+        {
+          "name": "/_next/static/chunks/12dp-qm5adees.js",
+          "bytes": 7478,
+          "duration": 2.2000000000116415
+        },
+        {
+          "name": "/assets/tropical-v1.glb",
+          "bytes": 388816,
+          "duration": 30.79999999998836
+        }
+      ]
+    },
+    {
+      "name": "mobile",
+      "viewport": "390x844",
+      "lcpMs": 260,
+      "cls": 0.0032340831379487297,
+      "interactionMaxMs": 368,
+      "rafMedianMs": 16.700000000000728,
+      "rafP95Ms": 100,
+      "rafOver33ms": 34,
+      "frameCount": 79,
+      "resources": [
+        {
+          "name": "/assets/tropical-v1.webp",
+          "bytes": 85746,
+          "duration": 8
+        },
+        {
+          "name": "/_next/static/chunks/223p3wlcw8byi.css",
+          "bytes": 5962,
+          "duration": 9.899999999965075
+        },
+        {
+          "name": "/_next/static/chunks/310vm2bl3xxpt.js",
+          "bytes": 2270,
+          "duration": 9.399999999965075
+        },
+        {
+          "name": "/_next/static/chunks/1wnov70f88xjy.js",
+          "bytes": 7950,
+          "duration": 10.299999999988358
+        },
+        {
+          "name": "/_next/static/chunks/0tbvq6_ww02og.js",
+          "bytes": 800,
+          "duration": 14.5
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-2u1d16houkiyo.js",
+          "bytes": 4205,
+          "duration": 11.899999999965075
+        },
+        {
+          "name": "/_next/static/chunks/3qfy96eoyh-ek.js",
+          "bytes": 3815,
+          "duration": 12.099999999976717
+        },
+        {
+          "name": "/_next/static/chunks/0c1ad7rcpjghx.js",
+          "bytes": 46746,
+          "duration": 15.199999999953434
+        },
+        {
+          "name": "/_next/static/chunks/39_j1bdzreq0m.js",
+          "bytes": 72052,
+          "duration": 20.199999999953434
+        },
+        {
+          "name": "/_next/static/chunks/3zt_16xndew4w.js",
+          "bytes": 3602,
+          "duration": 19.099999999976717
+        },
+        {
+          "name": "/_next/static/chunks/08ge8-aor3wfn.js",
+          "bytes": 7218,
+          "duration": 20
+        },
+        {
+          "name": "/_next/static/chunks/0d83p9xwpervs.js",
+          "bytes": 51942,
+          "duration": 21.400000000023283
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-400-normal.2inz7brtub9j7.woff2",
+          "bytes": 21388,
+          "duration": 5.900000000023283
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-900-normal.1uik8dp5f8g5d.woff2",
+          "bytes": 21556,
+          "duration": 112.70000000001164
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-900-normal.13b2774d-j0g8.woff2",
+          "bytes": 16452,
+          "duration": 113.10000000003492
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-arabic-700-normal.159j05d0nixsj.woff2",
+          "bytes": 22028,
+          "duration": 114.30000000004657
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-400-normal.0y6c5csm4-8ug.woff2",
+          "bytes": 16368,
+          "duration": 114.70000000001164
+        },
+        {
+          "name": "/_next/static/media/vazirmatn-latin-700-normal.3-b3_g9gk_9e7.woff2",
+          "bytes": 16720,
+          "duration": 81
+        },
+        {
+          "name": "/api/v1/session",
+          "bytes": 390,
+          "duration": 6.2999999999883585
+        },
+        {
+          "name": "/api/v1/catalog",
+          "bytes": 1176,
+          "duration": 5
+        },
+        {
+          "name": "/_next/static/chunks/2bkr55icioj0p.js",
+          "bytes": 246075,
+          "duration": 24.899999999965075
+        },
+        {
+          "name": "/",
+          "bytes": 471,
+          "duration": 4.2000000000116415
+        },
+        {
+          "name": "/api/v1/cart",
+          "bytes": 328,
+          "duration": 2.7000000000116415
+        },
+        {
+          "name": "/",
+          "bytes": 1456,
+          "duration": 3.199999999953434
+        },
+        {
+          "name": "/assets/tropical-v1.glb",
+          "bytes": 388816,
+          "duration": 18.699999999953434
+        }
+      ]
+    }
+  ]
+}

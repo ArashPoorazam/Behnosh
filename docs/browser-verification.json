@@ -1,0 +1,23 @@
+{
+  "environment": {
+    "browser": "155.0.8059.84",
+    "mode": "production",
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "gpu": "SwiftShader software rendering"
+  },
+  "checks": [
+    "desktop real model, semantic heading, no horizontal overflow",
+    "pack selection, authoritative cart price, Escape closes dialog and restores focus",
+    "checkout → failed simulated payment → successful retry → paid order",
+    "admin authentication and order fulfillment states",
+    "successful payment decrements stock, admin adjustment restores stock",
+    "inventory movement and audit are visible",
+    "navigation away and back recreates the motion scene",
+    "mobile variant, purchase, checkout and cancellation",
+    "reduced motion uses static poster without a canvas",
+    "failed 3D download preserves poster and shopping controls",
+    "no uncaught browser errors in working shopping/admin/navigation flows"
+  ],
+  "errors": []
+}

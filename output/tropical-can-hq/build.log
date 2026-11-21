@@ -1,0 +1,157 @@
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/daedalus/Projects/Behnosh/build_can_hq.py", line 6, in <module>
+    import bpy
+AttributeError: _ARRAY_API not found
+Unable to initialise audio
+ImportError: numpy.core.multiarray failed to import
+ERROR Draco mesh compression is not available because library could not be found at /home/daedalus/Projects/Behnosh/4.3/python/lib/python3.11/site-packages/libextern_draco.so
+15:47:54 | INFO: Starting glTF 2.0 export
+15:47:54 | INFO: Extracting primitive: Can body — original front print and inferred striped reverse
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Domed underside and standing ring
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Precision rolled double seam
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Recessed end panel and strengthening channel
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Fine scored unopened drinking panel
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Raised aluminum pull tab
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Sphere
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Tab rolled outer edge
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Tab finger opening edge
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Finished glTF 2.0 export in 0.10527276992797852 s
+
+15:47:54 | INFO: Starting glTF 2.0 export
+15:47:54 | INFO: Extracting primitive: Can body — original front print and inferred striped reverse
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Domed underside and standing ring
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Precision rolled double seam
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Recessed end panel and strengthening channel
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Fine scored unopened drinking panel
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Raised aluminum pull tab
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Sphere
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Tab rolled outer edge
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Extracting primitive: Tab finger opening edge
+15:47:54 | INFO: Primitives created: 1
+15:47:54 | INFO: Finished glTF 2.0 export in 0.1060171127319336 s
+Fra:1 Mem:35.88M (Peak 35.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Can body — original front print and inferred striped reverse
+Fra:1 Mem:35.88M (Peak 35.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Raised aluminum pull tab
+Fra:1 Mem:35.88M (Peak 35.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Studio floor (not exported)
+Fra:1 Mem:42.65M (Peak 44.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:42.61M (Peak 44.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading texture-enhanced.png
+Fra:1 Mem:47.99M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:48.00M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:48.00M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:48.00M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:49.94M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:8.69M, Peak:8.69M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:8.69M, Peak:8.69M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:12.39M, Peak:12.39M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.02 | Mem:16.04M, Peak:19.74M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.02 | Mem:16.04M, Peak:19.74M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:16.04M, Peak:19.74M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.24M, Peak:20.32M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.02 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:00.37 | Remaining:00:08.07 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:05.15 | Remaining:00:02.56 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Sample 16/24
+Fra:1 Mem:149.58M (Peak 190.78M) | Time:00:09.43 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:149.58M (Peak 190.78M) | Time:00:09.43 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Finished
+Saved: '/home/daedalus/Projects/Behnosh/output/tropical-can-hq/check-front.png'
+Time: 00:09.59 (Saving: 00:00.15)
+
+Fra:1 Mem:35.88M (Peak 35.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Can body — original front print and inferred striped reverse
+Fra:1 Mem:35.88M (Peak 35.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Raised aluminum pull tab
+Fra:1 Mem:35.88M (Peak 35.92M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tab finger opening edge
+Fra:1 Mem:38.03M (Peak 38.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Studio floor (not exported)
+Fra:1 Mem:42.65M (Peak 44.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:42.61M (Peak 44.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading texture-enhanced.png
+Fra:1 Mem:47.99M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:48.00M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:48.00M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:48.00M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:48.08M (Peak 54.61M) | Time:00:00.00 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:49.94M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:6.01M, Peak:6.01M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:8.69M, Peak:8.69M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:8.69M, Peak:8.69M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:12.39M, Peak:12.39M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:16.04M, Peak:19.74M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:52.62M (Peak 54.61M) | Time:00:00.01 | Mem:16.04M, Peak:19.74M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:16.04M, Peak:19.74M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.23M, Peak:20.23M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.24M, Peak:20.32M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.01 | Mem:20.32M, Peak:20.32M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:00.34 | Remaining:00:07.61 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:05.39 | Remaining:00:02.68 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Sample 16/24
+Fra:1 Mem:149.58M (Peak 190.78M) | Time:00:09.89 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:149.58M (Peak 190.78M) | Time:00:09.89 | Mem:85.56M, Peak:85.56M | Scene, ViewLayer | Finished
+Saved: '/home/daedalus/Projects/Behnosh/output/tropical-can-hq/check-angle.png'
+Time: 00:09.98 (Saving: 00:00.08)
+
+
+Info: Saved "delster-tropical-can-hq.blend"
+{"objects": 9, "vertices": 61614, "triangles": 121344, "estimated_height_mm": 109, "estimated_diameter_mm": 66.6}

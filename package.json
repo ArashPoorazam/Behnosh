@@ -1,0 +1,25 @@
+{
+  "name": "behnosh",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/web",
+    "build": "npm run build -w apps/web",
+    "typecheck": "npm run typecheck -w apps/web",
+    "test:e2e": "node tests/e2e.mjs",
+    "assets": "node scripts/optimize-assets.mjs",
+    "api:types": "openapi-typescript api/openapi.json -o apps/web/lib/api-schema.d.ts"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.2.1",
+    "@gltf-transform/extensions": "^4.2.1",
+    "@gltf-transform/functions": "^4.2.1",
+    "@playwright/test": "1.56.1",
+    "meshoptimizer": "^0.25.0",
+    "openapi-typescript": "^7.10.1",
+    "prettier": "3.6.2",
+    "sharp": "^0.34.4"
+  }
+}

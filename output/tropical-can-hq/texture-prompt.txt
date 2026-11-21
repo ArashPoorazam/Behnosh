@@ -1,0 +1,8 @@
+Mode: built-in image_gen edit
+Input: source-original.png
+Output: texture-enhanced.png
+transparent_background: true
+
+Use case: precise-object-edit. Edit target: the supplied front-facing Delster Tropical green can. Produce a high-resolution 2048 by 2048 faithful restoration of this exact image for use as a 3D model projection texture. Keep EXACTLY the same square canvas, can position, silhouette, proportions and layout: can centered horizontally, full can occupies x=31.5%..68.5%, y=20.8%..82.1%. Do not zoom or crop. Preserve transparent background. Sharpen and clean the existing printed artwork into crisp print-quality edges, without changing its design. Preserve the white oval medallion with thin gold/black borders, gray radiating wedges, gold barley crown, gold ribbon reading 'IRAN BEHNOUSH CO.', large custom angular 'DELSTER' lettering in black and gold, exact Persian word 'استوایی', original tropical fruit motif and thin horizontal gold-green stripes. Keep every existing letter and emblem shape; do not invent new text or add anything. Tiny unreadable perimeter lettering should remain subtle rather than invented. Keep frontal orthographic orientation and identical relative positions. Use flat evenly lit printed colors on the body (avoid baked shiny highlights or new shadows) so it can be relit as a 3D texture. Retain silver top and bottom rims. No added objects, no condensation, no dramatic lighting, no redesign.
+
+Observed result: 1254 x 1254 PNG. Main lettering retained, but small print, emblem and fruit details have been reconstructed and differ from the original. The untouched original texture is included as a separate GLB variant.

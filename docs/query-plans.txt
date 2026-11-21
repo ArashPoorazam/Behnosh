@@ -1,0 +1,62 @@
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=9.51..9.52 rows=2 width=80) (actual time=0.088..0.088 rows=0.00 loops=1)
+   Buffers: shared hit=6 read=1
+   ->  Sort  (cost=9.51..9.52 rows=2 width=80) (actual time=0.086..0.087 rows=0.00 loops=1)
+         Sort Key: created_at DESC, id DESC
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=6 read=1
+         ->  Bitmap Heap Scan on orders  (cost=4.16..9.50 rows=2 width=80) (actual time=0.051..0.052 rows=0.00 loops=1)
+               Recheck Cond: (session_id = 'example'::text)
+               Buffers: shared read=1
+               ->  Bitmap Index Scan on orders_session_recent  (cost=0.00..4.16 rows=2 width=0) (actual time=0.045..0.046 rows=0.00 loops=1)
+                     Index Cond: (session_id = 'example'::text)
+                     Index Searches: 1
+                     Buffers: shared read=1
+ Planning:
+   Buffers: shared hit=183
+ Planning Time: 0.637 ms
+ Execution Time: 0.122 ms
+(17 rows)
+
+                                                                 QUERY PLAN                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=9.52..9.53 rows=1 width=40) (actual time=0.013..0.013 rows=0.00 loops=1)
+   Buffers: shared hit=2
+   ->  Sort  (cost=9.52..9.53 rows=1 width=40) (actual time=0.012..0.012 rows=0.00 loops=1)
+         Sort Key: expires_at
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=2
+         ->  Bitmap Heap Scan on orders  (cost=4.16..9.51 rows=1 width=40) (actual time=0.010..0.010 rows=0.00 loops=1)
+               Recheck Cond: (status = 'pending'::text)
+               Filter: (expires_at <= now())
+               Heap Blocks: exact=1
+               Buffers: shared hit=2
+               ->  Bitmap Index Scan on orders_status_recent  (cost=0.00..4.16 rows=2 width=0) (actual time=0.004..0.005 rows=2.00 loops=1)
+                     Index Cond: (status = 'pending'::text)
+                     Index Searches: 1
+                     Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=5
+ Planning Time: 0.076 ms
+ Execution Time: 0.025 ms
+(19 rows)
+
+                                                                       QUERY PLAN                                                                        
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.15..8.17 rows=1 width=180) (actual time=0.160..0.161 rows=1.00 loops=1)
+   Buffers: shared read=2
+   ->  Index Scan using movements_balance_recent on inventory_movements  (cost=0.15..8.17 rows=1 width=180) (actual time=0.159..0.160 rows=1.00 loops=1)
+         Index Cond: ((warehouse_id = 'tehran'::text) AND (variant_id = 'tropical-single'::text))
+         Index Searches: 1
+         Buffers: shared read=2
+ Planning:
+   Buffers: shared hit=66 read=3
+ Planning Time: 0.706 ms
+ Execution Time: 0.172 ms
+(10 rows)
+
+ warehouse_id | variant_id | on_hand | movement_total | reserved | active_reservations 
+--------------+------------+---------+----------------+----------+---------------------
+(0 rows)
+

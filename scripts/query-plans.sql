@@ -1,0 +1,4 @@
+EXPLAIN (ANALYZE, BUFFERS) SELECT id,status,total_rial,created_at FROM orders WHERE session_id='example' ORDER BY created_at DESC,id DESC LIMIT 20;
+EXPLAIN (ANALYZE, BUFFERS) SELECT id FROM orders WHERE status='pending' AND expires_at<=now() ORDER BY expires_at LIMIT 100;
+EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM inventory_movements WHERE warehouse_id='tehran' AND variant_id='tropical-single' ORDER BY created_at DESC LIMIT 20;
+SELECT b.warehouse_id,b.variant_id,b.on_hand,coalesce(m.total,0) AS movement_total,b.reserved,coalesce(r.total,0) AS active_reservations FROM inventory_balances b LEFT JOIN (SELECT warehouse_id,variant_id,sum(delta) total FROM inventory_movements GROUP BY 1,2) m USING(warehouse_id,variant_id) LEFT JOIN (SELECT warehouse_id,variant_id,sum(quantity) total FROM reservations WHERE status='active' GROUP BY 1,2) r USING(warehouse_id,variant_id) WHERE b.on_hand<>coalesce(m.total,0) OR b.reserved<>coalesce(r.total,0);
