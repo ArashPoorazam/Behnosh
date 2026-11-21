@@ -29,13 +29,13 @@ For a production-mode local preview: `npm run build`, then `npm run start -w app
 
 ## What works
 
-- Four-stage product journey: hero, rotating product/ingredient story, tropical/classic selection, purchase.
-- HQ-derived tropical can and original-art classic bottle; independent single/six-pack SKUs.
+- Redesigned product journey: glossy three-can hero, restrained editorial typography, four-color Dadli tasting experience, Antarctic ice scene, and connected product selection/purchase.
+- Nine repeatably generated showcase models; stripe-free lacquered cans, original-photo Dadli sleeves, and independent tropical/classic single/six-pack SKUs.
 - Session-owned carts, live authoritative prices, atomic reservations, idempotent checkout.
 - Deterministic success/failure/cancellation; retry after failure; 15-minute reservation expiry.
 - Session-scoped order history; admin paid → processing → shipped transitions.
 - Multiple inventory warehouses, signed stock adjustments with reasons, movement and audit history, warehouse creation, catalog price/name edits and variant activation.
-- Reduced-motion poster, model failure fallback, keyboard-operable controls, focus-trapped cart dialog, mobile compositions, locally hosted Vazirmatn.
+- Reduced-motion posters, model failure fallback, RTL keyboard flavor tabs, focus-trapped cart dialog, mobile compositions, locally hosted Vazirmatn. Header scrolls away with the opening section.
 
 ## Source map
 
@@ -84,3 +84,7 @@ npm run assets
 Derivatives are written separately under `apps/web/public/assets`. The tropical HQ print is AI-reconstructed and is **not original production artwork**; small lettering and imagery differ. Back surfaces and dimensions are inferred. A supplied high-resolution label is required for brand-accurate close-ups. WebP textures and simplification are used; Draco/Meshopt bitstream compression and KTX2 are deferred until device/decode benchmarks justify them. Version filenames must change whenever deployed asset bytes change.
 
 This is a maintainable showcase MVP, not production certification. No field Core Web Vitals or real-phone frame-rate guarantee is claimed.
+
+## Redesigned showcase assets
+
+Run `npm run assets:showcase` to rebuild the featured product models and compressed web assets in one batch. Source photographs are preserved under `output/showcase/source`; unchanged model recipes are cached. Intermediate showcase GLBs, product renders, hash caches, and size reports are ignored; source images and shipped web assets stay tracked. See [showcase asset notes](output/showcase/README.md) for projection, styling, provenance and versioning. The existing two-product catalog, stock and simulated checkout remain connected; Dadli is a flavor showcase.

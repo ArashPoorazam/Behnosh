@@ -72,7 +72,7 @@ export function CartDrawer({
     >
       <div className="drawer-inner">
         <div className="drawer-heading">
-          <h2 id="cart-title">سبدِ حال خوب</h2>
+          <h2 id="cart-title">سبد خرید</h2>
           <button
             className="icon-button"
             aria-label="بستن سبد خرید"
@@ -81,13 +81,13 @@ export function CartDrawer({
             <X size={20} />
           </button>
         </div>
-        <p className="muted">انتخاب‌های خوش‌طعم تو</p>
+        <p className="muted">محصولات انتخاب‌شده</p>
         {cart.items.length === 0 ? (
           <div className="empty-state">
             <ShoppingBag size={50} />
-            <h3>سبدت منتظر یه طعم تازه‌ست.</h3>
+            <h3>سبد خرید شما خالی است.</h3>
             <button className="button dark" onClick={onClose}>
-              کشف طعم‌ها
+              مشاهده محصولات
             </button>
           </div>
         ) : (
@@ -96,7 +96,11 @@ export function CartDrawer({
               {cart.items.map((item) => (
                 <li key={item.variant_id}>
                   <img
-                    src={`/assets/${item.asset}-v1.webp`}
+                    src={
+                      item.asset === "tropical"
+                        ? "/assets/showcase/can-tropical-v2.webp"
+                        : `/assets/${item.asset}-v1.webp`
+                    }
                     width="80"
                     height="100"
                     alt=""

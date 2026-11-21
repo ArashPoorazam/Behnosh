@@ -227,7 +227,7 @@
   padding: 0 5%;
   border-bottom: 1px solid var(--line);
 }
-.simple-header > a:not(.wordmark) {
+.simple-header > a:not(.delster-wordmark) {
   font-size: 14px;
 }
 .page-title {

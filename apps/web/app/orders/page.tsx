@@ -33,7 +33,7 @@ export default function OrdersPage() {
     <>
       <SimpleHeader />
       <main id="main" className="page-shell">
-        <span className="section-kicker">ردِ لحظه‌های خوش‌طعم</span>
+        <span className="section-kicker">پیگیری سفارش‌ها</span>
         <h1 className="page-title">سفارش‌های من</h1>
         <p className="muted">
           سفارش‌های این مرورگر · خرید و پرداخت کاملاً نمایشی
@@ -52,7 +52,7 @@ export default function OrdersPage() {
           <div className="empty-state">
             <h2>هنوز سفارشی نداری.</h2>
             <Link className="button dark" href="/#flavors">
-              انتخاب طعم
+              مشاهده محصولات
             </Link>
           </div>
         ) : (

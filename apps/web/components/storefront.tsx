@@ -1,52 +1,103 @@
 "use client";
 import Link from "next/link";
-import {
-  ShoppingBag,
-  Menu,
-  X,
-  Sparkles,
-  Droplets,
-  Leaf,
-  Plus,
-  Check,
-} from "lucide-react";
-import { useState } from "react";
-import { ProductStage } from "./product-stage";
+import { ShoppingBag, Menu, X, Snowflake, ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShowcaseStage } from "./showcase-stage";
+import { DadliExperience } from "./dadli-experience";
 import { PurchaseControls } from "./purchase-controls";
 import { CartDrawer } from "./cart-drawer";
 import { useCommerce } from "@/lib/use-commerce";
 import { number } from "@/lib/money";
+import { posterUrl } from "@/lib/showcase";
 export default function Storefront() {
   const [asset, setAsset] = useState("tropical");
   const [menu, setMenu] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
   const commerce = useCommerce();
   const product = commerce.products.find((p) => p.asset === asset);
-  const add = async (id: string, quantity: number) => {
-    const existing =
-      commerce.cart.items.find((i) => i.variant_id === id)?.quantity || 0;
-    return commerce.setQuantity(id, existing + quantity);
-  };
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        gsap.from(".editorial-line", {
+          opacity: 0.22,
+          y: 25,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: ".editorial",
+            start: "top 80%",
+            end: "center 45%",
+            scrub: 1,
+          },
+        });
+        gsap.fromTo(
+          ".cold-products",
+          { y: 20 },
+          {
+            y: -10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".cold-world",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          },
+        );
+      }, root);
+      return () => ctx.revert();
+    });
+    return () => media.revert();
+  }, []);
+  useEffect(() => {
+    const escape = (e: globalThis.KeyboardEvent) => {
+      if (e.key === "Escape") setMenu(false);
+    };
+    window.addEventListener("keydown", escape);
+    return () => window.removeEventListener("keydown", escape);
+  }, []);
+  const add = async (id: string, quantity: number) =>
+    commerce.setQuantity(
+      id,
+      (commerce.cart.items.find((i) => i.variant_id === id)?.quantity || 0) +
+        quantity,
+    );
   return (
-    <>
-      <header className="site-header">
-        <Link href="/" className="wordmark" aria-label="بهنوش، خانه">
-          بهنوش<span>BEHNOSH</span>
+    <div ref={root} className="beverage-site">
+      <header className="showcase-header">
+        <Link
+          href="/"
+          aria-label="دلستر، خانه"
+          className="delster-wordmark"
+          dir="ltr"
+        >
+          DELSTER<span>®</span>
         </Link>
-        <nav aria-label="ناوبری اصلی" className={menu ? "nav is-open" : "nav"}>
-          <a onClick={() => setMenu(false)} href="#flavors">
-            دنیای طعم‌ها
+        <nav
+          id="main-nav"
+          aria-label="ناوبری اصلی"
+          className={`showcase-nav ${menu ? "is-open" : ""}`}
+        >
+          <a href="#delster" onClick={() => setMenu(false)}>
+            دلستر
           </a>
-          <a onClick={() => setMenu(false)} href="#ingredients">
-            داستان یک جرعه
+          <a href="#dadli" onClick={() => setMenu(false)}>
+            دادلی
+          </a>
+          <a href="#shop" onClick={() => setMenu(false)}>
+            فروشگاه
           </a>
           <Link href="/orders">سفارش‌های من</Link>
         </nav>
         <div className="header-actions">
           <button
-            className="cart-trigger"
-            aria-label="باز کردن سبد خرید"
+            className="showcase-cart"
             onClick={() => setCartOpen(true)}
+            aria-label="باز کردن سبد خرید"
           >
             <ShoppingBag size={19} />
             <span>سبد خرید</span>
@@ -55,9 +106,10 @@ export default function Storefront() {
             </b>
           </button>
           <button
-            className="icon-button menu-trigger"
+            className="icon-button showcase-menu"
             aria-label="فهرست"
             aria-expanded={menu}
+            aria-controls="main-nav"
             onClick={() => setMenu(!menu)}
           >
             {menu ? <X /> : <Menu />}
@@ -65,148 +117,171 @@ export default function Storefront() {
         </div>
       </header>
       <main id="main">
-        <div id="story" className={`story theme-${asset}`}>
-          <ProductStage asset={asset} />
-          <section className="hero story-section">
-            <div className="hero-topline">
-              <span className="eyebrow">
-                <span className="tiny-sun" /> حال خوب، از یک جرعه شروع می‌شه
-              </span>
-              <span className="latin-note" dir="ltr">
-                A LITTLE SIP. A NEW MOOD.
-              </span>
-            </div>
-            <div className="hero-title">
-              <h1>
-                درِ لحظه رو
-                <br />
-                <span>باز کن.</span>
-              </h1>
-              <span className="outline-word" aria-hidden="true">
-                تـــازه
-              </span>
-            </div>
-            <div className="hero-bottom">
-              <div className="hero-copy">
-                <p>
-                  از روزمرگی فاصله بگیر.
-                  <br />
-                  با بهنوش، یه طعم تازه به لحظه‌هات بده.
-                </p>
-                <a href="#flavors" className="button dark">
-                  طعم خودت رو پیدا کن <Sparkles size={18} />
-                </a>
-              </div>
-              <div className="round-seal">
-                <span>خنک بنوش</span>
-                <Sparkles size={27} />
-                <span>تازه زندگی کن</span>
-              </div>
-            </div>
-            <div className="scroll-note">
-              <span className="scroll-line" />
-              برای کشف طعم، پایین بیا
-            </div>
-            <div className="floating-orbit orbit-one" />
-            <div className="floating-orbit orbit-two" />
-          </section>
-          <div className="ticker">
-            <div>
-              یه جرعه تازگی <span>✳</span> یه دنیا حال خوب <span>✳</span> به
-              وقت بهنوش <span>✳</span> یه جرعه تازگی <span>✳</span> یه دنیا
-              حال خوب <span>✳</span>
-            </div>
+        <section
+          id="delster"
+          className="showcase-hero"
+          aria-labelledby="hero-heading"
+        >
+          <div className="hero-eyebrow">
+            <span>نوشیدنی مالت بدون الکل</span>
+            <span className="hero-rule" />
+            <span dir="ltr">ORIGINAL TASTE</span>
           </div>
-          <section id="ingredients" className="ingredients story-section">
-            <div className="section-kicker">از نزدیک، خوش‌طعم‌تر</div>
-            <div className="ingredients-copy">
-              <h2>
-                حال خوب،
-                <br />
-                توی جزئیاته.
-              </h2>
-              <p>
-                صدای باز شدن قوطی. خنکی اولین جرعه.
-                <br />
-                همون مکث کوچیکی که روزت لازم داره.
-              </p>
-              <div className="ingredient-list">
-                <div>
-                  <Leaf />
-                  <span>
-                    <strong>شخصیت مالت</strong>
-                    <small>پایه آشنای یک نوشیدنی دوست‌داشتنی</small>
-                  </span>
-                </div>
-                <div>
-                  <Sparkles />
-                  <span>
-                    <strong>حال‌وهوای استوایی</strong>
-                    <small>برای لحظه‌هایی با طعمی متفاوت</small>
-                  </span>
-                </div>
-                <div>
-                  <Droplets />
-                  <span>
-                    <strong>خنک، کنار لحظه‌های تو</strong>
-                    <small>با یک لیوان یخ، آماده یک مکث تازه</small>
-                  </span>
-                </div>
+          <h1 id="hero-heading" className="hero-display" dir="ltr">
+            DELSTER
+          </h1>
+          <ShowcaseStage hero />
+          <div className="hero-foot">
+            <div>
+              <p>تنها دلستر، دلستر است.</p>
+              <span>طعم آشنا، در انتخاب‌های متفاوت.</span>
+            </div>
+            <a className="button dark" href="#shop">
+              انتخاب و خرید <ShoppingBag size={18} />
+            </a>
+            <a className="explore-link" href="#dadli">
+              <span>کشف طعم‌ها</span>
+              <ChevronDown size={18} />
+            </a>
+          </div>
+          <span className="hero-side-note" dir="ltr">
+            MALT. FRUIT. FRESHNESS.
+          </span>
+        </section>
+        <section className="editorial" aria-labelledby="editorial-heading">
+          <span className="small-label">از مالت تا میوه</span>
+          <h2 id="editorial-heading">
+            <span className="editorial-line">طعم آشنا.</span>
+            <br />
+            <span className="editorial-line editorial-highlight">
+              انتخاب‌های تازه.
+            </span>
+          </h2>
+          <p className="editorial-line">
+            دلستر با طعم مالت؛ دادلی با طعم میوه.
+            <br />
+            برای هر سلیقه، یک انتخاب.
+          </p>
+        </section>
+        <DadliExperience />
+        <section
+          className="cold-world"
+          id="cold"
+          aria-labelledby="cold-heading"
+        >
+          <img
+            className="ice-landscape"
+            src="/assets/showcase/antarctic-v1.webp"
+            alt=""
+            width={1536}
+            height={1024}
+            loading="lazy"
+          />
+          <div className="cold-copy">
+            <span className="small-label">
+              <Snowflake size={18} /> بهترین همراهِ خنکی
+            </span>
+            <h2 id="cold-heading">خنک بنوشید.</h2>
+            <p>طعم دلستر، کنار چند تکه یخ.</p>
+          </div>
+          <div className="cold-products">
+            <img
+              className="cold-bottle cold-left"
+              src="/assets/classic-v1.webp"
+              alt="دلستر کلاسیک شیشه‌ای"
+              width={900}
+              height={1000}
+              loading="lazy"
+            />
+            <img
+              className="cold-bottle cold-center"
+              src={posterUrl("bottle-tropical")}
+              alt="دلستر استوایی شیشه‌ای"
+              width={800}
+              height={1000}
+              loading="lazy"
+            />
+            <img
+              className="cold-bottle cold-right"
+              src="/assets/classic-v1.webp"
+              alt=""
+              width={900}
+              height={1000}
+              loading="lazy"
+            />
+          </div>
+          <img
+            className="ice-foreground"
+            src="/assets/showcase/antarctic-v1.webp"
+            alt=""
+            width={1536}
+            height={1024}
+            loading="lazy"
+          />
+          <div className="cold-bottom">
+            <span dir="ltr">SERVE CHILLED</span>
+            <a href="#shop" className="button frost">
+              انتخاب دلستر
+            </a>
+            <span>دلستر · شیشه‌ای</span>
+          </div>
+        </section>
+        <section
+          className="shop-section"
+          id="shop"
+          aria-labelledby="shop-heading"
+        >
+          <div className="shop-heading">
+            <div>
+              <span className="small-label">انتخاب شما</span>
+              <h2 id="shop-heading">طعم دلخواهتان.</h2>
+            </div>
+            <button className="text-button" onClick={() => setCartOpen(true)}>
+              مشاهده سبد خرید <ShoppingBag size={17} />
+            </button>
+          </div>
+          <div className="shop-layout">
+            <div className={`shop-product-visual ${asset}`}>
+              <span className="shop-product-word" dir="ltr">
+                {asset === "classic" ? "CLASSIC" : "TROPICAL"}
+              </span>
+              <img
+                key={asset}
+                src={
+                  asset === "classic"
+                    ? "/assets/classic-v1.webp"
+                    : posterUrl("can-tropical")
+                }
+                alt={asset === "classic" ? "دلستر کلاسیک" : "دلستر استوایی"}
+                width={800}
+                height={1000}
+                loading="lazy"
+              />
+            </div>
+            <div className="shop-details">
+              <div className="shop-tabs" role="group" aria-label="انتخاب دلستر">
+                <button
+                  aria-pressed={asset === "tropical"}
+                  onClick={() => setAsset("tropical")}
+                >
+                  استوایی
+                </button>
+                <button
+                  aria-pressed={asset === "classic"}
+                  onClick={() => setAsset("classic")}
+                >
+                  کلاسیک
+                </button>
               </div>
-            </div>
-            <Sparkles className="giant-asterisk" aria-hidden="true" />
-          </section>
-          <section id="flavors" className="flavors story-section">
-            <div className="flavor-heading">
-              <span className="section-kicker">هر حال، یک انتخاب</span>
-              <h2>
-                امروز،
-                <br />
-                چه طعمی هستی؟
-              </h2>
-              <p>استوایی و سرزنده یا کلاسیک و آشنا؟</p>
-            </div>
-            <div className="flavor-options">
-              <button
-                onClick={() => setAsset("tropical")}
-                aria-pressed={asset === "tropical"}
-                className={`flavor-card tropical ${asset === "tropical" ? "selected" : ""}`}
-              >
-                <span className="flavor-index" dir="ltr">
-                  TROPICAL
-                </span>
-                <strong>استوایی</strong>
-                <span>یه سفر کوتاه به حال خوب</span>
-                <div className="flavor-dot" />
-                {asset === "tropical" ? (
-                  <Check size={20} />
-                ) : (
-                  <Plus size={20} />
-                )}
-              </button>
-              <button
-                onClick={() => setAsset("classic")}
-                aria-pressed={asset === "classic"}
-                className={`flavor-card classic ${asset === "classic" ? "selected" : ""}`}
-              >
-                <span className="flavor-index" dir="ltr">
-                  ORIGINAL MALT
-                </span>
-                <strong>کلاسیک</strong>
-                <span>همون طعم آشنای همیشگی</span>
-                <div className="flavor-dot" />
-                {asset === "classic" ? <Check size={20} /> : <Plus size={20} />}
-              </button>
-            </div>
-          </section>
-          <section id="purchase" className="purchase story-section">
-            <div className="purchase-copy">
-              <span className="section-kicker">لحظه‌ات رو تازه کن</span>
-              <h2>{asset === "tropical" ? "دلستر استوایی" : "دلستر کلاسیک"}</h2>
-              <p>
-                انتخابت رو به سبد اضافه کن؛
-                <br />
-                بقیه‌اش یک تجربه ساده و نمایشی است.
+              <span className="small-label">نوشیدنی مالت بدون الکل</span>
+              <h3>
+                {product?.name ??
+                  (asset === "classic" ? "دلستر کلاسیک" : "دلستر استوایی")}
+              </h3>
+              <p className="shop-description">
+                {asset === "classic"
+                  ? "طعم اصیل مالت، آشنا و ماندگار."
+                  : "مالت با حال‌وهوای میوه‌های استوایی."}
               </p>
               {product ? (
                 <PurchaseControls
@@ -219,7 +294,7 @@ export default function Storefront() {
                 <div className="purchase-placeholder">
                   {commerce.loading
                     ? "در حال دریافت محصولات…"
-                    : "محصولی برای نمایش نیست."}
+                    : "محصولات در حال حاضر در دسترس نیستند."}
                 </div>
               )}
               {commerce.error && (
@@ -234,36 +309,27 @@ export default function Storefront() {
                 </div>
               )}
               <p className="fine-print">
-                این فروشگاه یک نمونه نمایشی است؛ پرداخت واقعی انجام نمی‌شود.
+                فروشگاه نمایشی است؛ پرداخت واقعی انجام نمی‌شود.
               </p>
             </div>
-          </section>
-        </div>
-        <section className="closing">
-          <span className="section-kicker">کنار هم، خوش‌طعم‌تره</span>
-          <h2>
-            به سلامتیِ
-            <br />
-            <span>لحظه‌های ساده.</span>
-          </h2>
-          <a className="button light" href="#flavors">
-            یه طعم تازه انتخاب کن <Sparkles size={18} />
-          </a>
-          <div className="closing-bubbles" aria-hidden="true">
-            <i />
-            <i />
-            <i />
           </div>
         </section>
       </main>
-      <footer className="site-footer">
-        <Link href="/" className="wordmark">
-          بهنوش<span>BEHNOSH</span>
-        </Link>
-        <p>یک جرعه، حال تازه.</p>
-        <div>
-          <Link href="/admin">مدیریت فروشگاه</Link>
-          <span>تجربه نمایشی · بدون پرداخت واقعی</span>
+      <footer className="showcase-footer">
+        <div className="footer-top">
+          <a className="delster-wordmark" href="#delster" dir="ltr">
+            DELSTER<span>®</span>
+          </a>
+          <p>تنها دلستر، دلستر است.</p>
+          <a href="#delster">بازگشت به بالا</a>
+        </div>
+        <div className="footer-bottom">
+          <div>
+            <a href="#dadli">دادلی</a>
+            <Link href="/orders">سفارش‌های من</Link>
+            <Link href="/admin">مدیریت فروشگاه</Link>
+          </div>
+          <span>تجربه‌ی نمایشی محصولات · ۱۴۰۵</span>
         </div>
       </footer>
       <CartDrawer
@@ -275,6 +341,6 @@ export default function Storefront() {
         onQuantity={commerce.setQuantity}
         onCheckedOut={() => void commerce.reload()}
       />
-    </>
+    </div>
   );
 }

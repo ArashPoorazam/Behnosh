@@ -29,3 +29,10 @@ output/**/check-*.png
 output/**/delster-*-preview.png
 output/**/delster-*-angle.png
 output/**/delster-*-front.png
+
+# Reproducible showcase intermediates; keep source photos and shipped web assets.
+/output/showcase/*.glb
+/output/showcase/*.png
+!/output/showcase/antarctic.png
+/output/showcase/*.sha256
+/output/showcase/manifest.json

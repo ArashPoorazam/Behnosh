@@ -10,7 +10,8 @@
     "typecheck": "npm run typecheck -w apps/web",
     "test:e2e": "node tests/e2e.mjs",
     "assets": "node scripts/optimize-assets.mjs",
-    "api:types": "openapi-typescript api/openapi.json -o apps/web/lib/api-schema.d.ts"
+    "api:types": "openapi-typescript api/openapi.json -o apps/web/lib/api-schema.d.ts",
+    "assets:showcase": "blender -b -t 4 --python scripts/build-showcase.py && node scripts/optimize-showcase.mjs"
   },
   "devDependencies": {
     "@gltf-transform/core": "^4.2.1",

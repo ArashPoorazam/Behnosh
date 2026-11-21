@@ -1,0 +1,69 @@
+[
+  {
+    "id": "can-lemon",
+    "kind": "can",
+    "source": "دلستر-قوطی-لیمویی-330-b995cc80.png",
+    "color": "e6ba16",
+    "center": 300,
+    "label": [300, 319, 101, 128]
+  },
+  {
+    "id": "can-peach",
+    "kind": "can",
+    "source": "دلستر-قوطی-هلو-330.png",
+    "color": "ee727c",
+    "center": 300,
+    "label": [300, 319, 103, 131]
+  },
+  {
+    "id": "can-black",
+    "kind": "can",
+    "source": "دلستر-قوطی-بلک-330.png",
+    "color": "23272c",
+    "center": 300,
+    "label": [300, 320, 103, 127]
+  },
+  {
+    "id": "dadli-orange",
+    "kind": "dadli",
+    "source": "نوشیدنی-و-نوشابه-گازدار-میوه-ای-پرتغال-دادلی-شیشه-250.png",
+    "color": "ef850c",
+    "center": 301
+  },
+  {
+    "id": "dadli-peach",
+    "kind": "dadli",
+    "source": "نوشیدنی-و-نوشابه-گازدار-میوه-ای-هلو-دادلی-شیشه-250.png",
+    "color": "f78e79",
+    "center": 299
+  },
+  {
+    "id": "dadli-coconut",
+    "kind": "dadli",
+    "source": "نوشیدنی-و-نوشابه-گازدار-میوه-ای-نارگیل-دادلی-شیشه-250.png",
+    "color": "58a53c",
+    "center": 301
+  },
+  {
+    "id": "dadli-blue",
+    "kind": "dadli",
+    "source": "نوشیدنی-و-نوشابه-گازدار-میوه-ای-بلوتروپیکال-دادلی-شیشه-250.png",
+    "color": "21bde8",
+    "center": 301
+  },
+  {
+    "id": "bottle-tropical",
+    "kind": "bottle",
+    "source": "دلستر-استوایی-شیشه-320.png",
+    "color": "453025",
+    "center": 299
+  },
+  {
+    "id": "can-tropical",
+    "kind": "can",
+    "source": "delster-tropical-original.png",
+    "color": "2c9676",
+    "center": 300,
+    "label": [300, 320, 102, 130]
+  }
+]
