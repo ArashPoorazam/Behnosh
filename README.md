@@ -52,7 +52,18 @@ For a production-mode local preview: `npm run build`, then `npm run start -w app
 
 Read [architecture](docs/architecture.md), [data model / ER diagram](docs/data-model.md), [API notes](docs/api.md), [performance and assets](docs/performance.md), and [verification / next steps](docs/verification.md).
 
-The [official catalog import](docs/catalog-import.md) adds the original website's 107 products across 13 brands: 96 inactive database records and source details linked to the existing 11 showcase products. Original photos and a repeatable import are included; customer presentation and commercial pricing remain pending.
+The [all-products catalog](http://127.0.0.1:3000/products) presents the original website's 107 products across 13 brands and nine categories, with Persian-aware search, category/brand/packaging/availability filters, sorting, incremental loading, original product photography, and the persistent left-hand cart drawer. The homepage links to the catalog while its featured carousel retains its eleven 3D products. All prices, inventory and checkout remain explicitly simulated.
+
+The [official catalog import](docs/catalog-import.md) preserves source data separately from offers. To enable demo purchasing for the 96 imported products on a fresh installation, first start the API to apply migrations/seed the showcase, then run:
+
+```bash
+set -a; source .env; set +a
+cd api
+go run -buildvcs=false ./cmd/import-catalog
+go run -buildvcs=false ./cmd/enable-catalog-demo
+```
+
+Demo activation is explicit and repeatable; it leaves existing offers and stock untouched and never refills depleted stock. Catalog photos are shipped as optimized WebP files; regenerate them from the saved originals with `npm run assets:catalog` from the repository root. Catalog metadata is rendered from the verified snapshot; prices, availability and cart totals come from the live API.
 
 ## Verification
 
@@ -64,6 +75,7 @@ TEST_DATABASE_URL='postgres://behnosh:behnosh-local@127.0.0.1:55432/behnosh?sslm
 cd ..
 # With both servers running; Chromium at /usr/bin/chromium or set CHROMIUM_PATH:
 npm run test:e2e
+npm run test:catalog
 node scripts/performance.mjs
 ```
 

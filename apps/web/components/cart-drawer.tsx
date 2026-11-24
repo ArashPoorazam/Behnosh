@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { useRouter } from "next/navigation";
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { api, errorMessage, unwrap, type Cart } from "@/lib/api";
@@ -13,6 +13,7 @@ export function CartDrawer({
   error,
   onQuantity,
   onCheckedOut,
+  opener,
 }: {
   open: boolean;
   onClose: () => void;
@@ -21,6 +22,7 @@ export function CartDrawer({
   error: string;
   onQuantity: (id: string, quantity: number) => Promise<boolean>;
   onCheckedOut: () => void;
+  opener?: RefObject<HTMLElement | null>;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const key = useRef("");
@@ -31,16 +33,19 @@ export function CartDrawer({
     const el = dialog.current;
     if (!el) return;
     if (open) {
+      const trigger = opener?.current ?? document.activeElement;
       el.showModal();
       const prior = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = prior;
         el.close();
+        if (trigger instanceof HTMLElement && trigger.isConnected)
+          trigger.focus();
       };
     }
     el.close();
-  }, [open]);
+  }, [open, opener]);
   async function checkout() {
     setPaying(true);
     setCheckoutError("");

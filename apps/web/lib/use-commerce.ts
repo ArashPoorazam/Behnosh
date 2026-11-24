@@ -8,14 +8,17 @@ export function useCommerce() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const reload = useCallback(async () => {
+    setLoading(true);
     setError("");
     try {
       const [catalog, basket] = await Promise.all([
         api.GET("/api/v1/catalog"),
         api.GET("/api/v1/cart"),
       ]);
-      setProducts(unwrap(catalog));
-      setCart(unwrap(basket));
+      const products = unwrap(catalog);
+      const cart = unwrap(basket);
+      setProducts(products);
+      setCart(cart);
     } catch (e) {
       setError(errorMessage(e));
     } finally {

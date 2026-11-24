@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRef, useState, type CSSProperties } from "react";
 import { ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/api";
@@ -31,7 +32,7 @@ export function ProductCatalog({
   });
   const touch = useRef<{ x: number; y: number } | null>(null);
   const items = products
-    .filter((p) => (catalogDisplay[p.asset]?.group ?? "delster") === group)
+    .filter((p) => catalogDisplay[p.asset]?.group === group)
     .sort(
       (a, b) =>
         Object.keys(catalogDisplay).indexOf(a.asset) -
@@ -82,7 +83,9 @@ export function ProductCatalog({
             دادلی <span>نوشیدنی میوه‌ای</span>
           </button>
         </div>
-        <span className="catalog-hint">ورق بزن، مقایسه کن، انتخاب کن.</span>
+        <Link className="text-button" href="/products">
+          کشف همه محصولات
+        </Link>
       </div>
       {product && display ? (
         <>

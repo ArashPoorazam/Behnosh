@@ -48,9 +48,9 @@ export default function Storefront() {
           <a href="#dadli" onClick={() => setMenu(false)}>
             دادلی
           </a>
-          <a href="#shop" onClick={() => setMenu(false)}>
-            فروشگاه
-          </a>
+          <Link href="/products" onClick={() => setMenu(false)}>
+            همه محصولات
+          </Link>
           <Link href="/orders">سفارش‌های من</Link>
         </nav>
         <div className="header-actions">
@@ -101,6 +101,7 @@ export default function Storefront() {
         <div className="footer-bottom">
           <div>
             <a href="#dadli">دادلی</a>
+            <Link href="/products">همه محصولات</Link>
             <Link href="/orders">سفارش‌های من</Link>
             <Link href="/admin">مدیریت فروشگاه</Link>
           </div>

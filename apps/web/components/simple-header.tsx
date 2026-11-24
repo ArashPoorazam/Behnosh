@@ -5,7 +5,7 @@ export function SimpleHeader() {
       <Link href="/" className="delster-wordmark" dir="ltr">
         DELSTER<span>®</span>
       </Link>
-      <Link href="/">بازگشت به فروشگاه</Link>
+      <Link href="/products">بازگشت به فروشگاه</Link>
     </header>
   );
 }

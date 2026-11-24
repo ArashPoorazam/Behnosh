@@ -2,6 +2,7 @@ import { posterUrl } from "./showcase";
 export const catalogDisplay: Record<
   string,
   {
+    sourceId: string;
     group: "delster" | "dadli";
     color: string;
     accent: string;
@@ -12,6 +13,7 @@ export const catalogDisplay: Record<
   }
 > = {
   tropical: {
+    sourceId: "182",
     group: "delster",
     color: "#d6eac6",
     accent: "#236348",
@@ -21,6 +23,7 @@ export const catalogDisplay: Record<
     notes: "مالت با حال‌وهوای میوه‌های استوایی",
   },
   "can-lemon": {
+    sourceId: "185",
     group: "delster",
     color: "#f1edb0",
     accent: "#60712c",
@@ -30,6 +33,7 @@ export const catalogDisplay: Record<
     notes: "رایحهٔ لیمو، طعمی سرزنده و مرکباتی",
   },
   "can-peach": {
+    sourceId: "186",
     group: "delster",
     color: "#f7d2cb",
     accent: "#973d47",
@@ -39,6 +43,7 @@ export const catalogDisplay: Record<
     notes: "رایحهٔ هلو، لطیف و دلنشین",
   },
   "can-pineapple": {
+    sourceId: "126",
     group: "delster",
     color: "#e6ebb0",
     accent: "#57692c",
@@ -48,6 +53,7 @@ export const catalogDisplay: Record<
     notes: "آناناس، آفتابی و استوایی",
   },
   "can-black": {
+    sourceId: "240",
     group: "delster",
     color: "#ddd5c7",
     accent: "#45483b",
@@ -57,6 +63,7 @@ export const catalogDisplay: Record<
     notes: "مالت، با شخصیتی متفاوت",
   },
   classic: {
+    sourceId: "152",
     group: "delster",
     color: "#e7d8b7",
     accent: "#705230",
@@ -66,6 +73,7 @@ export const catalogDisplay: Record<
     notes: "طعم اصیل و آشنای مالت",
   },
   "bottle-tropical": {
+    sourceId: "232",
     group: "delster",
     color: "#dce6b9",
     accent: "#4c6331",
@@ -75,6 +83,7 @@ export const catalogDisplay: Record<
     notes: "طعم استوایی در بطری شیشه‌ای",
   },
   "dadli-orange": {
+    sourceId: "199",
     group: "dadli",
     color: "#ffd08a",
     accent: "#8d431a",
@@ -84,6 +93,7 @@ export const catalogDisplay: Record<
     notes: "پرتقال، روشن و مرکباتی",
   },
   "dadli-peach": {
+    sourceId: "198",
     group: "dadli",
     color: "#f5bac4",
     accent: "#702a43",
@@ -93,6 +103,7 @@ export const catalogDisplay: Record<
     notes: "هلو، نرم و میوه‌ای",
   },
   "dadli-coconut": {
+    sourceId: "197",
     group: "dadli",
     color: "#d6e9b2",
     accent: "#244b36",
@@ -102,6 +113,7 @@ export const catalogDisplay: Record<
     notes: "نارگیل، ملایم و استوایی",
   },
   "dadli-blue": {
+    sourceId: "194",
     group: "dadli",
     color: "#b4e5f0",
     accent: "#104961",
@@ -112,6 +124,8 @@ export const catalogDisplay: Record<
   },
 };
 export const productPoster = (asset: string) =>
-  asset === "classic"
-    ? "/assets/classic-v1.webp"
-    : posterUrl(asset === "tropical" ? "can-tropical" : asset);
+  asset.startsWith("catalog-")
+    ? `/assets/catalog/${asset.slice(8)}-v1.webp`
+    : asset === "classic"
+      ? "/assets/classic-v1.webp"
+      : posterUrl(asset === "tropical" ? "can-tropical" : asset);
