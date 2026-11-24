@@ -52,6 +52,8 @@ For a production-mode local preview: `npm run build`, then `npm run start -w app
 
 Read [architecture](docs/architecture.md), [data model / ER diagram](docs/data-model.md), [API notes](docs/api.md), [performance and assets](docs/performance.md), and [verification / next steps](docs/verification.md).
 
+The [official catalog import](docs/catalog-import.md) adds the original website's 107 products across 13 brands: 96 inactive database records and source details linked to the existing 11 showcase products. Original photos and a repeatable import are included; customer presentation and commercial pricing remain pending.
+
 ## Verification
 
 ```bash

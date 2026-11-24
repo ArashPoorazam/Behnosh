@@ -3,6 +3,7 @@
 ```mermaid
 erDiagram
  categories ||--o{ products : groups
+ products ||--o| product_sources : documents
  products ||--o{ variants : offers
  variants ||--o{ inventory_balances : stocks
  warehouses ||--o{ inventory_balances : holds
@@ -25,6 +26,8 @@ erDiagram
 ```
 
 The schema is in `api/migrations/001_initial.sql`. `schema_migrations` records applied versions; migrations serialize with a PostgreSQL advisory lock. Seed insertion is repeatable and never resets prices, stock, orders or admin credentials.
+
+`002_product_sources.sql` adds official catalog provenance and package metadata. See [the import notes](catalog-import.md) for the 107 source products, original images, existing showcase matches, and inactive draft handling. Draft products have no variants or inventory; the demo seed only creates offers and stock for its eleven explicit showcase IDs.
 
 ## Authorities and deliberate snapshots
 - Variant prices are integer **rials**. Go calculates amounts; the browser only formats amounts as tomans (10 rials per toman). There are no taxes, shipping charges or discounts in this demo.

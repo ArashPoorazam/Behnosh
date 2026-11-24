@@ -36,3 +36,7 @@ output/**/delster-*-front.png
 !/output/showcase/antarctic.png
 /output/showcase/*.sha256
 /output/showcase/manifest.json
+
+# Superseded can assets; the current showcase uses v3.
+/apps/web/public/assets/showcase/can-*-v2.glb
+/apps/web/public/assets/showcase/can-*-v2.webp

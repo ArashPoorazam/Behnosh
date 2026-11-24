@@ -4,6 +4,7 @@ import (
 	"context"
 	"embed"
 	"fmt"
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"golang.org/x/crypto/bcrypt"
 	"io/fs"
@@ -95,13 +96,13 @@ func Seed(ctx context.Context, p *pgxpool.Pool, username, password string) error
  ('classic-single','classic','DL-CL-01','تک بطری',1,390000),('classic-six','classic','DL-CL-06','بسته ۶ عددی',6,2220000) ON CONFLICT DO NOTHING;
  INSERT INTO variants(id,product_id,sku,name,units,price_rial)
  SELECT p.id || '-single', p.id, 'DEMO-' || upper(p.id) || '-01', CASE WHEN p.asset LIKE 'can-%' THEN 'تک قوطی' ELSE 'تک بطری' END, 1, CASE WHEN p.category_id='fruit' THEN 420000 ELSE 450000 END
- FROM products p WHERE p.id NOT IN ('tropical','classic') ON CONFLICT DO NOTHING;
+ FROM products p WHERE p.id = ANY($1::text[]) AND p.id NOT IN ('tropical','classic') ON CONFLICT DO NOTHING;
  INSERT INTO variants(id,product_id,sku,name,units,price_rial)
  SELECT p.id || '-six', p.id, 'DEMO-' || upper(p.id) || '-06', 'بسته ۶ عددی', 6, CASE WHEN p.category_id='fruit' THEN 2350000 ELSE 2520000 END
- FROM products p WHERE p.id NOT IN ('tropical','classic') ON CONFLICT DO NOTHING;
+ FROM products p WHERE p.id = ANY($1::text[]) AND p.id NOT IN ('tropical','classic') ON CONFLICT DO NOTHING;
  INSERT INTO warehouses VALUES('tehran','انبار تهران',true),('karaj','انبار کرج',true) ON CONFLICT DO NOTHING;
- WITH inserted AS (INSERT INTO inventory_balances(warehouse_id,variant_id,on_hand) SELECT w.id,v.id,CASE WHEN w.id='tehran' THEN 120 ELSE 40 END FROM warehouses w CROSS JOIN variants v ON CONFLICT DO NOTHING RETURNING *)
- INSERT INTO inventory_movements(warehouse_id,variant_id,delta,reason) SELECT warehouse_id,variant_id,on_hand,'موجودی آغازین نمونه' FROM inserted;`)
+ WITH inserted AS (INSERT INTO inventory_balances(warehouse_id,variant_id,on_hand) SELECT w.id,v.id,CASE WHEN w.id='tehran' THEN 120 ELSE 40 END FROM warehouses w CROSS JOIN variants v WHERE v.product_id = ANY($1::text[]) ON CONFLICT DO NOTHING RETURNING *)
+ INSERT INTO inventory_movements(warehouse_id,variant_id,delta,reason) SELECT warehouse_id,variant_id,on_hand,'موجودی آغازین نمونه' FROM inserted;`, pgx.QueryExecModeSimpleProtocol, demoProductIDs)
 	if err != nil {
 		return err
 	}
@@ -110,4 +111,11 @@ func Seed(ctx context.Context, p *pgxpool.Pool, username, password string) error
 		return err
 	}
 	return tx.Commit(ctx)
+}
+
+// Only these showcase fixtures receive simulated offers and opening stock.
+// Official catalog imports must never acquire fabricated prices on server restart.
+var demoProductIDs = []string{
+	"tropical", "classic", "can-lemon", "can-peach", "can-pineapple", "can-black",
+	"bottle-tropical", "dadli-orange", "dadli-peach", "dadli-coconut", "dadli-blue",
 }
