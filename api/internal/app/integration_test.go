@@ -352,7 +352,43 @@ func TestSeedRepeatability(t *testing.T) {
 	}
 	var count int
 	_ = f.db.QueryRow(context.Background(), "SELECT count(*) FROM inventory_movements").Scan(&count)
-	if count != 8 {
+	if count != 44 {
 		t.Fatal("seed duplicated movements", count)
+	}
+}
+
+func TestEveryShowcaseProductCanBePurchased(t *testing.T) {
+	f := setup(t)
+	c := f.shopper(t)
+	status, body := c.call(t, "GET", "/catalog", nil)
+	if status != 200 {
+		t.Fatal(status, string(body))
+	}
+	var products []Product
+	if err := json.Unmarshal(body, &products); err != nil {
+		t.Fatal(err)
+	}
+	if len(products) != 11 {
+		t.Fatalf("expected all 11 showcase products, got %d", len(products))
+	}
+	var expected int64
+	for _, product := range products {
+		if len(product.Variants) != 2 {
+			t.Fatalf("%s has no single/six-pack choice", product.ID)
+		}
+		for _, variant := range product.Variants {
+			status, body = c.call(t, "PUT", "/cart/items", map[string]any{"variant_id": variant.ID, "quantity": 2})
+			if status != 200 {
+				t.Fatalf("%s: %d %s", variant.ID, status, body)
+			}
+			expected += variant.Price * 2
+		}
+	}
+	status, order := c.checkout(t, "all-showcase-products")
+	if status != 200 {
+		t.Fatal("checkout", status)
+	}
+	if order.Total != expected || len(order.Items) != 22 {
+		t.Fatalf("incorrect catalog order: %+v", order)
 	}
 }

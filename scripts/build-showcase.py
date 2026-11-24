@@ -11,6 +11,8 @@ OUT = ROOT/'output/showcase'
 OUT.mkdir(parents=True, exist_ok=True)
 SOURCE = Path(os.environ.get('BEVERAGE_SOURCE_DIR', '/home/daedalus/Pictures/behnosh'))
 PRODUCTS = json.loads((ROOT/'scripts/showcase-products.json').read_text())
+requested = os.environ.get('BEVERAGE_PRODUCT_IDS', '').split(',')
+if requested != ['']: PRODUCTS = [p for p in PRODUCTS if p['id'] in requested]
 S = .01
 CAN = [(488,0),(488,84),(485,94),(479,104),(469,110),(455,111),(185,111),(178,107),(162,97),(148,92),(133,92),(130,89)]
 DADLI = [(546,0),(546,45),(542,59),(534,64),(515,65),(285,65),(269,62),(251,53),(233,43),(216,36),(195,32),(112,29),(91,29),(86,31),(76,31),(76,0)]
@@ -104,9 +106,15 @@ for product in PRODUCTS:
         lathe('Rolled upper seam',[(139,90),(135,94),(131,95),(127,93),(127,89),(132,88),(139,90)],silver)
         lathe('Recessed lid',[(136,0),(136,75),(139,80),(135,88)],silver)
         lathe('Lower silver ring',[(488,81),(490,85),(488,91),(483,96),(480,97)],silver)
-        bpy.ops.mesh.primitive_torus_add(major_radius=.18,minor_radius=.045,major_segments=48,minor_segments=12,location=(0,.09,4.66))
-        tab=bpy.context.object;tab.name='Aluminium pull tab';tab.scale=(.78,1.45,.45);tab.data.materials.append(silver)
-        bpy.ops.mesh.primitive_uv_sphere_add(segments=24,ring_count=12,radius=.055,location=(0,-.12,4.67));bpy.context.object.data.materials.append(silver)
+        bpy.ops.mesh.primitive_torus_add(major_radius=.21,minor_radius=.055,major_segments=48,minor_segments=12,location=(0,.16,4.70))
+        tab=bpy.context.object;tab.name='Aluminium pull tab';tab.scale=(1.05,1.65,.38);tab.data.materials.append(silver)
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=24,ring_count=12,radius=.07,location=(0,-.10,4.70));bpy.context.object.data.materials.append(silver)
+        bpy.ops.mesh.primitive_cube_add(size=1,location=(0,-.07,4.685))
+        tongue=bpy.context.object;tongue.name='Pull tab tongue';tongue.scale=(.27,.32,.035);tongue.data.materials.append(silver)
+        bevel=tongue.modifiers.new('Soft stamped edges','BEVEL');bevel.width=.045;bevel.segments=3
+        score=material('Scored opening shadow',(.16,.18,.19),.85,.32)
+        bpy.ops.mesh.primitive_torus_add(major_radius=.25,minor_radius=.012,major_segments=48,minor_segments=8,location=(0,-.38,4.655))
+        opening=bpy.context.object;opening.name='Scored lid opening';opening.scale=(1,1.15,.45);opening.data.materials.append(score)
     else:
         top=76 if kind=='dadli' else 51
         cap=material('Crown cap',rgb('283e73') if name in ['dadli-orange','dadli-blue'] else color,.7,.24)

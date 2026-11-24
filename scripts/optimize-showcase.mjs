@@ -10,7 +10,11 @@ const out = "apps/web/public/assets/showcase";
 await mkdir(out, { recursive: true });
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
 const report = [];
-for (const { id } of products) {
+const requested = process.env.BEVERAGE_PRODUCT_IDS?.split(",");
+for (const { id } of products.filter(
+  (p) => !requested || requested.includes(p.id),
+)) {
+  const version = id.startsWith("can-") ? "v3" : "v2";
   const doc = await io.read(`output/showcase/${id}.glb`);
   await doc.transform(
     weld(),
@@ -18,20 +22,16 @@ for (const { id } of products) {
     prune(),
     textureCompress({ encoder: sharp, targetFormat: "webp", quality: 90 }),
   );
-  await io.write(`${out}/${id}-v2.glb`, doc);
+  await io.write(`${out}/${id}-${version}.glb`, doc);
   await sharp(`output/showcase/${id}.png`)
     .webp({ quality: 90 })
-    .toFile(`${out}/${id}-v2.webp`);
+    .toFile(`${out}/${id}-${version}.webp`);
   report.push({
     id,
-    modelBytes: (await stat(`${out}/${id}-v2.glb`)).size,
-    posterBytes: (await stat(`${out}/${id}-v2.webp`)).size,
+    modelBytes: (await stat(`${out}/${id}-${version}.glb`)).size,
+    posterBytes: (await stat(`${out}/${id}-${version}.webp`)).size,
   });
 }
-await sharp("output/showcase/antarctic.png")
-  .resize({ width: 1920, withoutEnlargement: true })
-  .webp({ quality: 88 })
-  .toFile(`${out}/antarctic-v1.webp`);
 await writeFile(
   "output/showcase/manifest.json",
   JSON.stringify(report, null, 2) + "\n",

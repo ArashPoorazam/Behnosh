@@ -1,10 +1,78 @@
 "use client";
-import { useState, type CSSProperties, type KeyboardEvent } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  type CSSProperties,
+  type KeyboardEvent,
+} from "react";
 import { dadliFlavors, posterUrl } from "@/lib/showcase";
 import { ShowcaseStage } from "./showcase-stage";
 export function DadliExperience() {
+  const section = useRef<HTMLElement>(null);
+  const wipe = useRef<HTMLDivElement>(null);
+  const animation = useRef<Animation | null>(null);
+  const animations = useRef(new Set<Animation>());
+  const selectedRef = useRef(0);
   const [selected, setSelected] = useState(0);
   const flavor = dadliFlavors[selected];
+  useEffect(
+    () => () => {
+      animations.current.forEach((a) => a.cancel());
+      animations.current.clear();
+    },
+    [],
+  );
+  const select = (next: number) => {
+    if (next === selectedRef.current) return;
+    selectedRef.current = next;
+    const el = section.current;
+    const surface = wipe.current;
+    if (el && surface) {
+      const layer = document.createElement("div");
+      layer.className = "flavor-color-layer";
+      surface.appendChild(layer);
+      layer.style.backgroundColor = dadliFlavors[next].color;
+      const rect = el.getBoundingClientRect();
+      const button = document
+        .getElementById(`flavor-tab-${next}`)
+        ?.getBoundingClientRect();
+      const x = button
+        ? button.left + button.width / 2 - rect.left
+        : rect.width / 2;
+      const y = button
+        ? button.top + button.height / 2 - rect.top
+        : rect.height / 2;
+      const radius = Math.hypot(
+        Math.max(x, rect.width - x),
+        Math.max(y, rect.height - y),
+      );
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const currentAnimation = layer.animate(
+        [
+          { clipPath: `circle(0px at ${x}px ${y}px)` },
+          { clipPath: `circle(${radius}px at ${x}px ${y}px)` },
+        ],
+        {
+          duration: reduced ? 0 : 850,
+          easing: "cubic-bezier(.22,1,.36,1)",
+          fill: "forwards",
+        },
+      );
+      animation.current = currentAnimation;
+      animations.current.add(currentAnimation);
+      currentAnimation.onfinish = () => {
+        if (animation.current !== currentAnimation) return;
+        el.style.backgroundColor = dadliFlavors[next].color;
+        animations.current.forEach((a) => a.cancel());
+        animations.current.clear();
+        surface.replaceChildren();
+      };
+    }
+    setSelected(next);
+  };
   const selectWithKeyboard = (
     event: KeyboardEvent<HTMLButtonElement>,
     index: number,
@@ -17,11 +85,12 @@ export function DadliExperience() {
     else if (event.key === "End") next = dadliFlavors.length - 1;
     else return;
     event.preventDefault();
-    setSelected(next);
+    select(next);
     document.getElementById(`flavor-tab-${next}`)?.focus();
   };
   return (
     <section
+      ref={section}
       id="dadli"
       className="dadli-experience"
       style={
@@ -33,6 +102,7 @@ export function DadliExperience() {
       }
       aria-labelledby="dadli-title"
     >
+      <div ref={wipe} className="flavor-color-wipe" aria-hidden="true" />
       <div className="section-top">
         <span>نوشیدنی گازدار میوه‌ای</span>
         <span className="latin-label" dir="ltr">
@@ -112,7 +182,7 @@ export function DadliExperience() {
             aria-selected={i === selected}
             aria-controls="flavor-panel"
             tabIndex={i === selected ? 0 : -1}
-            onClick={() => setSelected(i)}
+            onClick={() => select(i)}
             onKeyDown={(e) => selectWithKeyboard(e, i)}
           >
             <img

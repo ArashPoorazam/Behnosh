@@ -77,13 +77,28 @@ func Seed(ctx context.Context, p *pgxpool.Pool, username, password string) error
 	}
 	defer tx.Rollback(ctx)
 	_, err = tx.Exec(ctx, `SELECT pg_advisory_xact_lock(712039);
- INSERT INTO categories VALUES('malt','نوشیدنی مالت') ON CONFLICT DO NOTHING;
+ INSERT INTO categories VALUES('malt','نوشیدنی مالت'),('fruit','نوشیدنی میوه‌ای') ON CONFLICT DO NOTHING;
  INSERT INTO products(id,category_id,slug,name,description,asset) VALUES
  ('tropical','malt','tropical','دلستر استوایی','یک جرعه، یک حال‌وهوای تازه. طعم استوایی در قوطی خنک.','tropical'),
- ('classic','malt','classic','دلستر کلاسیک','طعم آشنای مالت، در بطری شیشه‌ای کلاسیک.','classic') ON CONFLICT DO NOTHING;
+ ('classic','malt','classic','دلستر کلاسیک','طعم آشنای مالت، در بطری شیشه‌ای کلاسیک.','classic'),
+ ('can-lemon','malt','can-lemon','دلستر لیمویی','نوشیدنی مالت با طعم لیمو، قوطی ۳۳۰ میلی‌لیتری.','can-lemon'),
+ ('can-peach','malt','can-peach','دلستر هلو','نوشیدنی مالت با طعم هلو، قوطی ۳۳۰ میلی‌لیتری.','can-peach'),
+ ('can-pineapple','malt','can-pineapple','دلستر آناناس','نوشیدنی مالت با طعم آناناس، قوطی ۳۳۰ میلی‌لیتری.','can-pineapple'),
+ ('can-black','malt','can-black','دلستر بلک','نوشیدنی مالت بلک، قوطی ۳۳۰ میلی‌لیتری.','can-black'),
+ ('bottle-tropical','malt','bottle-tropical','دلستر استوایی شیشه‌ای','نوشیدنی مالت استوایی، بطری ۳۲۰ میلی‌لیتری.','bottle-tropical'),
+ ('dadli-orange','fruit','dadli-orange','دادلی پرتقال','نوشیدنی گازدار با طعم پرتقال، بطری ۲۵۰ میلی‌لیتری.','dadli-orange'),
+ ('dadli-peach','fruit','dadli-peach','دادلی هلو','نوشیدنی گازدار با طعم هلو، بطری ۲۵۰ میلی‌لیتری.','dadli-peach'),
+ ('dadli-coconut','fruit','dadli-coconut','دادلی نارگیل','نوشیدنی گازدار با طعم نارگیل، بطری ۲۵۰ میلی‌لیتری.','dadli-coconut'),
+ ('dadli-blue','fruit','dadli-blue','دادلی بلوتروپیکال','نوشیدنی گازدار با طعم استوایی، بطری ۲۵۰ میلی‌لیتری.','dadli-blue') ON CONFLICT DO NOTHING;
  INSERT INTO variants(id,product_id,sku,name,units,price_rial) VALUES
  ('tropical-single','tropical','DL-TR-01','تک قوطی',1,450000),('tropical-six','tropical','DL-TR-06','بسته ۶ عددی',6,2520000),
  ('classic-single','classic','DL-CL-01','تک بطری',1,390000),('classic-six','classic','DL-CL-06','بسته ۶ عددی',6,2220000) ON CONFLICT DO NOTHING;
+ INSERT INTO variants(id,product_id,sku,name,units,price_rial)
+ SELECT p.id || '-single', p.id, 'DEMO-' || upper(p.id) || '-01', CASE WHEN p.asset LIKE 'can-%' THEN 'تک قوطی' ELSE 'تک بطری' END, 1, CASE WHEN p.category_id='fruit' THEN 420000 ELSE 450000 END
+ FROM products p WHERE p.id NOT IN ('tropical','classic') ON CONFLICT DO NOTHING;
+ INSERT INTO variants(id,product_id,sku,name,units,price_rial)
+ SELECT p.id || '-six', p.id, 'DEMO-' || upper(p.id) || '-06', 'بسته ۶ عددی', 6, CASE WHEN p.category_id='fruit' THEN 2350000 ELSE 2520000 END
+ FROM products p WHERE p.id NOT IN ('tropical','classic') ON CONFLICT DO NOTHING;
  INSERT INTO warehouses VALUES('tehran','انبار تهران',true),('karaj','انبار کرج',true) ON CONFLICT DO NOTHING;
  WITH inserted AS (INSERT INTO inventory_balances(warehouse_id,variant_id,on_hand) SELECT w.id,v.id,CASE WHEN w.id='tehran' THEN 120 ELSE 40 END FROM warehouses w CROSS JOIN variants v ON CONFLICT DO NOTHING RETURNING *)
  INSERT INTO inventory_movements(warehouse_id,variant_id,delta,reason) SELECT warehouse_id,variant_id,on_hand,'موجودی آغازین نمونه' FROM inserted;`)

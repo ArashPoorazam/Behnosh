@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { api, errorMessage, unwrap, type Cart } from "@/lib/api";
+import { productPoster } from "@/lib/catalog-display";
 import { number, toman } from "@/lib/money";
 export function CartDrawer({
   open,
@@ -96,11 +97,7 @@ export function CartDrawer({
               {cart.items.map((item) => (
                 <li key={item.variant_id}>
                   <img
-                    src={
-                      item.asset === "tropical"
-                        ? "/assets/showcase/can-tropical-v2.webp"
-                        : `/assets/${item.asset}-v1.webp`
-                    }
+                    src={productPoster(item.asset)}
                     width="80"
                     height="100"
                     alt=""

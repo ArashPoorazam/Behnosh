@@ -10,8 +10,15 @@ import {
   useMemo,
   useRef,
   type ReactNode,
+  type RefObject,
 } from "react";
-import { modelUrl, type SceneProduct, type FruitKind } from "@/lib/showcase";
+import {
+  dadliFlavors,
+  modelUrl,
+  type SceneProduct,
+  type FruitKind,
+} from "@/lib/showcase";
+import { orbitPose } from "@/lib/orbit";
 import { FruitMesh } from "./fruit-mesh";
 class Boundary extends Component<
   { children: ReactNode; onError: () => void },
@@ -55,13 +62,21 @@ function Product({
   item,
   index,
   onReady,
+  progress,
+  hero,
+  selected = true,
 }: {
+  selected?: boolean;
+  progress?: RefObject<number>;
+  hero?: boolean;
   item: SceneProduct;
   index: number;
   onReady: () => void;
 }) {
   const gltf = useLoader(GLTFLoader, modelUrl(item.asset));
   const group = useRef<Group>(null);
+  const presence = useRef(selected ? 1 : 0);
+  const aspect = useThree((s) => s.size.width / s.size.height);
   const model = useMemo(() => {
     const scene = gltf.scene.clone(true);
     const box = new Box3().setFromObject(scene);
@@ -76,6 +91,27 @@ function Product({
     if (!group.current) return;
     const t = clock.getElapsedTime();
     const o = group.current;
+    if (hero && progress) {
+      const pose = orbitPose(index, progress.current, t);
+      o.visible = pose.visible;
+      o.position.set(pose.x, pose.y * Math.max(1, 1 / aspect), pose.z);
+      o.rotation.set(
+        0.17 + Math.sin(t * 0.55 + index) * 0.035,
+        pose.turn,
+        pose.rotation,
+      );
+      o.scale.setScalar(pose.scale);
+      return;
+    }
+    presence.current = MathUtils.damp(
+      presence.current,
+      selected ? 1 : 0,
+      7,
+      Math.min(delta, 0.05),
+    );
+    o.visible = presence.current > 0.015;
+    o.position.x = item.position[0] + (1 - presence.current) * 3.2;
+    o.scale.setScalar((item.scale ?? 1) * presence.current);
     o.position.y = MathUtils.damp(
       o.position.y,
       item.position[1] + Math.sin(t * 0.8 + index) * 0.07,
@@ -93,9 +129,10 @@ function Product({
   return (
     <group
       ref={group}
+      visible={selected}
       position={item.position}
       rotation={item.rotation}
-      scale={item.scale ?? 1}
+      scale={selected ? (item.scale ?? 1) : 0}
     >
       <group scale={model.scale}>
         <primitive object={model.scene} dispose={null} />
@@ -134,18 +171,38 @@ function Composition({
   products,
   fruit,
   onReady,
+  progress,
+  hero,
+  activeAsset,
 }: {
+  activeAsset?: string;
+  progress?: RefObject<number>;
+  hero?: boolean;
   products: SceneProduct[];
   fruit?: FruitKind;
   onReady: () => void;
 }) {
-  const width = useThree((s) => s.size.width);
+  const { width, height } = useThree((s) => s.size);
   return (
-    <group scale={width < 650 && products.length > 1 ? 0.88 : 1}>
+    <group scale={hero ? Math.min(1, (width / height) * 0.78) : 1}>
       {products.map((p, i) => (
-        <Product key={p.asset} item={p} index={i} onReady={onReady} />
+        <Product
+          key={`${p.asset}-${i}`}
+          item={p}
+          index={i}
+          onReady={onReady}
+          progress={progress}
+          hero={hero}
+          selected={!activeAsset || p.asset === activeAsset}
+        />
       ))}
-      {fruit && <Fruits key={fruit} kind={fruit} />}
+      {activeAsset
+        ? dadliFlavors.map((f) => (
+            <group key={f.id} visible={activeAsset === `dadli-${f.id}`}>
+              <Fruits kind={f.fruit} />
+            </group>
+          ))
+        : fruit && <Fruits kind={fruit} />}
     </group>
   );
 }
@@ -153,9 +210,15 @@ export default function ShowcaseCanvas({
   products,
   fruit,
   active,
+  progress,
+  hero,
+  activeAsset,
   onReady,
   onError,
 }: {
+  progress?: RefObject<number>;
+  hero?: boolean;
+  activeAsset?: string;
   products: SceneProduct[];
   fruit?: FruitKind;
   active: boolean;
@@ -165,6 +228,7 @@ export default function ShowcaseCanvas({
   return (
     <Boundary onError={onError}>
       <Canvas
+        resize={{ offsetSize: true }}
         frameloop={active ? "always" : "never"}
         dpr={[1, 1.5]}
         camera={{ position: [0, 0, 8.6], fov: 34 }}
@@ -178,7 +242,14 @@ export default function ShowcaseCanvas({
       >
         <Studio />
         <Suspense fallback={null}>
-          <Composition products={products} fruit={fruit} onReady={onReady} />
+          <Composition
+            products={products}
+            fruit={fruit}
+            onReady={onReady}
+            progress={progress}
+            hero={hero}
+            activeAsset={activeAsset}
+          />
         </Suspense>
       </Canvas>
     </Boundary>

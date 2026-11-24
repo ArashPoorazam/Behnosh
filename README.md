@@ -29,8 +29,8 @@ For a production-mode local preview: `npm run build`, then `npm run start -w app
 
 ## What works
 
-- Redesigned product journey: glossy three-can hero, restrained editorial typography, four-color Dadli tasting experience, Antarctic ice scene, and connected product selection/purchase.
-- Nine repeatably generated showcase models; stripe-free lacquered cans, original-photo Dadli sleeves, and independent tropical/classic single/six-pack SKUs.
+- Redesigned product journey: two-to-five-can scroll orbit, connected Persian script reveals, a traveling can with blended color chapters, circular Dadli flavor wipes, and a three-up product catalog.
+- Ten repeatably generated showcase models; stripe-free lacquered cans, original-photo Dadli sleeves, and independent single/six-pack SKUs for all eleven products.
 - Session-owned carts, live authoritative prices, atomic reservations, idempotent checkout.
 - Deterministic success/failure/cancellation; retry after failure; 15-minute reservation expiry.
 - Session-scoped order history; admin paid → processing → shipped transitions.
@@ -87,4 +87,4 @@ This is a maintainable showcase MVP, not production certification. No field Core
 
 ## Redesigned showcase assets
 
-Run `npm run assets:showcase` to rebuild the featured product models and compressed web assets in one batch. Source photographs are preserved under `output/showcase/source`; unchanged model recipes are cached. Intermediate showcase GLBs, product renders, hash caches, and size reports are ignored; source images and shipped web assets stay tracked. See [showcase asset notes](output/showcase/README.md) for projection, styling, provenance and versioning. The existing two-product catalog, stock and simulated checkout remain connected; Dadli is a flavor showcase.
+Run `npm run assets:showcase` to rebuild the featured product models and compressed web assets in one batch. Source photographs are preserved under `output/showcase/source`; unchanged model recipes are cached. Intermediate showcase GLBs, product renders, hash caches, and size reports are ignored; source images and shipped web assets stay tracked. See [showcase asset notes](output/showcase/README.md) for projection, styling, provenance and versioning. All eleven products (seven Delster and four Dadli) have single and six-pack demo variants, stock, cart and simulated checkout. The catalog supports RTL arrows, touch swipes, direct flavor selection, quantities and live totals. Full ingredient lists have not been supplied; the product disclosure explicitly identifies that missing information. The five-can hero uses five distinct can designs with visible stamped aluminum pull tabs. Dadli retains all four 3D bottles in one persistent canvas and pauses rendering outside the viewport; layered radial wipes tolerate rapid selection without resetting on scroll.

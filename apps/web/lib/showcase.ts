@@ -56,24 +56,26 @@ export type SceneProduct = {
   scale?: number;
 };
 export const heroProducts: SceneProduct[] = [
-  {
-    asset: "can-peach",
-    position: [-1.65, -0.12, -0.35],
-    rotation: [0.12, -0.2, -0.23],
-    scale: 0.91,
-  },
-  {
-    asset: "can-black",
-    position: [1.65, -0.12, -0.35],
-    rotation: [0.12, 0.18, 0.23],
-    scale: 0.91,
-  },
-  {
-    asset: "can-lemon",
-    position: [0, 0.12, 0.35],
-    rotation: [0.08, -0.07, -0.07],
-    scale: 1.06,
-  },
-];
-export const modelUrl = (asset: string) => `/assets/showcase/${asset}-v2.glb`;
-export const posterUrl = (asset: string) => `/assets/showcase/${asset}-v2.webp`;
+  "can-peach",
+  "can-lemon",
+  "can-black",
+  "can-tropical",
+  "can-pineapple",
+].map((asset) => ({
+  asset,
+  position: [0, 0, 0],
+  rotation: [0, 0, 0],
+  scale: 1,
+}));
+const assetVersion = (asset: string) =>
+  asset.startsWith("can-") ? "v3" : "v2";
+export const modelUrl = (asset: string) =>
+  `/assets/showcase/${asset}-${assetVersion(asset)}.glb`;
+export const posterUrl = (asset: string) =>
+  `/assets/showcase/${asset}-${assetVersion(asset)}.webp`;
+export const dadliProducts: SceneProduct[] = dadliFlavors.map((f) => ({
+  asset: `dadli-${f.id}`,
+  position: [0, 0, 0],
+  rotation: [0.04, -0.06, -0.11],
+  scale: 1.13,
+}));

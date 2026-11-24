@@ -26,11 +26,12 @@ export function PurchaseControls({
           <label key={v.id} className={variant.id === v.id ? "selected" : ""}>
             <input
               type="radio"
-              name="pack"
+              name={`pack-${product.id}`}
               value={v.id}
               checked={variant.id === v.id}
               onChange={() => {
                 setVariantID(v.id);
+                setQuantity(1);
                 setAdded(false);
               }}
             />
@@ -48,11 +49,25 @@ export function PurchaseControls({
           {variant.available > 0 ? "موجود در انبار" : "ناموجود"}
         </span>
       </div>
+      <div className="purchase-total" aria-live="polite" aria-atomic="true">
+        <div>
+          <span>جمع انتخاب شما</span>
+          <small>
+            {number(quantity)} {variant.units > 1 ? "بسته" : "عدد"}
+            {variant.units > 1
+              ? ` · ${number(quantity * variant.units)} نوشیدنی`
+              : ""}
+          </small>
+        </div>
+        <strong>
+          {toman(variant.price_rial * quantity)} <span>تومان</span>
+        </strong>
+      </div>
       <div className="buy-row">
         <div className="quantity-control">
           <button
             aria-label="افزایش تعداد"
-            disabled={quantity >= 24 || busy}
+            disabled={quantity >= Math.min(24, variant.available) || busy}
             onClick={() => {
               setQuantity((q) => q + 1);
               setAdded(false);
