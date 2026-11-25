@@ -1,0 +1,333 @@
+/* Floating controls have no shared painted or interactive header surface. */
+.brand-header {
+  position: fixed;
+  padding: 20px 4%;
+  pointer-events: none;
+  color: #71182a;
+  transition:
+    transform 0.3s ease,
+    visibility 0.3s;
+}
+.brand-header.is-hidden {
+  transform: translateY(-120%);
+  visibility: hidden;
+}
+.brand-header:focus-within {
+  transform: none;
+  visibility: visible;
+}
+.brand-header a,
+.brand-header button {
+  pointer-events: auto;
+}
+.brand-header nav {
+  gap: 10px;
+}
+.brand-header nav a,
+.brand-shop,
+.brand-menu {
+  background: #fff8ed;
+  border: 1px solid #71182a18;
+  border-radius: 99px;
+  padding: 12px 22px;
+  box-shadow: 0 4px 18px #35101b0c;
+}
+.brand-header nav a:hover {
+  border: 1px solid #71182a60;
+}
+.brand-mark {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  height: auto;
+}
+.brand-mark img {
+  position: absolute;
+  width: 145%;
+  height: 145%;
+  max-width: none;
+  left: -22.5%;
+  top: -22.5%;
+}
+.brand-header .brand-mark {
+  width: 86px;
+  height: 86px;
+}
+.opening-world {
+  position: relative;
+  background: #fff8ed;
+  isolation: isolate;
+}
+.opening-world > .ambient-bubbles {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 4;
+}
+.brand-hero-surface {
+  background: transparent;
+  color: #71182a;
+  overflow: visible;
+}
+.brand-hero-surface:before {
+  display: none;
+}
+.brand-hero .hero-stage {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.gather-copy,
+.hero-bottom {
+  color: #71182a;
+}
+.gather-copy .brand-pill {
+  background: #71182a;
+  color: #fff8ed;
+}
+.sky-world {
+  background: transparent;
+}
+.sky-world:after {
+  display: none;
+}
+.heritage {
+  background: #fff8ed;
+}
+/* Spacious, single-color editorial timeline. Native scrolling supports touch and keys. */
+.news-story {
+  position: relative;
+  background: #641b2b;
+  color: #fff8ed;
+  padding: 80px 6% 150px;
+}
+.news-story-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.news-story-heading p {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+.news-story-heading h2 {
+  font-size: clamp(36px, 4.6vw, 68px);
+  margin: 0;
+  letter-spacing: -2px;
+}
+.news-controls {
+  display: flex;
+  gap: 10px;
+}
+.news-controls button {
+  border: 1px solid #fff8ed70;
+  background: transparent;
+  color: inherit;
+  border-radius: 40px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+.news-controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.news-story-viewport {
+  display: flex;
+  direction: ltr;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #fff8ed60 transparent;
+}
+.news-story-item {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: 7%;
+  padding: 0 0 32px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.news-story-item > img {
+  display: block;
+  width: 100%;
+  height: clamp(280px, 32vw, 470px);
+  object-fit: contain;
+  border-radius: 8px;
+}
+.news-story-copy h3 {
+  font-size: clamp(26px, 3vw, 44px);
+  margin: 24px 0 18px;
+}
+.news-story-copy > p {
+  font-size: 18px;
+  line-height: 2;
+}
+.news-story-copy .news-date {
+  display: inline-block;
+  color: #641b2b;
+  background: #fff8ed;
+  padding: 7px 22px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.news-story-copy a {
+  display: inline-block;
+  margin-top: 20px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #fff8ed80;
+  font-size: 16px;
+}
+.news-date-rail {
+  display: flex;
+  direction: ltr;
+  margin-top: 54px;
+}
+.news-date-rail button {
+  direction: rtl;
+  flex: 1;
+  position: relative;
+  border: 0;
+  border-top: 1px solid #fff8ed60;
+  padding: 25px 8px 0;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.news-date-rail button span {
+  position: absolute;
+  left: calc(50% - 6px);
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #641b2b;
+  border: 1px solid #fff8ed;
+}
+.news-date-rail button[aria-current] span {
+  background: #fff8ed;
+  box-shadow: 0 0 0 6px #fff8ed20;
+}
+.news-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  fill: #fff8ed;
+}
+.brand-footer {
+  background: #fff8ed;
+  color: #641b2b;
+  padding: 65px 6% 30px;
+}
+.footer-emblem {
+  width: 90px;
+  height: 90px;
+}
+.footer-invite,
+.brand-colophon {
+  border-color: #641b2b25;
+}
+.brand-footer-grid a,
+.brand-footer p,
+.brand-footer h3 {
+  font-size: 16px;
+}
+.brand-colophon,
+.footer-signature span {
+  font-size: 14px;
+  opacity: 1;
+}
+.round-link {
+  border-color: #641b2b40;
+}
+@media (max-width: 800px) {
+  .brand-header {
+    padding: 14px 5%;
+  }
+  .brand-header .brand-mark {
+    width: 64px;
+    height: 64px;
+  }
+  .brand-header nav {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    align-items: end;
+  }
+  .brand-header nav a {
+    min-width: 170px;
+    text-align: center;
+  }
+  .brand-menu {
+    padding: 0;
+    width: 44px;
+    height: 44px;
+  }
+  .brand-shop {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .brand-hero .hero-stage {
+    inset: 0;
+    width: 100%;
+  }
+  .news-story {
+    padding: 60px 6% 110px;
+  }
+  .news-story-heading {
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+  .news-story-item {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-content: start;
+  }
+  .news-story-item > img {
+    height: 260px;
+  }
+  .news-story-copy h3 {
+    margin-top: 14px;
+    font-size: 28px;
+  }
+  .news-story-copy > p {
+    font-size: 16px;
+  }
+  .news-date-rail {
+    overflow-x: auto;
+    padding-top: 8px;
+    margin-top: 25px;
+  }
+  .news-date-rail button {
+  direction: rtl;
+    min-width: 110px;
+    font-size: 14px;
+  }
+  .news-wave {
+    height: 65px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-header {
+    transition: none;
+  }
+  .brand-hero .hero-stage {
+    height: 700px;
+  }
+  .opening-world > .ambient-bubbles {
+    display: none;
+  }
+}

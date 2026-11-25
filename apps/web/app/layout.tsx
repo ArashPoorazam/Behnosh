@@ -5,9 +5,9 @@ import "@fontsource/vazirmatn/700.css";
 import "@fontsource/vazirmatn/900.css";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "دلستر و دادلی | دنیای طعم‌ها",
+  title: "بهنوش | ۶۰ سال، یک دنیا طعم",
   description:
-    "دلستر و دادلی؛ نوشیدنی‌های مالت و میوه‌ای. کشف طعم‌ها و خرید نمایشی محصولات.",
+    "بهنوش؛ ۶۰ سال کیفیت، طعم خاطره و همراهی. دنیای نوشیدنی‌ها، خانواده برندها و تازه‌های بهنوش.",
 };
 export default function RootLayout({
   children,

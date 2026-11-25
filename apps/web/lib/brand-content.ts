@@ -1,0 +1,82 @@
+export const brands = [
+  {
+    slug: "dadali",
+    name: "دادلی",
+    caption: "یک دنیا طعم میوه",
+    product: "194",
+  },
+  {
+    slug: "aloe",
+    name: "آلوئه ورا",
+    caption: "جرعه‌ای از طبیعت",
+    product: "127",
+  },
+  {
+    slug: "start",
+    name: "استارت",
+    caption: "شروع یک اتفاق تازه",
+    product: "145",
+  },
+  {
+    slug: "vitamin-c",
+    name: "ویتامین سی",
+    caption: "حال خوبِ هر روز",
+    product: "143",
+  },
+  {
+    slug: "synergy",
+    name: "سینرژی",
+    caption: "همراه لحظه‌های پرانرژی",
+    product: "141",
+  },
+];
+export const news = [
+  {
+    date: "۱۴ آبان ۱۴۰۵",
+    category: "کیفیت و افتخار",
+    title: "کارخانه گچساران؛ واحد نمونه تولیدی",
+    copy: "انتخاب کارخانه گچساران بهنوش از سوی اداره استاندارد استان کهگیلویه و بویراحمد.",
+    image: "/assets/brand/news-0.webp",
+    href: "https://behnoushiran.com/اخبار/antkhab-karkhanh-gchsaran-bhnosh-ayran-bh-anoan-oahd-nmonh-tolydy-az-soy-adarh-astandard-astan-khgyloyh-o-boyrahmd",
+  },
+  {
+    date: "۱۱ آبان ۱۴۰۵",
+    category: "رویدادها",
+    title: "طعم خاطره، در کنار نسل تازه",
+    copy: "حضور بهنوش و دلستر در مدیا اکسپو و استقبال از طعم‌های کلاسیک و لیمویی.",
+    image: "/assets/brand/news-1.webp",
+    href: "https://behnoushiran.com/اخبار/hzor-mtfaot-bhnosh-o-dlstr-dr-domyn-nmayshgah-mdya-akspo-astghbal-nsl-jdyd-az-tam-nostalzhyk-bhnosh",
+  },
+  {
+    date: "۱۵ مهر ۱۴۰۵",
+    category: "تازه‌های محصول",
+    title: "خاطره‌های بزرگ، در یک لیتر",
+    copy: "رونمایی از ماءالشعیرهای کلاسیک و لیمویی بهنوش در بسته‌بندی یک‌لیتری.",
+    image: "/assets/brand/news-2.webp",
+    href: "https://behnoushiran.com/اخبار/افتتاح-خط-جدید-ماءالشعیر-در-کارخانه-کرج",
+  },
+  {
+    date: "۱۲ مهر ۱۴۰۵",
+    image: "/assets/brand/news-3.webp",
+    href: "https://behnoushiran.com/اخبار/حضور-بهنوش-در-نمایشگاه-نوشیدنی-تهران",
+    title: "قهرمانی تیم والیبال بهنوش",
+    copy: "تیم بهنوش عنوان قهرمانی رقابت‌های والیبال شهر کارگری تهران را کسب کرد.",
+    category: "رویدادها",
+  },
+  {
+    date: "۱۲ شهریور ۱۴۰۵",
+    image: "/assets/brand/news-4.webp",
+    href: "https://behnoushiran.com/اخبار/دریافت-تندیس-بهره-وری-صنایع-غذایی",
+    title: "بهنوش در نمایشگاه صنعت پخش",
+    copy: "دیدار با فعالان صنعت پخش و معرفی طعم‌های بهنوش در نمایشگاه ایران‌مال.",
+    category: "رویدادها",
+  },
+  {
+    date: "۳ خرداد ۱۴۰۵",
+    image: "/assets/brand/news-5.webp",
+    href: "https://behnoushiran.com/اخبار/۶۰-سالگی-بهنوش-ایران",
+    title: "شصت سال بهنوش؛ اصالت و نوآوری",
+    copy: "حضور بهنوش در ایران آگروفود ۱۴۰۵، هم‌زمان با شصتمین سال فعالیت این شرکت.",
+    category: "رویدادها",
+  },
+];

@@ -47,34 +47,29 @@ export function CatalogFiltersPanel({
         <ChevronDown size={18} />
       </button>
       <div id="catalog-filter-content" className="shelf-filter-content">
-        <div className="shelf-filter-heading">
-          <h2>دسته‌بندی‌ها</h2>
-          <SlidersHorizontal size={18} />
-        </div>
-        <div className="shelf-categories" role="group" aria-label="دسته‌بندی">
-          <button
-            aria-pressed={!filters.category}
-            onClick={() => onChange({ category: "" })}
-          >
-            <span>همه نوشیدنی‌ها</span>
-            <b>{number(entries.length)}</b>
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category}
-              aria-pressed={filters.category === category}
-              onClick={() => onChange({ category })}
-            >
-              <span>{categoryLabels[category] ?? category}</span>
-              <b>
-                {number(
-                  entries.filter((item) => item.category === category).length,
-                )}
-              </b>
-            </button>
-          ))}
-        </div>
         <div className="shelf-filter-selects">
+          <label htmlFor="filter-category">دسته‌بندی‌ها</label>
+          <div className="shelf-select">
+            <select
+              id="filter-category"
+              value={filters.category}
+              onChange={(e) => onChange({ category: e.target.value })}
+            >
+              <option value="">
+                همه نوشیدنی‌ها ({number(entries.length)})
+              </option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {categoryLabels[category] ?? category} (
+                  {number(
+                    entries.filter((item) => item.category === category).length,
+                  )}
+                  )
+                </option>
+              ))}
+            </select>
+            <ChevronDown size={16} />
+          </div>
           <label htmlFor="filter-brand">برند دلخواهت</label>
           <div className="shelf-select">
             <select

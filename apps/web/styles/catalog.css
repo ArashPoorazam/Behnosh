@@ -265,50 +265,10 @@
   position: sticky;
   top: 24px;
 }
-.shelf-filter-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px 12px 24px;
-}
-.shelf-filter-heading h2 {
-  font-size: 18px;
-  margin: 0;
-}
-.shelf-categories {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.shelf-categories button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  border: 0;
-  background: transparent;
-  text-align: right;
-  padding: 12px;
-  border-radius: 9px;
-  font-size: 14px;
-  min-height: 45px;
-}
-.shelf-categories button b {
-  font-size: 13px;
-  font-weight: 400;
-  opacity: 0.8;
-}
-.shelf-categories button:hover {
-  background: #edf1e4;
-}
-.shelf-categories button[aria-pressed="true"] {
-  background: var(--ink);
-  color: #f4f8e9;
-}
 .shelf-filter-selects {
-  border-block: 1px solid var(--shelf-line);
-  padding: 24px 0;
-  margin: 24px 0;
+  border-bottom: 1px solid var(--shelf-line);
+  padding: 0 0 24px;
+  margin: 0 0 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -845,11 +805,6 @@
   }
   .shelf-filter-selects {
     margin-bottom: 0;
-  }
-  .shelf-categories {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
   }
   .shelf-results {
     width: 100%;

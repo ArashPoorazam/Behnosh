@@ -12,7 +12,7 @@ cp .env.example .env
 ./scripts/dev.sh
 ```
 
-Open **http://127.0.0.1:3000** (use this exact hostname for Origin/CSRF matching). Admin: **http://127.0.0.1:3000/admin**. Local demonstration login: `admin` / `Behnosh-demo-2026!`. These are development credentials, not hidden secrets. Configure your own before exposing the service. Seed only creates a missing admin and does not reset an existing password.
+Open **http://127.0.0.1:3000** or **http://localhost:3000**. For local HTTP development, both loopback names are accepted on the configured port; deployed sites still require the exact `APP_ORIGIN`. CSRF tokens remain required. Browser cookies and carts are separate for each hostname. Admin: **http://127.0.0.1:3000/admin**. Local demonstration login: `admin` / `Behnosh-demo-2026!`. These are development credentials, not hidden secrets. Configure your own before exposing the service. Seed only creates a missing admin and does not reset an existing password.
 
 The script initializes a dedicated `.local/postgres` cluster on port **55432**, builds and starts Go on **8080**, and starts Next on **3000**. Ctrl-C stops the app processes; the local database intentionally persists. Stop it with `pg_ctl -D "$PWD/.local/postgres" stop`. Original assets in `output/` and all original Blender/build files are preserved.
 

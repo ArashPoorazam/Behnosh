@@ -92,11 +92,11 @@ function Product({
     const t = clock.getElapsedTime();
     const o = group.current;
     if (hero && progress) {
-      const pose = orbitPose(index, progress.current, t);
+      const pose = orbitPose(index, progress.current, t, aspect < 1.1);
       o.visible = pose.visible;
       o.position.set(pose.x, pose.y * Math.max(1, 1 / aspect), pose.z);
       o.rotation.set(
-        0.17 + Math.sin(t * 0.55 + index) * 0.035,
+        pose.pitch + Math.sin(t * 0.55 + index) * 0.02,
         pose.turn,
         pose.rotation,
       );
@@ -231,7 +231,7 @@ export default function ShowcaseCanvas({
         resize={{ offsetSize: true }}
         frameloop={active ? "always" : "never"}
         dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 8.6], fov: 34 }}
+        camera={{ position: [0, 0, hero ? 10.8 : 8.6], fov: 34 }}
         gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
         onCreated={({ gl }) => {
           gl.domElement.setAttribute("aria-hidden", "true");

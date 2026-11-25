@@ -1,0 +1,867 @@
+/* The landing journey: ivory → mineral green → warm paper → editorial colors. */
+.brand-header {
+  color: #594532;
+}
+.brand-header nav {
+  font-size: 15px;
+}
+.brand-shop,
+.brand-menu {
+  border-color: #59453240;
+}
+.brand-shop {
+  font-size: 14px;
+}
+.brand-hero {
+  height: 420svh;
+}
+.brand-hero-surface {
+  background: #fffaf0;
+  color: #594532;
+}
+.brand-hero-surface:before {
+  background: radial-gradient(ellipse at 50% 30%, #fff 0%, #fff0 65%);
+}
+.hero-emblem {
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+.opening-copy h1 {
+  font-size: clamp(50px, 6.2vw, 96px);
+  letter-spacing: -3px;
+}
+.opening-copy p {
+  font-size: 20px;
+}
+.gather-copy {
+  color: #493c2d;
+}
+.gather-copy .brand-pill {
+  background: #594532;
+  color: #fffaf0;
+  font-size: 15px;
+}
+.hero-bottom {
+  font-size: 14px;
+  color: #594532;
+}
+.ambient-bubbles {
+  z-index: 1;
+  perspective: 700px;
+}
+.ambient-bubbles i,
+.sky-world .ambient-bubbles i,
+.product-bubble > div {
+  border: 1px solid #fff9;
+  background: radial-gradient(
+    circle at 27% 23%,
+    #ffffffe0 0%,
+    #ffffff30 15%,
+    #fff0 48%,
+    #9aada012 72%,
+    #ffffff90 100%
+  );
+  box-shadow:
+    inset 2px 3px 5px #fff9,
+    inset -2px -3px 5px #78877c25,
+    0 2px 8px #597c7010;
+}
+.ambient-bubbles i {
+  opacity: var(--alpha);
+  animation-name: soda-rise;
+}
+.ambient-bubbles i[data-depth="0"] {
+  filter: blur(0.7px);
+}
+.ambient-bubbles i[data-depth="3"] {
+  z-index: 4;
+}
+@keyframes soda-rise {
+  0% {
+    transform: translate3d(0, 80px, 0);
+  }
+  25% {
+    transform: translate3d(var(--sway), calc(-25svh - 30px), 0);
+  }
+  50% {
+    transform: translate3d(0, calc(-50svh - 70px), 0);
+  }
+  75% {
+    transform: translate3d(calc(var(--sway) * -0.7), calc(-75svh - 100px), 0);
+  }
+  100% {
+    transform: translate3d(0, calc(-100svh - 140px), 0);
+  }
+}
+.sky-world {
+  background: linear-gradient(
+    #e2ece5 0%,
+    #d8e9df 60%,
+    #e9eddf 87%,
+    #fff8ed 100%
+  );
+  color: #344d42;
+}
+.sky-world:before {
+  opacity: 0.08;
+}
+.product-universe {
+  height: 660svh;
+  min-height: 0;
+  padding: 0;
+}
+.universe-stage {
+  height: 100svh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.universe-statements {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 0;
+}
+.universe-statement {
+  grid-area: 1/1;
+  text-align: center;
+  font-size: clamp(64px, 11vw, 170px);
+  line-height: 1.5;
+  letter-spacing: -5px;
+  margin: 0;
+  width: 95%;
+  visibility: hidden;
+}
+.scroll-write {
+  --ink: 100%;
+  color: transparent;
+  background: linear-gradient(to left, currentColor, currentColor);
+  background: linear-gradient(
+    to left,
+    #594532 0%,
+    #594532 var(--ink),
+    #59453225 var(--ink),
+    #59453225 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.universe-statement.scroll-write {
+  background-image: linear-gradient(
+    to left,
+    #416c565c 0%,
+    #416c565c var(--ink),
+    #416c5610 var(--ink),
+    #416c5610 100%
+  );
+}
+.product-bubbles {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  display: block;
+  padding: 0;
+}
+.product-bubble {
+  left: var(--bubble-left);
+  right: auto;
+  top: 30%;
+  width: clamp(160px, var(--bubble-size), 330px);
+  max-width: none;
+  visibility: hidden;
+  margin: 0;
+  z-index: 2;
+}
+.product-bubble > div {
+  animation: discovery-float 5.5s ease-in-out var(--float-delay) infinite;
+}
+@keyframes discovery-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-4deg);
+  }
+  50% {
+    transform: translate(14px, -19px) rotate(5deg);
+  }
+}
+.product-bubble img {
+  height: 76%;
+  width: 72%;
+}
+.product-bubble span {
+  top: auto;
+  bottom: -35px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.product-bubble:hover span,
+.product-bubble:focus-visible span {
+  opacity: 1;
+}
+.product-bubble:focus-visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  z-index: 5;
+}
+.product-bubble:hover > div {
+  box-shadow:
+    inset 2px 3px 8px #fff,
+    inset -3px -4px 12px #78877c30,
+    0 20px 50px #597c7020;
+}
+.brand-families {
+  position: relative;
+  z-index: 2;
+}
+.brand-families h2 {
+  font-size: clamp(36px, 5vw, 76px);
+}
+.cap-link > span {
+  display: none;
+}
+.heritage {
+  min-height: 115svh;
+  padding-block: 160px;
+}
+.heritage-products {
+  align-items: center;
+}
+.heritage-products img:nth-of-type(n) {
+  transform: none;
+  object-position: center bottom;
+}
+.heritage-caption {
+  display: none;
+}
+.heritage-copy p,
+.heritage-copy strong {
+  font-size: 16px;
+}
+.brand-journal {
+  background: #fff8ed;
+}
+.journal-heading {
+  padding: 90px 6% 120px;
+  text-align: center;
+}
+.journal-heading h2 {
+  font-size: clamp(60px, 10vw, 150px);
+  margin: 0;
+  letter-spacing: -4px;
+}
+.journal-heading p {
+  font-size: 22px;
+}
+.journal-chapter {
+  background: var(--chapter);
+  color: var(--chapter-ink);
+  position: relative;
+  min-height: 105svh;
+  padding: 18vh 7% 12vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 8%;
+  isolation: isolate;
+}
+.journal-chapter:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -60px;
+  height: 100px;
+  border-radius: 50% 50% 0 0;
+  background: var(--chapter);
+  z-index: -1;
+}
+.journal-word {
+  position: absolute;
+  left: 3%;
+  top: -7%;
+  font-size: clamp(130px, 25vw, 400px);
+  line-height: 1.5;
+  letter-spacing: -12px;
+  font-weight: 900;
+  opacity: 0.11;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.journal-art {
+  position: relative;
+  height: min(65svh, 650px);
+  direction: ltr;
+}
+.journal-orbit {
+  position: absolute;
+  width: 110%;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.2;
+  top: -8%;
+  left: -8%;
+}
+.journal-orbit:after {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border: 1px dashed currentColor;
+  border-radius: 50%;
+}
+.journal-photo {
+  position: absolute;
+  inset: 10% 12% 10% 0;
+  border-radius: 50% 50% 45% 45%;
+  overflow: hidden;
+  background: #fff4;
+  transform: rotate(-8deg);
+  border: 8px solid #fff8;
+}
+.journal-photo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.journal-product {
+  position: absolute;
+  width: 47%;
+  height: 90%;
+  object-fit: contain;
+  right: -10%;
+  bottom: -10%;
+  transform: rotate(14deg);
+  filter: drop-shadow(10px 22px 18px #2d332d30);
+}
+.journal-sticker {
+  position: absolute;
+  top: 0;
+  left: -4%;
+  width: 120px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--chapter-ink);
+  color: var(--chapter);
+  transform: rotate(-15deg);
+  font-size: 19px;
+  font-weight: 800;
+}
+.journal-copy {
+  position: relative;
+}
+.journal-copy h3 {
+  font-size: clamp(38px, 5.3vw, 82px);
+  letter-spacing: -2px;
+  margin: 0 0 24px;
+}
+.journal-copy h4 {
+  font-size: 23px;
+  margin: 12px 0;
+}
+.journal-copy p {
+  font-size: 17px;
+  line-height: 2;
+  max-width: 460px;
+}
+.journal-copy .journal-date {
+  font-size: 14px;
+  opacity: 0.7;
+}
+.journal-copy a {
+  display: inline-flex;
+  padding: 14px 30px;
+  margin-top: 24px;
+  border: 1px solid currentColor;
+  border-radius: 40px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.journal-copy a:hover {
+  background: var(--chapter-ink);
+  color: var(--chapter);
+}
+.journal-end {
+  padding: 50px 6% 90px;
+  text-align: center;
+  background: linear-gradient(#e8b8bb, #801b2b);
+}
+@media (max-width: 800px) {
+  .brand-hero {
+    height: 400svh;
+  }
+  .brand-hero-surface {
+    min-height: 0;
+  }
+  .opening-copy h1 {
+    font-size: clamp(38px, 9vw, 64px);
+    letter-spacing: -2px;
+  }
+  .opening-copy p {
+    font-size: 16px;
+  }
+  .gather-copy {
+    left: 6%;
+    top: 18%;
+    width: 85%;
+    text-align: center;
+  }
+  .gather-copy h2 {
+    font-size: 38px;
+  }
+  .gather-copy h2 br {
+    display: none;
+  }
+  .gather-copy p {
+    font-size: 16px;
+  }
+  .gather-copy .brand-pill {
+    font-size: 14px;
+  }
+  .hero-bottom {
+    font-size: 12px;
+  }
+  .product-universe {
+    height: 700svh;
+    padding: 0;
+  }
+  .universe-statement {
+    font-size: 16vw;
+    letter-spacing: -2px;
+  }
+  .product-bubble {
+    left: calc(var(--bubble-left) * 0.7);
+    top: 36%;
+    width: clamp(145px, 40vw, 230px);
+    position: absolute;
+  }
+  .product-bubble:nth-child(even) {
+    margin-top: 0;
+  }
+  .heritage {
+    min-height: 0;
+    padding: 100px 7% 140px;
+  }
+  .heritage-products img {
+    height: 240px;
+  }
+  .heritage-copy p {
+    font-size: 16px;
+  }
+  .journal-heading {
+    padding: 40px 6% 100px;
+  }
+  .journal-heading h2 {
+    font-size: 15vw;
+    letter-spacing: -2px;
+  }
+  .journal-heading p {
+    font-size: 18px;
+  }
+  .journal-chapter {
+    grid-template-columns: 1fr;
+    padding: 70px 8% 130px;
+    gap: 36px;
+  }
+  .journal-art {
+    height: 400px;
+    max-width: 450px;
+    width: 90%;
+    margin: auto;
+  }
+  .journal-word {
+    top: 0;
+    font-size: 30vw;
+    letter-spacing: -4px;
+  }
+  .journal-copy h3 {
+    font-size: 44px;
+  }
+  .journal-sticker {
+    width: 95px;
+    font-size: 16px;
+  }
+  .journal-orbit {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-hero {
+    height: auto;
+  }
+  .brand-hero-surface {
+    height: 1050px;
+  }
+  .gather-copy {
+    top: 740px;
+    color: #594532;
+  }
+  .product-universe {
+    height: auto;
+    padding: 100px 6%;
+  }
+  .universe-stage {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  .universe-statements {
+    position: relative;
+    display: block;
+  }
+  .universe-statement {
+    visibility: visible;
+    font-size: clamp(40px, 7vw, 90px);
+    margin-bottom: 30px;
+  }
+  .product-bubbles {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px 20px;
+  }
+  .product-bubble {
+    position: relative;
+    visibility: visible;
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+  .product-bubble span {
+    opacity: 1;
+    font-size: 14px;
+  }
+  .sky-world {
+    background: #e2ece5 !important;
+  }
+  .scroll-write {
+    --ink: 100% !important;
+  }
+  .journal-chapter {
+    min-height: auto;
+  }
+}
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+  .product-bubbles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Saturated fruit tones retain the warm opening and carry into the mint world. */
+.brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.hero-emblem,
+.footer-emblem {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+.brand-hero-surface {
+  background: #fae8ca;
+}
+.brand-hero-surface:before {
+  background:
+    radial-gradient(ellipse at 6% 62%, #ec8b9a65, transparent 45%),
+    radial-gradient(ellipse at 94% 55%, #eed25185, transparent 45%),
+    radial-gradient(ellipse at 50% 10%, #fff8e6, transparent 65%);
+}
+.hero-dive {
+  position: absolute;
+  width: 150vmax;
+  height: 150vmax;
+  left: calc(50% - 75vmax);
+  top: calc(50% - 75vmax);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #b9dcd0 35%,
+    #b9dcd0e8 60%,
+    #b9dcd000 72%
+  );
+  z-index: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.sky-world {
+  background: linear-gradient(#b9dcd0, #b3daca 55%, #d4dfaf 85%, #f9e3c2);
+}
+.heritage {
+  background: linear-gradient(#f9e3c2, #f4dbb8 70%, #f0d3b3);
+}
+.sky-world:after {
+  background: linear-gradient(transparent, #f9e3c2);
+}
+.product-bubble {
+  width: clamp(140px, var(--bubble-size), 270px);
+}
+.product-bubble > div {
+  animation: discovery-drift 6s ease-in-out var(--float-delay) infinite;
+}
+@keyframes discovery-drift {
+  0%,
+  100% {
+    transform: translateX(-12px) rotate(-3deg);
+  }
+  50% {
+    transform: translateX(18px) rotate(3deg);
+  }
+}
+/* A single pinned editorial stage, with a date rail driving the slideshow. */
+.brand-journal {
+  height: 330svh;
+  background: #f0d3b3;
+}
+.journal-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 5% 18px;
+}
+.journal-heading {
+  padding: 0 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.journal-heading h2 {
+  font-size: clamp(36px, 4.5vw, 66px);
+  letter-spacing: -2px;
+}
+.journal-heading p {
+  font-size: 16px;
+  margin: 0;
+}
+.journal-window {
+  overflow: hidden;
+  direction: ltr;
+  flex: 1;
+  min-height: 0;
+  border-radius: 32px;
+}
+.journal-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  direction: ltr;
+}
+.journal-chapter {
+  flex: 0 0 33.333333%;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 3% 2%;
+  gap: 5%;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.journal-chapter:before {
+  display: none;
+}
+.journal-word {
+  font-size: clamp(120px, 20vw, 290px);
+  top: -14%;
+  opacity: 0.09;
+}
+.journal-art {
+  height: 100%;
+  max-height: 490px;
+  min-height: 0;
+}
+.journal-photo {
+  inset: 8% 13% 8% 1%;
+}
+.journal-orbit {
+  width: 95%;
+  top: 1%;
+  left: 0;
+}
+.journal-product {
+  height: 96%;
+  bottom: -5%;
+  right: -4%;
+}
+.journal-sticker {
+  width: 90px;
+  font-size: 15px;
+  top: 0;
+  left: 0;
+}
+.journal-copy h3 {
+  font-size: clamp(30px, 3.4vw, 50px);
+  margin: 0 0 12px;
+}
+.journal-copy h4 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.journal-copy p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 8px 0;
+}
+.journal-copy a {
+  margin-top: 12px;
+  padding: 10px 24px;
+}
+.journal-timeline {
+  display: flex;
+  direction: ltr;
+  padding: 24px 0 0;
+  gap: 0;
+}
+.journal-timeline button {
+  position: relative;
+  flex: 1;
+  background: none;
+  color: #795c44;
+  border: 0;
+  border-top: 2px solid #a9886940;
+  padding: 14px 8px 0;
+  cursor: pointer;
+}
+.journal-timeline i {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #a98869;
+  background: #f0d3b3;
+  border-radius: 50%;
+  left: calc(50% - 6px);
+  top: -7px;
+  transition:
+    background 0.25s,
+    box-shadow 0.25s;
+}
+.journal-timeline span,
+.journal-timeline strong {
+  display: block;
+  font-size: 14px;
+}
+.journal-timeline strong {
+  margin-top: 4px;
+  font-weight: 500;
+}
+.journal-timeline button[aria-current] {
+  color: #722c36;
+  border-color: #722c36;
+}
+.journal-timeline button[aria-current] i {
+  background: #722c36;
+  border-color: #722c36;
+  box-shadow: 0 0 0 5px #722c3615;
+}
+.journal-all {
+  align-self: center;
+  font-size: 14px;
+  margin-top: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 800px) {
+  .product-bubble {
+    width: clamp(135px, 34vw, 190px);
+  }
+  .brand-journal {
+    height: auto;
+  }
+  .journal-sticky {
+    position: relative;
+    height: auto;
+    padding: 40px 5%;
+  }
+  .journal-heading {
+    display: block;
+    text-align: center;
+    padding-bottom: 24px;
+  }
+  .journal-heading h2 {
+    font-size: 44px;
+  }
+  .journal-heading p {
+    margin-top: 12px;
+  }
+  .journal-window {
+    flex: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .journal-track {
+    transform: none !important;
+    height: auto;
+    align-items: stretch;
+  }
+  .journal-chapter {
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    gap: 20px;
+    scroll-snap-align: start;
+  }
+  .journal-art {
+    height: 280px;
+    width: 90%;
+    max-width: 330px;
+  }
+  .journal-copy h3 {
+    font-size: 30px;
+  }
+  .journal-copy h4 {
+    font-size: 19px;
+  }
+  .journal-word {
+    font-size: 100px;
+    top: 0;
+    letter-spacing: -3px;
+  }
+  .journal-sticker {
+    width: 75px;
+    font-size: 13px;
+  }
+  .journal-timeline span,
+  .journal-timeline strong {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-dive {
+    display: none;
+  }
+  .brand-journal {
+    height: auto;
+  }
+  .journal-sticky {
+    position: relative;
+    height: auto;
+  }
+  .journal-window {
+    flex: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .journal-track {
+    transform: none !important;
+  }
+  .journal-chapter {
+    min-height: 600px;
+    scroll-snap-align: start;
+  }
+  .sky-world {
+    background: #b9dcd0 !important;
+  }
+  .product-bubble {
+    width: 100%;
+  }
+}

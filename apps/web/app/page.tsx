@@ -1,4 +1,4 @@
-import Storefront from "@/components/storefront";
+import BrandLanding from "@/components/brand-landing";
 export default function Home() {
-  return <Storefront />;
+  return <BrandLanding />;
 }

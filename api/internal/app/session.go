@@ -29,7 +29,7 @@ func (a *App) cookie(w http.ResponseWriter, value string, age int) {
 	http.SetCookie(w, &http.Cookie{Name: "behnosh_session", Value: value, Path: "/", HttpOnly: true, Secure: a.Config.SecureCookies, SameSite: http.SameSiteLaxMode, MaxAge: age})
 }
 func (a *App) checkCSRF(r *http.Request, s *Session) error {
-	if r.Header.Get("Origin") != a.Config.Origin || subtle.ConstantTimeCompare([]byte(r.Header.Get("X-CSRF-Token")), []byte(s.CSRF)) != 1 {
+	if !allowedOrigin(a.Config.Origin, r.Header.Get("Origin")) || subtle.ConstantTimeCompare([]byte(r.Header.Get("X-CSRF-Token")), []byte(s.CSRF)) != 1 {
 		return &fault{403, "csrf", "درخواست معتبر نیست. صفحه را تازه کنید."}
 	}
 	return nil

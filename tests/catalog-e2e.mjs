@@ -49,9 +49,8 @@ try {
     .click();
   await expect(search).toBeFocused();
   await page
-    .getByRole("group", { name: "دسته‌بندی", exact: true })
-    .getByRole("button", { name: /^دوغ/ })
-    .click();
+    .getByRole("combobox", { name: "دسته‌بندی‌ها", exact: true })
+    .selectOption("دوغ");
   await expect(page.locator(".shelf-card")).toHaveCount(4);
   await page.getByLabel("نوع بسته‌بندی", { exact: true }).selectOption("پت");
   const cards = await page.locator(".shelf-specs").allTextContents();

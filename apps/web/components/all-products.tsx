@@ -18,10 +18,16 @@ import { CatalogFiltersPanel } from "./catalog-filters";
 
 const PAGE_SIZE = 24;
 
-export function AllProducts({ entries }: { entries: CatalogEntry[] }) {
+export function AllProducts({
+  entries,
+  initialFilters = emptyFilters,
+}: {
+  entries: CatalogEntry[];
+  initialFilters?: CatalogFilters;
+}) {
   const commerce = useCommerce();
   const [cartOpen, setCartOpen] = useState(false);
-  const [filters, setFilters] = useState<CatalogFilters>(emptyFilters);
+  const [filters, setFilters] = useState<CatalogFilters>(initialFilters);
   const [filtersExpanded, setFiltersExpanded] = useState(false);
   const [visible, setVisible] = useState(PAGE_SIZE);
   const search = useRef<HTMLInputElement>(null);

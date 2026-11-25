@@ -8,7 +8,14 @@ export const metadata: Metadata = {
     "کشف ۱۰۷ محصول بهنوش؛ جست‌وجو بر اساس طعم، دسته‌بندی، برند و بسته‌بندی، همراه با خرید نمایشی.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const value = (key: string) =>
+    typeof params[key] === "string" ? (params[key] as string) : "";
   const entries = snapshot.products.map((product) => ({
     sourceId: product.source_id,
     name: product.name,
@@ -18,5 +25,19 @@ export default function ProductsPage() {
     packaging: product.pack,
     volume: product.volume_ml,
   }));
-  return <AllProducts entries={entries} />;
+  const initialFilters = {
+    query: value("q"),
+    category: value("category"),
+    brand: value("brand"),
+    packaging: value("packaging"),
+    available: false,
+    sort: "catalog",
+  };
+  return (
+    <AllProducts
+      key={JSON.stringify(initialFilters)}
+      entries={entries}
+      initialFilters={initialFilters}
+    />
+  );
 }
