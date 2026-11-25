@@ -1,6 +1,6 @@
 "use client";
 
-import { Leaf, Rotate3D, Sparkles } from "lucide-react";
+import { Leaf } from "lucide-react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import type { BrandExperience } from "@/lib/brand-experiences";
 
@@ -8,12 +8,10 @@ export function BrandProductSelector({
   brand,
   selected,
   onSelect,
-  onSpin,
 }: {
   brand: BrandExperience;
   selected: number;
   onSelect: (index: number) => void;
-  onSpin: () => void;
 }) {
   const keyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
@@ -27,28 +25,11 @@ export function BrandProductSelector({
     onSelect(next);
     document.getElementById(`brand-choice-${next}`)?.focus();
   };
-  if (brand.slug === "vitamin-c")
+  if (brand.products.length === 1)
     return (
-      <div className="vitamin-ritual">
-        <button
-          type="button"
-          className="vitamin-spin-orbit"
-          onClick={onSpin}
-          aria-label="چرخاندن ویتامین سی"
-        >
-          <Rotate3D size={22} />
-          <span>یه دورِ تازه</span>
-        </button>
-        <div>
-          <b>۲۴۰</b>
-          <span>میلی‌لیتر، یک دنیای تازه</span>
-        </div>
-        <Sparkles
-          className="vitamin-ritual-spark"
-          size={25}
-          aria-hidden="true"
-        />
-      </div>
+      <span className="vitamin-single-label">
+        شیشه‌ای · حاوی ویتامین C و گروه B
+      </span>
     );
   return (
     <div

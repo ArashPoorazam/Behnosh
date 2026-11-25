@@ -1,110 +1,44 @@
-/* Product motion is rendered in Three.js; these layers choreograph the scene. */
+/* Canvas bounds and hit area match the visible stage. */
 .campaign-art {
-  --effect-x: 48%;
+  --effect-x: 50%;
   --effect-y: 45%;
 }
-.campaign--start .campaign-art {
-  --effect-x: 76%;
-  --effect-y: 60%;
-}
-.campaign--synergy .campaign-art {
-  --effect-x: 76%;
-  --effect-y: 38%;
-}
-.campaign--aloe .campaign-art {
-  --effect-x: 47%;
-  --effect-y: 36%;
-}
-.campaign .product-stage-3d {
-  animation: none;
+.product-stage-3d {
   pointer-events: auto;
 }
 .brand-model-surface {
   position: absolute;
-  inset: -15% -50%;
+  inset: 0;
   cursor: grab;
-  touch-action: none;
-  outline-offset: -20px;
-  border-radius: 50%;
+  touch-action: pan-y;
+  border-radius: 20px;
 }
 .brand-model-surface:active {
   cursor: grabbing;
 }
 .brand-model-surface:focus-visible {
   outline: 2px dashed var(--campaign-ink);
+  outline-offset: -6px;
 }
 .brand-model-canvas {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.45s;
+  transition: opacity 0.3s;
 }
 .campaign .brand-model-poster {
   position: absolute;
-  inset: 12% 25%;
-  width: 50%;
-  height: 76%;
+  inset: 8% 20%;
+  width: 60%;
+  height: 84%;
   pointer-events: none;
-  transition: opacity 0.35s;
+  transition: opacity 0.3s;
 }
 .product-stage-3d[data-ready="true"] .brand-model-poster {
   opacity: 0;
 }
 .product-stage-3d[data-ready="true"] .brand-model-canvas {
   opacity: 1;
-}
-.brand-spin {
-  position: absolute;
-  bottom: -5%;
-  left: 50%;
-  translate: -50% 0;
-  min-height: 36px;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 13px;
-  background: #080c1980;
-  color: #fff;
-  border: 1px solid #ffffff40;
-  border-radius: 50px;
-  backdrop-filter: blur(8px);
-  font-size: 11px;
-  z-index: 4;
-}
-.brand-spin:hover svg {
-  transform: rotate(-35deg);
-}
-.brand-spin svg {
-  transition: transform 0.3s;
-}
-.campaign--aloe .brand-spin {
-  background: #fff0f4d9;
-  border-color: #173e2b40;
-  color: #173e2b;
-}
-.campaign--vitamin-c .brand-spin {
-  background: #fff08bd9;
-  color: #95271e;
-  border-color: #95271e40;
-}
-
-/* No rectangular controls: botanical leaves, coins, instrument dials, an orbit. */
-.campaign .campaign-cta {
-  border-radius: 100px;
-}
-.campaign--start .campaign-cta {
-  border-radius: 50% / 100%;
-  border: 1px solid #ebca89;
-  background: linear-gradient(110deg, #ab7b34, #ffe2a0, #bd924c);
-  box-shadow: inset 0 0 0 4px #14100b;
-  padding-inline: 28px;
-}
-.campaign--vitamin-c .campaign-cta {
-  border-radius: 24px 24px 24px 8px;
-}
-.campaign--synergy .campaign-cta {
-  border-radius: 100px 28px 100px 28px;
 }
 .brand-selector {
   display: flex;
@@ -283,47 +217,6 @@
 .brand-selector--synergy .brand-choice:hover .race-dial {
   border-color: #64cfff;
 }
-.vitamin-ritual {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.vitamin-spin-orbit {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  border: 1px dashed #9b2920;
-  outline: 4px solid #d4342222;
-  background: #d82d23;
-  color: #fff8b5;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.4s;
-}
-.vitamin-spin-orbit:hover {
-  transform: rotate(-12deg);
-}
-.vitamin-spin-orbit span {
-  font-size: 10px;
-}
-.vitamin-ritual > div {
-  display: flex;
-  flex-direction: column;
-}
-.vitamin-ritual b {
-  font-size: 30px;
-  line-height: 1.3;
-}
-.vitamin-ritual > div > span {
-  font-size: 12px;
-}
-.vitamin-ritual-spark {
-  color: #d82d23;
-}
-
 /* Short, intentional effects play on selection; they never run endlessly. */
 .brand-transition {
   position: absolute;
@@ -389,8 +282,7 @@
   box-shadow: 0 0 12px #ff324f;
 }
 .brand-transition--synergy.is-changing i {
-  animation: race-streak 0.7s calc(var(--particle) * 0.065s)
-    cubic-bezier(0.15, 0.7, 0.4, 1) both;
+  animation: race-streak 0.4s calc(var(--particle) * 0.012s) linear both;
 }
 .brand-transition--vitamin-c i {
   width: 14px;
@@ -468,16 +360,25 @@
 @keyframes race-streak {
   0% {
     opacity: 0;
-    transform: translate(90%, calc(var(--particle) * 45px - 100px))
-      rotate(-12deg) scaleX(0.2);
+    transform: translate(0, calc(var(--particle) * 35px - 70px)) scaleX(0.4);
   }
-  30% {
-    opacity: 1;
+  25% {
+    opacity: 0.9;
+  }
+  39% {
+    opacity: 0;
+    transform: translate(-150%, calc(var(--particle) * 35px - 70px)) scaleX(1.2);
+  }
+  40% {
+    opacity: 0;
+    transform: translate(-150%, calc(var(--particle) * 35px - 70px)) scaleX(1.2);
+  }
+  65% {
+    opacity: 0.8;
   }
   100% {
     opacity: 0;
-    transform: translate(-180%, calc(var(--particle) * 45px - 100px))
-      rotate(-12deg) scaleX(1.4);
+    transform: translate(0, calc(var(--particle) * 35px - 70px)) scaleX(0.2);
   }
 }
 @keyframes vitamin-fizz {
@@ -495,160 +396,52 @@
   }
 }
 
-@media (max-width: 1100px) {
-  .brand-selector--start {
+.choice-label {
+  font-size: 13px;
+}
+.brand-selector--aloe .brand-choice {
+  background: transparent;
+}
+.brand-selector--aloe .brand-choice[aria-pressed="true"] {
+  background: #173e2b;
+}
+@media (max-width: 1000px) {
+  .brand-selector--start,
+  .brand-selector--synergy {
     gap: 12px;
   }
-  .brand-selector--synergy {
-    gap: 10px;
-  }
 }
-@media (max-width: 700px) and (orientation: portrait) {
-  .campaign--synergy .product-stage-3d {
-    top: 4%;
-    height: 67%;
-  }
-  .campaign--vitamin-c .product-stage-3d {
-    top: 5%;
-    height: 78%;
-  }
-  .campaign-art {
-    --effect-x: 50% !important;
-    --effect-y: 45% !important;
-  }
-  .campaign .campaign-footer {
-    padding-top: 10px;
+@media (max-width: 700px) {
+  .brand-selector {
+    justify-content: space-evenly;
+    width: 100%;
     gap: 8px;
   }
   .brand-selector--aloe .brand-choice {
-    min-width: 110px;
-    height: 46px;
-    font-size: 12px;
+    min-width: 125px;
+    height: 48px;
   }
-  .brand-selector--aloe .brand-choice svg {
-    width: 18px;
-  }
-  .brand-selector--start {
-    gap: 8px;
-    width: 100%;
-    justify-content: space-evenly;
-  }
-  .brand-selector--start .brand-choice {
+  .brand-selector--start .brand-choice,
+  .brand-selector--synergy .brand-choice {
     width: 64px;
-    gap: 5px;
   }
-  .start-coin {
-    height: 46px;
+  .start-coin,
+  .race-dial {
     width: 46px;
+    height: 46px;
   }
   .start-coin img {
-    height: 31px;
-  }
-  .choice-label {
-    font-size: 10px;
-  }
-  .brand-selector--synergy {
-    width: 100%;
-    justify-content: space-between;
-    gap: 4px;
-    padding: 0 6px;
-  }
-  .brand-selector--synergy .brand-choice {
-    width: 60px;
-    gap: 4px;
-  }
-  .race-dial {
-    height: 46px;
-    width: 46px;
+    height: 32px;
   }
   .race-dial i {
     transform-origin: 1px 18px;
   }
-  .race-dial b {
-    font-size: 12px;
-  }
   .race-selector-track {
-    top: 3px;
     height: 40px;
+    top: 3px;
   }
-  .brand-spin {
-    bottom: -6%;
-    font-size: 10px;
-    min-height: 30px;
-    padding: 5px 10px;
-  }
-  .brand-spin svg {
-    height: 14px;
-    width: 14px;
-  }
-  .vitamin-ritual {
-    gap: 15px;
-  }
-  .vitamin-spin-orbit {
-    width: 57px;
-    height: 57px;
-  }
-  .vitamin-spin-orbit span {
-    font-size: 9px;
-  }
-  .vitamin-ritual b {
-    font-size: 24px;
-  }
-  .vitamin-ritual > div > span {
-    font-size: 11px;
-  }
-}
-@media (max-height: 540px) and (orientation: landscape) {
-  .campaign .campaign-footer {
-    min-height: 64px;
-  }
-  .brand-selector--start,
-  .brand-selector--synergy {
-    gap: 20px;
-  }
-  .brand-selector--start .brand-choice,
-  .brand-selector--synergy .brand-choice {
-    flex-direction: row;
-    width: auto;
-    gap: 9px;
-  }
-  .start-coin,
-  .race-dial {
-    width: 38px;
-    height: 38px;
-  }
-  .start-coin img {
-    height: 28px;
-  }
-  .race-dial i {
-    transform-origin: 1px 14px;
-  }
-  .race-dial b {
-    font-size: 11px;
-  }
-  .race-selector-track {
-    display: none;
-  }
-  .brand-selector--aloe .brand-choice {
-    height: 42px;
-  }
-  .brand-spin {
-    width: 28px;
-    height: 28px;
-    min-height: 0;
-    padding: 5px;
-    bottom: 0;
-    left: 100%;
-  }
-  .brand-spin span {
-    display: none;
-  }
-  .vitamin-spin-orbit {
-    width: 48px;
-    height: 48px;
-  }
-  .vitamin-spin-orbit span {
-    display: none;
+  .choice-label {
+    font-size: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -656,8 +449,8 @@
     display: none;
   }
   .campaign .brand-selector *,
-  .campaign .brand-model-canvas,
-  .campaign .brand-model-poster {
+  .brand-model-canvas,
+  .brand-model-poster {
     transition: none;
   }
 }

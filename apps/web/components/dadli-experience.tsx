@@ -9,7 +9,16 @@ import {
 import { dadliFlavors } from "@/lib/showcase";
 import { ShowcaseStage } from "./showcase-stage";
 import { FlavorSelector } from "./flavor-selector";
-export function DadliExperience() {
+import { BrandHeader } from "./brand-header";
+import { BrandPurchase } from "./brand-purchase";
+
+const sourceIds = ["199", "198", "197", "194", "195", "131", "196"];
+
+export function DadliExperience({
+  standalone = false,
+}: {
+  standalone?: boolean;
+}) {
   const section = useRef<HTMLElement>(null);
   const wipe = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
@@ -104,28 +113,52 @@ export function DadliExperience() {
       aria-labelledby="dadli-title"
     >
       <div ref={wipe} className="flavor-color-wipe" aria-hidden="true" />
-      <div className="section-top">
-        <span>نوشیدنی گازدار میوه‌ای</span>
-        <span className="latin-label" dir="ltr">
-          A TASTE OF DADLI
-        </span>
-      </div>
-      <div className="dadli-layout">
-        <div className="dadli-intro">
-          <span className="small-label">دنیای دادلی</span>
-          <h2 id="dadli-title">
-            رنگِ تازه،
-            <br />
-            طعمِ تازه
-          </h2>
-          <p>
-            هر رنگ، یک طعم
-            <br />
-            انتخاب کنید و از نزدیک بشناسید
-          </p>
-          <span className="volume-label">
-            ۲۵۰ میلی‌لیتر <i /> شیشه‌ای
+      {standalone ? (
+        <BrandHeader slug="dadali" />
+      ) : (
+        <div className="section-top">
+          <span>نوشیدنی گازدار میوه‌ای</span>
+          <span className="latin-label" dir="ltr">
+            A TASTE OF DADLI
           </span>
+        </div>
+      )}
+      <div
+        className="dadli-layout"
+        id={standalone ? "flavor-panel" : undefined}
+        role={standalone ? "tabpanel" : undefined}
+        aria-labelledby={standalone ? `flavor-tab-${selected}` : undefined}
+      >
+        <div className="dadli-intro">
+          {standalone ? (
+            <>
+              <span className="small-label">نوشیدنی گازدار میوه‌ای</span>
+              <h2 id="dadli-title">
+                دادلی <span dir="ltr">DADLI</span>
+              </h2>
+              <p className="dadli-selected-flavor">
+                {flavor.name} <span>۲۵۰ میلی‌لیتر · شیشه‌ای</span>
+              </p>
+              <BrandPurchase key={flavor.id} sourceId={sourceIds[selected]} />
+            </>
+          ) : (
+            <>
+              <span className="small-label">دنیای دادلی</span>
+              <h2 id="dadli-title">
+                رنگِ تازه،
+                <br />
+                طعمِ تازه
+              </h2>
+              <p>
+                هر رنگ، یک طعم
+                <br />
+                انتخاب کنید و از نزدیک بشناسید
+              </p>
+              <span className="volume-label">
+                ۲۵۰ میلی‌لیتر <i /> شیشه‌ای
+              </span>
+            </>
+          )}
         </div>
         <div className="dadli-visual">
           <span className="dadli-ghost" aria-hidden="true" dir="ltr">
@@ -136,38 +169,46 @@ export function DadliExperience() {
         </div>
         <div
           className="tasting-panel"
-          role="tabpanel"
-          id="flavor-panel"
-          aria-labelledby={`flavor-tab-${selected}`}
-          tabIndex={0}
+          role={standalone ? undefined : "tabpanel"}
+          id={standalone ? undefined : "flavor-panel"}
+          aria-labelledby={standalone ? undefined : `flavor-tab-${selected}`}
+          tabIndex={standalone ? undefined : 0}
         >
-          <div key={flavor.id} className="tasting-content">
-            <span className="latin-label" dir="ltr">
+          {standalone ? (
+            <span className="dadli-flavor-stamp" dir="ltr">
               {flavor.latin}
             </span>
-            <h3>{flavor.name}</h3>
-            <p>{flavor.description}</p>
-            <div className="taste-notes">
-              {flavor.notes.map((note, i) => (
-                <span key={note} style={{ animationDelay: `${i * 80}ms` }}>
-                  {note}
+          ) : (
+            <>
+              <div key={flavor.id} className="tasting-content">
+                <span className="latin-label" dir="ltr">
+                  {flavor.latin}
                 </span>
-              ))}
-            </div>
-            <div className="taste-profile">
-              {["شیرینی", "ترشی", "طراوت"].map((name, i) => (
-                <div key={name}>
-                  <span>{name}</span>
-                  <span className="taste-track">
-                    <i style={{ width: `${flavor.profile[i]}%` }} />
-                  </span>
+                <h3>{flavor.name}</h3>
+                <p>{flavor.description}</p>
+                <div className="taste-notes">
+                  {flavor.notes.map((note, i) => (
+                    <span key={note} style={{ animationDelay: `${i * 80}ms` }}>
+                      {note}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <small className="showcase-note">
-              ترکیب طعم‌ها برای نمایش و تصویرسازی است.
-            </small>
-          </div>
+                <div className="taste-profile">
+                  {["شیرینی", "ترشی", "طراوت"].map((name, i) => (
+                    <div key={name}>
+                      <span>{name}</span>
+                      <span className="taste-track">
+                        <i style={{ width: `${flavor.profile[i]}%` }} />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <small className="showcase-note">
+                  ترکیب طعم‌ها برای نمایش و تصویرسازی است.
+                </small>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <FlavorSelector

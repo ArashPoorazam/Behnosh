@@ -13,6 +13,7 @@ import { Group, MathUtils, PMREMGenerator } from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BrandProductModel } from "./brand-product-model";
 import type { BrandProduct } from "@/lib/brand-experiences";
+import { advanceProductSpin, createProductSpin } from "@/lib/product-spin";
 
 export type BrandPose = {
   turn: number;
@@ -58,68 +59,18 @@ function Studio() {
     </>
   );
 }
-function Product({
-  id,
-  selected,
-  brand,
-  pose,
-  reduced,
-  active,
-}: {
-  id: string;
-  selected: boolean;
-  brand: string;
-  pose: RefObject<BrandPose>;
-  reduced: boolean;
-  active: boolean;
-}) {
-  const root = useRef<Group>(null);
-  const presence = useRef(selected ? 1 : 0);
-  const turn = useRef(0);
-  const viewport = useThree((s) => s.viewport);
-  useFrame(({ clock, invalidate }, dt) => {
-    if (!root.current) return;
-    const delta = Math.min(dt, 0.05);
-    presence.current = reduced
-      ? Number(selected)
-      : MathUtils.damp(presence.current, Number(selected), 6, delta);
-    turn.current = reduced
-      ? pose.current.turn
-      : MathUtils.damp(turn.current, pose.current.turn, 8, delta);
-    const p = presence.current;
-    const t = clock.elapsedTime;
-    const missing = 1 - p;
-    const o = root.current;
-    o.visible = p > 0.008;
-    const isAloe = brand === "aloe",
-      isStart = brand === "start",
-      isRace = brand === "synergy";
-    const bob = reduced ? 0 : Math.sin(t * (isRace ? 1.5 : 0.9)) * 0.035;
-    o.position.set(
-      isRace ? missing * 3.8 : isStart ? -missing * 1.2 : 0,
-      isAloe ? -missing * 2.2 + bob : bob,
-      -missing * 1.5,
-    );
-    o.rotation.set(
-      0.08 + pose.current.tilt,
-      turn.current +
-        (reduced ? 0 : Math.sin(t * 0.6) * 0.045) +
-        (isStart ? missing * 2.2 : isAloe ? missing * 0.5 : -missing * 0.8),
-      (isAloe ? -0.08 : isRace ? 0.17 : -0.1) + (isStart ? missing * 0.4 : 0),
-    );
-    // Fit both wide bottles and slim cans, including shallow landscape viewports.
-    const fit = Math.min(viewport.height / 4.5, viewport.width / 2.15);
-    o.scale.setScalar(fit * (isStart ? 0.65 + 0.35 * p : p));
-    if (active && !reduced) invalidate();
-  });
-  return (
-    <group ref={root} visible={selected}>
-      <BrandProductModel id={id} />
-    </group>
-  );
-}
 function Scene({ onReady, ...props }: SceneProps & { onReady: () => void }) {
-  const invalidate = useThree((s) => s.invalidate);
+  const root = useRef<Group>(null);
+  const { invalidate, viewport } = useThree();
+  const spin = useRef(createProductSpin(props.selected));
+  const motion = useRef({
+    displayed: props.selected,
+    phase: "idle" as "idle" | "exit" | "enter",
+    elapsed: 0,
+    x: 0,
+    from: 0,
+    turn: 0,
+  });
   useEffect(() => {
     props.pose.current.invalidate = invalidate;
     return () => {
@@ -131,21 +82,87 @@ function Scene({ onReady, ...props }: SceneProps & { onReady: () => void }) {
   }, [onReady]);
   useEffect(() => {
     invalidate();
-  }, [props.selected, props.active, props.reduced, props.spin, invalidate]);
+  }, [props.selected, props.active, props.reduced, invalidate]);
+  useFrame(({ clock }, dt) => {
+    if (!root.current) return;
+    const m = motion.current;
+    const race = props.brand === "synergy";
+    const start = props.brand === "start";
+    const fit = Math.min(viewport.height / 4.05, viewport.width / 2.5);
+    // Fully clear the camera frustum before exchanging the visible model.
+    const travel = viewport.width / 2 + fit * 1.7;
+    const exitDuration = race ? 0.16 : 0.24;
+    const enterDuration = race ? 0.24 : 0.48;
+    if (props.reduced) {
+      spin.current = createProductSpin(props.selected);
+      m.displayed = props.selected;
+      m.phase = "idle";
+      m.x = 0;
+    } else if (start) {
+      const s = spin.current;
+      m.x = 0;
+      if (s.phase === "idle") s.angle = m.turn;
+      if (props.active) {
+        const wasSpinning = s.phase !== "idle";
+        advanceProductSpin(s, props.selected, Math.min(dt, 0.05));
+        if (wasSpinning || s.phase !== "idle") m.turn = s.angle;
+      }
+      m.displayed = s.displayed;
+    } else if (props.active) {
+      if (m.displayed !== props.selected && m.phase !== "exit") {
+        m.phase = "exit";
+        m.from = m.x;
+        m.elapsed = 0;
+      }
+      m.elapsed += Math.min(dt, 0.05);
+      if (m.phase === "exit") {
+        const p = Math.min(1, m.elapsed / exitDuration);
+        m.x = MathUtils.lerp(m.from, -travel, p * p);
+        if (p === 1) {
+          m.displayed = props.selected;
+          m.phase = "enter";
+          m.elapsed = 0;
+          m.x = race ? -travel : travel;
+          m.turn = 0;
+        }
+      } else if (m.phase === "enter") {
+        const p = Math.min(1, m.elapsed / enterDuration);
+        m.x = (race ? -travel : travel) * Math.pow(1 - p, 3);
+        if (p === 1) m.phase = "idle";
+      }
+    }
+    if (props.reduced) m.turn = props.pose.current.turn;
+    else if (!start || spin.current.phase === "idle")
+      m.turn = MathUtils.damp(
+        m.turn,
+        props.pose.current.turn,
+        10,
+        Math.min(dt, 0.05),
+      );
+    const o = root.current;
+    for (const child of o.children) child.visible = child.name === m.displayed;
+    const bob = props.reduced ? 0 : Math.sin(clock.elapsedTime * 0.9) * 0.025;
+    o.position.set(m.x, bob, 0);
+    o.rotation.set(
+      0.06 + props.pose.current.tilt,
+      m.turn,
+      race ? 0.08 : props.brand === "aloe" ? -0.07 : -0.06,
+    );
+    o.scale.setScalar(fit);
+    if (props.active && !props.reduced) invalidate();
+  });
   return (
-    <>
-      {props.products.map((p) => (
-        <Product
-          key={p.id}
-          id={p.id}
-          selected={p.id === props.selected}
-          brand={props.brand}
-          pose={props.pose}
-          reduced={props.reduced}
-          active={props.active}
-        />
+    <group ref={root}>
+      {props.products.map((product) => (
+        <group
+          key={product.id}
+          name={product.id}
+          visible={product.id === motion.current.displayed}
+        >
+          <BrandProductModel id={product.id} />
+        </group>
       ))}
-    </>
+    </group>
   );
 }
 type SceneProps = {
@@ -155,7 +172,6 @@ type SceneProps = {
   pose: RefObject<BrandPose>;
   reduced: boolean;
   active: boolean;
-  spin: number;
 };
 export default function BrandProductCanvas({
   onReady,

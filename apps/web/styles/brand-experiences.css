@@ -1,19 +1,17 @@
-/* Each campaign is a complete viewport: navigation, composition, product selection. */
+/* Brand storefronts share a compact navigation and an uncluttered product stage. */
 .campaign {
-  --campaign-ink: #fff;
-  --campaign-accent: #c5dfed;
-  --campaign-line: #ffffff36;
+  --campaign-ink: #edf5ff;
+  --campaign-accent: #8cd8ff;
+  --campaign-line: #ffffff30;
   position: relative;
   isolation: isolate;
-  width: 100%;
-  height: 100svh;
-  height: 100dvh;
-  overflow: clip;
+  min-height: 100svh;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr auto;
   padding: 0 4.5%;
   color: var(--campaign-ink);
-  background: #030c22;
+  background: #061124;
+  overflow: clip;
 }
 .campaign-backdrop,
 .campaign-wash {
@@ -31,39 +29,30 @@
   z-index: -1;
 }
 .campaign-header {
-  min-height: 86px;
-  height: 11dvh;
-  max-height: 106px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   border-bottom: 1px solid var(--campaign-line);
+  position: relative;
   z-index: 5;
+  color: var(--campaign-ink);
 }
 .campaign-home {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
-}
-.campaign-home img {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
 }
 .campaign-nav {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 2.4vw, 36px);
+  gap: clamp(18px, 2.4vw, 36px);
   font-size: 14px;
 }
 .campaign-nav a {
   position: relative;
-  padding: 12px 0;
-  opacity: 0.68;
-  transition: opacity 0.2s;
+  padding: 19px 0;
+  opacity: 0.7;
   white-space: nowrap;
 }
 .campaign-nav a:hover,
@@ -72,969 +61,533 @@
 }
 .campaign-nav a[aria-current="page"]::after {
   content: "";
+  position: absolute;
+  inset: auto 0 7px;
   height: 2px;
   background: currentColor;
-  position: absolute;
-  inset: auto 0 0;
 }
-.campaign-wordmark {
-  font-family: Arial, sans-serif;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.8px;
+.campaign-cart {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  border: 1px solid var(--campaign-line);
+  background: transparent;
+  color: inherit;
+  border-radius: 30px;
+  padding: 9px 14px;
+  font-size: 14px;
+  min-height: 42px;
+}
+.campaign-cart b {
+  font-size: 13px;
+  font-weight: 500;
 }
 .campaign-scene {
-  min-height: 0;
   position: relative;
   display: grid;
-  grid-template-columns: 43% 57%;
+  grid-template-columns: 42% 58%;
   align-items: center;
+  min-height: 620px;
+  height: calc(100svh - 180px);
 }
 .campaign-copy {
   position: relative;
   z-index: 3;
-  padding-right: 4%;
-  padding-bottom: 3dvh;
+  width: min(100%, 430px);
+  padding: 32px 0;
 }
 .campaign-eyebrow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 14px;
-  margin-bottom: clamp(12px, 3dvh, 30px);
+  margin-bottom: 18px;
 }
 .campaign-copy h1 {
-  font-size: clamp(38px, min(4.9vw, 8.2dvh), 82px);
-  line-height: 1.4;
+  margin: 0 0 22px;
+  font-size: clamp(42px, 4.3vw, 68px);
   font-weight: 900;
-  letter-spacing: -2.5px;
-  margin: 0 0 20px;
+  line-height: 1.35;
+  letter-spacing: -2px;
 }
-.campaign-copy h1 em {
-  font-style: normal;
-  color: var(--campaign-accent);
-}
-.campaign-copy > p {
-  font-size: 16px;
-  line-height: 2;
-  max-width: 360px;
-  margin: 0 0 26px;
-  opacity: 0.82;
-}
-.campaign-cta {
-  display: inline-flex;
-  min-height: 52px;
-  gap: 30px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 22px;
-  font-weight: 700;
-  font-size: 14px;
-  background: var(--campaign-ink);
-  color: #071128;
-  border: 1px solid transparent;
-  transition:
-    transform 0.2s,
-    background 0.2s;
-}
-.campaign-cta > span {
+.campaign-copy h1 > span {
+  display: block;
   font:
-    28px/1 Arial,
+    700 14px/1.6 Arial,
     sans-serif;
-  font-weight: 400;
+  letter-spacing: 5px;
+  margin-top: 6px;
 }
-.campaign-cta:hover {
-  transform: translateY(-3px);
-  background: var(--campaign-accent);
+.campaign-product-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: 14px;
+  padding-bottom: 24px;
 }
-.campaign a:focus-visible,
-.campaign button:focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 5px;
+.campaign-product-info > span + span {
+  border-inline-start: 1px solid var(--campaign-line);
+  padding-inline-start: 20px;
 }
 .campaign-art {
-  height: 100%;
-  min-height: 0;
   position: relative;
+  height: 100%;
+  min-width: 0;
   pointer-events: none;
 }
 .campaign-product {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  height: 64%;
-  width: 48%;
-  left: 26%;
-  top: 15%;
+  inset: 4% 0 5%;
   z-index: 2;
-  animation: campaign-arrive 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 .campaign-product img {
-  display: block;
-  height: 100%;
-  width: 100%;
   object-fit: contain;
-  filter: drop-shadow(12px 22px 20px #0006);
-  transform: rotate(-10deg);
-}
-.campaign-product-caption {
-  position: absolute;
-  bottom: 7%;
-  left: 15%;
-  right: 15%;
-  text-align: center;
-  display: grid;
-  gap: 5px;
-  z-index: 3;
-}
-.campaign-product-caption strong {
-  font-size: 18px;
-}
-.campaign-product-caption > span {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.campaign-product-caption i {
-  height: 3px;
-  width: 3px;
-  border-radius: 100%;
-  background: currentColor;
-}
-.campaign-art-label {
-  position: absolute;
-  top: 8%;
-  left: 0;
-  font:
-    11px/1.4 Arial,
-    sans-serif;
-  font-weight: 700;
-  letter-spacing: 4px;
-  opacity: 0.65;
+  filter: drop-shadow(10px 24px 20px #0003);
 }
 .campaign-footer {
   position: relative;
   z-index: 4;
-  min-height: 90px;
-  height: 12dvh;
-  max-height: 110px;
+  min-height: 116px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  align-items: center;
+  gap: 24px;
   border-top: 1px solid var(--campaign-line);
+  padding: 14px 0;
 }
 .campaign-selection {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 30px;
 }
 .campaign-select-label {
-  font-size: 13px;
-  white-space: nowrap;
-  opacity: 0.7;
+  font-size: 14px;
 }
-.campaign-options {
-  display: flex;
-  gap: 7px;
-}
-.campaign-options button {
-  border: 1px solid var(--campaign-line);
-  color: inherit;
-  background: #ffffff06;
-  padding: 10px 15px;
-  min-height: 44px;
-  font-size: 13px;
-  white-space: nowrap;
-  transition:
-    background 0.2s,
-    border-color 0.2s;
-}
-.campaign-options button:hover {
-  border-color: currentColor;
-}
-.campaign-options button[aria-pressed="true"] {
-  background: var(--campaign-ink);
-  color: #071128;
-  border-color: var(--campaign-ink);
-}
-.campaign-signature {
+.campaign-footer-brand {
   font:
-    10px/1.5 Arial,
+    900 clamp(26px, 4vw, 54px) / 1 Arial,
     sans-serif;
-  font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: -2px;
+  opacity: 0.23;
 }
-.campaign-detail {
-  font-size: 12px;
-  opacity: 0.7;
+.campaign a:focus-visible,
+.campaign button:focus-visible,
+.dadali-page a:focus-visible,
+.dadali-page button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
-/* Aloe: a sunlit pink garden, soft typography and botanical green accents. */
+/* Aloe: a botanical window, pale pink paper and deep green purchase controls. */
 .campaign--aloe {
-  --campaign-ink: #173e2b;
-  --campaign-accent: #aa2455;
-  --campaign-line: #173e2b40;
-  background: #efa2b8;
+  --campaign-ink: #163f32;
+  --campaign-accent: #b13562;
+  --campaign-line: #163f3230;
+  background: #f9e7e9;
 }
 .campaign--aloe .campaign-wash {
-  background: linear-gradient(
-    270deg,
-    #ffc3d4d9 0%,
-    #ffc3d465 38%,
-    transparent 60%
-  );
-}
-.campaign--aloe .campaign-copy {
-  align-self: start;
-  padding-top: 7dvh;
+  background: radial-gradient(ellipse at 80% 25%, #fff6f5, transparent 65%);
 }
 .campaign--aloe .campaign-copy h1 {
-  font-weight: 500;
+  font-weight: 600;
 }
-.campaign--aloe .campaign-copy h1 em {
-  font-weight: 900;
+.campaign--aloe .campaign-copy h1 > span {
+  color: #a94469;
 }
-.campaign--aloe .campaign-cta {
-  color: #fff2f5;
-  border-radius: 99px;
+.aloe-garden {
+  position: absolute;
+  inset: 6% 5% 8%;
+  border-radius: 48% 48% 8px 8px;
+  overflow: hidden;
+  background: #f1a8bd;
 }
-.campaign--aloe .campaign-cta:hover {
-  background: #a52354;
+.aloe-garden img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 35% center;
+  opacity: 0.85;
 }
-.campaign--aloe .campaign-options button {
-  border-radius: 99px;
+.aloe-garden::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#f9bfd13b, transparent 65%, #d65f8a30);
 }
-.campaign--aloe .campaign-options button[aria-pressed="true"] {
-  color: #fff2f5;
+.aloe-garden-ring {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid #fff9;
+  border-radius: inherit;
+  z-index: 1;
 }
 .campaign--aloe .campaign-product {
-  height: 55%;
-  left: 29%;
-  top: 7%;
-  width: 35%;
-}
-.campaign--aloe .campaign-product img {
-  transform: rotate(6deg);
-  filter: drop-shadow(12px 15px 10px #78254b44);
-}
-.campaign--aloe .campaign-art-label {
-  top: 5%;
-  left: 1%;
-}
-.campaign--aloe .campaign-product-caption {
-  bottom: 8%;
-  left: 5%;
-  right: 37%;
-  padding: 12px;
-  background: #ffe1e9d9;
-  border-radius: 4px;
-}
-.campaign--aloe .campaign-footer {
-  background: #ffd6e166;
+  inset: 10% 4% 12%;
 }
 
-/* Start: the black can's golden cheetah becomes the world around it. */
+/* Start: dark lacquer and restrained brushed gold. */
 .campaign--start {
-  --campaign-ink: #edce8d;
-  --campaign-accent: #f2c56b;
-  --campaign-line: #e9c77c36;
+  --campaign-ink: #f4dfb2;
+  --campaign-accent: #e9bd68;
+  --campaign-line: #e9c77c40;
   background: #080806;
 }
 .campaign--start .campaign-wash {
-  background: linear-gradient(
-    270deg,
-    #080806 0%,
-    #080806c9 30%,
-    transparent 62%
-  );
-}
-.campaign--start .campaign-wordmark {
-  font-style: italic;
-  letter-spacing: -1.5px;
-  font-size: 28px;
+  background: linear-gradient(270deg, #080806 8%, #080806ed 33%, #08080622 80%);
 }
 .campaign--start .campaign-copy h1 {
-  color: #fff7e5;
+  color: #f9e9c7;
 }
-.campaign--start .campaign-copy h1 em {
-  background: linear-gradient(110deg, #a97931, #ffe5a6 45%, #ba8d3a);
-  color: transparent;
-  background-clip: text;
+.campaign--start .campaign-copy h1 > span {
+  color: #cfa456;
 }
 .campaign--start .campaign-product {
-  height: 66%;
-  top: 27%;
-  left: 61%;
-  width: 32%;
-}
-.campaign--start .campaign-product img {
-  transform: rotate(9deg);
-  filter: drop-shadow(-12px 16px 20px #000b);
-}
-.campaign--start .campaign-product-caption {
-  left: 4%;
-  right: 45%;
-  bottom: 4%;
-  text-align: left;
-}
-.campaign--start .campaign-product-caption > span {
-  justify-content: flex-end;
-}
-.campaign--start .campaign-art-label {
-  letter-spacing: 5px;
-  top: 10%;
-}
-.campaign--start .campaign-cta {
-  color: #20190e;
-}
-.campaign--start .campaign-options button[aria-pressed="true"] {
-  color: #20190e;
-}
-.campaign--start .campaign-signature {
-  display: none;
+  inset: 10% -4% 1% 24%;
 }
 
-/* Vitamin C: a graphic, oversized label-inspired C, with one hero bottle. */
+/* Vitamin C: a sun disc and a bold red label on a warm citrus field. */
 .campaign--vitamin-c {
-  --campaign-ink: #6b211d;
-  --campaign-accent: #d72d28;
-  --campaign-line: #71211b33;
-  background: #ffe840;
+  --campaign-ink: #992c25;
+  --campaign-accent: #d64127;
+  --campaign-line: #992c2533;
+  background: #fff5ca;
 }
 .campaign--vitamin-c .campaign-wash {
-  background: radial-gradient(ellipse at 32% 47%, #fff7a8 0%, transparent 48%);
-}
-.campaign--vitamin-c .campaign-wordmark {
-  color: #cc2924;
+  background: radial-gradient(ellipse at 25% 50%, #ffdb69, transparent 65%);
 }
 .campaign--vitamin-c .campaign-copy h1 {
-  font-size: clamp(38px, min(4.6vw, 7.5dvh), 76px);
+  color: #b33024;
 }
-.campaign--vitamin-c .campaign-copy > p {
-  max-width: 340px;
+.campaign--vitamin-c .campaign-copy h1 > span {
+  letter-spacing: 7px;
 }
-.campaign--vitamin-c .campaign-cta {
-  background: #cf2d26;
-  color: #fff9d5;
-  border-radius: 6px;
-}
-.campaign--vitamin-c .campaign-cta:hover {
-  background: #a81b16;
-}
-.vitamin-big-c {
+.vitamin-sun {
   position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #dd3027;
-  font:
-    900 min(48vw, 77dvh) / 1 Arial,
-    sans-serif;
-  transform: rotate(-14deg);
-  text-shadow: 0 14px 0 #ae1f1b0d;
-}
-.campaign--vitamin-c .campaign-product {
-  height: 66%;
-  width: 45%;
-  left: 26%;
-  top: 14%;
-}
-.campaign--vitamin-c .campaign-product img {
-  transform: rotate(12deg);
-  filter: drop-shadow(20px 22px 12px #8f501955);
-}
-.vitamin-orbit {
-  position: absolute;
-  border: 1px solid #b9502433;
+  width: 85%;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  width: 90%;
-  height: 56%;
-  top: 22%;
-  left: 3%;
-  transform: rotate(-25deg);
-}
-.vitamin-orbit--two {
-  transform: rotate(27deg);
-}
-.vitamin-stamp {
-  position: absolute;
-  left: 6%;
-  top: 10%;
-  z-index: 3;
-  width: 110px;
-  height: 110px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  transform: rotate(-14deg);
-  background: #ffeb4a;
-}
-.vitamin-stamp b {
-  font:
-    900 28px/1.2 Arial,
-    sans-serif;
-}
-.vitamin-stamp span {
-  font-size: 11px;
-}
-.vitamin-formula {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: -5px 0 24px;
-}
-.vitamin-formula > span {
-  font:
-    900 25px/1 Arial,
-    sans-serif;
-  width: 43px;
-  height: 43px;
-  border: 1px solid #bd6e304d;
-  border-radius: 50%;
+  background: #ef582e;
+  box-shadow:
+    0 0 0 18px #ffc950,
+    0 0 0 19px #bd4a2b40;
   display: grid;
   place-items: center;
 }
-.vitamin-formula i {
-  font-style: normal;
+.vitamin-sun > span {
+  font:
+    900 clamp(180px, 35vw, 540px) / 1 Arial,
+    sans-serif;
+  color: #ffd563;
+  transform: rotate(-12deg);
 }
-.vitamin-formula small {
-  font-size: 12px;
-  line-height: 1.7;
-  margin-right: 5px;
+.vitamin-sun i {
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  border: 1px solid #fff0ba99;
+  border-radius: 50%;
+  top: 26%;
+  left: 17%;
 }
-.vitamin-single {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.vitamin-single b {
-  font-size: 38px;
-  line-height: 1;
-  font-weight: 900;
-}
-.vitamin-single span {
-  font-size: 12px;
-  line-height: 1.8;
-}
-.vitamin-single i {
-  width: 1px;
+.vitamin-sun i:nth-of-type(2) {
+  top: 70%;
+  left: 78%;
+  width: 35px;
   height: 35px;
-  margin: 0 10px;
-  background: var(--campaign-line);
+}
+.vitamin-sun i:nth-of-type(3) {
+  top: 77%;
+  left: 22%;
+  width: 12px;
+  height: 12px;
+}
+.campaign--vitamin-c .campaign-product {
+  inset: 2% 0;
+}
+.vitamin-volume {
+  position: absolute;
+  left: 8%;
+  bottom: 12%;
+  z-index: 3;
+  width: 105px;
+  height: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff6cf;
+  border: 1px solid #a1392630;
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
+.vitamin-volume b {
+  font-size: 34px;
+  line-height: 1.2;
+}
+.vitamin-volume span {
+  font-size: 13px;
+}
+.vitamin-single-label {
+  font-size: 14px;
 }
 
-/* Synergy: track photography, racing stripes and a tilted product. */
-.campaign--synergy {
-  --campaign-accent: #64cfff;
+/* Synergy: the product occupies the center of its own illuminated starting grid. */
+.campaign--synergy .campaign-backdrop {
+  opacity: 0.5;
 }
 .campaign--synergy .campaign-wash {
-  background: linear-gradient(
-    270deg,
-    #030c22ee 0%,
-    #030c22b3 31%,
-    transparent 62%
-  );
-}
-.campaign--synergy .campaign-wordmark {
-  font-style: italic;
-  font-size: 26px;
-}
-.campaign--synergy .campaign-eyebrow {
-  color: #64cfff;
+  background:
+    linear-gradient(270deg, #061124 8%, #061124ed 32%, #06112422 76%),
+    linear-gradient(0deg, #061124, transparent 30%);
 }
 .campaign--synergy .campaign-product {
-  height: 66%;
-  top: 2%;
-  left: 59%;
-  width: 33%;
+  inset: 0 -3% 0;
 }
-.campaign--synergy .campaign-product img {
-  transform: rotate(-14deg);
+.campaign--synergy .campaign-copy h1 > span {
+  font-style: italic;
+  color: #8cd8ff;
 }
-.campaign--synergy .campaign-product-caption {
-  bottom: 4%;
-  left: 0;
-  right: 48%;
-  text-align: left;
+.race-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
-.campaign--synergy .campaign-product-caption > span {
-  justify-content: flex-end;
+.race-grid {
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  height: 30%;
+  bottom: 2%;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 32px, #5cbcff25 33px 34px),
+    repeating-linear-gradient(90deg, transparent 0 60px, #5cbcff30 61px 62px);
+  transform: perspective(250px) rotateX(55deg);
+  mask-image: linear-gradient(transparent, #000);
 }
-.campaign--synergy .campaign-cta {
-  background: #f03b46;
-  color: #fff;
-  transform: skew(-6deg);
+.race-apex {
+  position: absolute;
+  width: 80%;
+  height: 63%;
+  top: 14%;
+  left: 10%;
+  border: 1px solid #5dcaff50;
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  box-shadow:
+    inset 0 -2px 0 #50bfff66,
+    0 18px 45px #197cff20;
 }
-.campaign--synergy .campaign-cta:hover {
-  background: #cc2431;
-  transform: skew(-6deg) translateY(-3px);
+.race-start-lights {
+  position: absolute;
+  top: 8%;
+  left: 7%;
+  display: flex;
+  gap: 10px;
+  border: 1px solid #7693b938;
+  padding: 10px 16px;
+  border-radius: 30px;
+  background: #040e1d;
 }
-.campaign--synergy .campaign-art-label {
-  color: #9dd5fa;
+.race-start-lights i {
+  width: 9px;
+  height: 9px;
+  background: #ed435b;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #ff274b80;
 }
-.campaign--synergy .campaign-footer {
-  border-top: 2px solid #f03b46;
-}
-.campaign--synergy .campaign-options button[aria-pressed="true"] {
-  background: #d92c3e;
-  border-color: #d92c3e;
-  color: #fff;
-}
-.campaign--synergy .campaign-signature {
-  display: none;
+.race-finish {
+  position: absolute;
+  left: 8%;
+  bottom: 9%;
+  width: 52px;
+  height: 24px;
+  background: repeating-conic-gradient(#e7f5ff90 0 25%, transparent 0 50%) 0 /
+    12px 12px;
+  transform: skewY(-12deg);
 }
 
-@keyframes campaign-arrive {
-  from {
-    opacity: 0;
-    translate: 0 18px;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
+@media (min-width: 1500px) {
+  .campaign-copy {
+    margin-inline-start: 6%;
   }
 }
-
-@media (max-width: 1100px) {
-  .campaign-home span,
-  .campaign-signature {
+@media (max-width: 1000px) {
+  .campaign {
+    padding-inline: 4%;
+  }
+  .campaign-home {
     display: none;
+  }
+  .campaign-header {
+    gap: 15px;
   }
   .campaign-nav {
     gap: 22px;
   }
-  .campaign-detail {
-    max-width: 165px;
+  .campaign-copy h1 {
+    font-size: 44px;
+  }
+  .campaign-scene {
+    grid-template-columns: 46% 54%;
+  }
+  .campaign-footer-brand {
+    display: none;
+  }
+  .campaign-selection {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 700px) {
+  .campaign {
+    padding-inline: 5%;
+  }
+  .campaign-header {
+    height: 58px;
+    gap: 12px;
+  }
+  .campaign-nav {
+    flex: 1;
+    justify-content: space-between;
+    gap: 9px;
+    font-size: 12px;
+  }
+  .campaign-nav a {
+    padding-block: 18px;
+  }
+  .campaign-cart {
+    padding: 8px;
+    gap: 5px;
+    min-height: 38px;
+  }
+  .campaign-cart > span {
+    display: none;
+  }
+  .campaign-cart svg {
+    width: 16px;
+  }
+  .campaign-scene {
+    display: flex;
+    flex-direction: column-reverse;
+    height: auto;
+    min-height: 0;
+  }
+  .campaign-art {
+    height: 350px;
+    width: 100%;
+    flex: none;
+  }
+  .campaign-copy {
+    width: 100%;
+    max-width: 460px;
+    padding: 8px 0 25px;
+  }
+  .campaign-copy h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 34px;
+    margin-bottom: 12px;
+  }
+  .campaign-copy h1 > span {
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  .campaign-eyebrow {
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .campaign-product-info {
+    padding-bottom: 15px;
+    font-size: 13px;
+  }
+  .campaign-footer {
+    min-height: 90px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  .campaign-selection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
   .campaign-select-label {
     display: none;
   }
-  .campaign-copy {
-    padding-right: 0;
+  .campaign--start .campaign-product {
+    inset: 0 0 0 18%;
   }
-  .campaign-copy h1 {
-    letter-spacing: -1.8px;
-  }
-  .campaign-copy > p {
-    font-size: 15px;
-  }
-}
-
-/* Phones: one headline, one product, and compact controls. No stacked desktop sections. */
-@media (max-width: 700px) and (orientation: portrait) {
-  .campaign {
-    padding: 0 5%;
-  }
-  .campaign-header {
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding-top: max(8px, env(safe-area-inset-top));
-  }
-  .campaign-home img {
-    width: 35px;
-    height: 35px;
-  }
-  .campaign-home span {
-    display: inline;
-    font-size: 11px;
-  }
-  .campaign-wordmark {
-    justify-self: end;
-    font-size: 17px;
-  }
-  .campaign--start .campaign-wordmark,
-  .campaign--synergy .campaign-wordmark {
-    font-size: 20px;
-  }
-  .campaign-nav {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    font-size: 12px;
-  }
-  .campaign-nav a {
-    padding: 10px 0;
-  }
-  .campaign-scene {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(0, 1fr);
-    text-align: center;
-  }
-  .campaign-copy,
-  .campaign--aloe .campaign-copy {
-    padding: 18px 0 0;
-    align-self: auto;
-  }
-  .campaign-eyebrow {
-    justify-content: center;
-    font-size: 12px;
-    margin-bottom: 7px;
-    gap: 7px;
-  }
-  .campaign-eyebrow svg {
-    width: 14px;
-    height: 14px;
-  }
-  .campaign-copy h1,
-  .campaign--vitamin-c .campaign-copy h1 {
-    font-size: clamp(29px, 4.7dvh, 42px);
-    letter-spacing: -1px;
-    line-height: 1.35;
-    margin-bottom: 10px;
-  }
-  .campaign-copy h1 br {
-    display: none;
-  }
-  .campaign-copy h1 em {
-    display: block;
-  }
-  .campaign-copy > p {
-    display: none;
-  }
-  .campaign-cta {
-    min-height: 40px;
-    padding: 7px 16px;
-    font-size: 12px;
-    gap: 24px;
-  }
-  .campaign-cta > span {
-    font-size: 22px;
-  }
-  .campaign-art {
-    min-height: 0;
-  }
-  .campaign-art-label {
-    display: none;
-  }
-  .campaign-product,
-  .campaign--aloe .campaign-product,
-  .campaign--start .campaign-product,
-  .campaign--synergy .campaign-product,
-  .campaign--vitamin-c .campaign-product {
-    height: 75%;
-    width: 46%;
-    top: 6%;
-    left: 27%;
-  }
-  .campaign-product-caption,
-  .campaign--aloe .campaign-product-caption,
-  .campaign--start .campaign-product-caption,
-  .campaign--synergy .campaign-product-caption {
-    bottom: 3%;
-    left: 0;
-    right: 0;
-    text-align: center;
-    padding: 0;
-    background: none;
-  }
-  .campaign-product-caption strong {
-    display: none;
-  }
-  .campaign-product-caption > span {
-    font-size: 12px;
-  }
-  .campaign--start .campaign-product-caption > span,
-  .campaign--synergy .campaign-product-caption > span {
-    justify-content: center;
-  }
-  .campaign-backdrop {
-    top: 23%;
-  }
-  .campaign-backdrop img {
-    object-position: 25% center;
-  }
-  .campaign--aloe .campaign-backdrop {
-    top: 27%;
-  }
-  .campaign--aloe .campaign-backdrop img {
-    object-position: 22% center;
-  }
-  .campaign--aloe .campaign-wash {
-    background: linear-gradient(
-      #f6b1c5 0%,
-      #f6b1c5 25%,
-      #f6b1c590 40%,
-      transparent 70%,
-      #f6b1c5 94%
-    );
-  }
-  .campaign--aloe .campaign-product {
-    height: 74%;
-    top: 2%;
-  }
-  .campaign--aloe .campaign-product img {
-    transform: rotate(5deg);
-  }
-  .campaign--aloe .campaign-footer {
-    background: none;
+  .campaign--start .campaign-backdrop {
+    height: 430px;
   }
   .campaign--start .campaign-wash {
-    background: linear-gradient(
-      #080806 0%,
-      #080806 25%,
-      #08080644 52%,
-      #08080644 75%,
-      #080806 94%
-    );
-  }
-  .campaign--start .campaign-backdrop img {
-    object-position: 28% center;
-    opacity: 0.85;
-  }
-  .campaign--start .campaign-product {
-    left: 40%;
-    width: 40%;
-    height: 76%;
+    background: linear-gradient(0deg, #080806 50%, transparent 85%);
   }
   .campaign--synergy .campaign-backdrop {
-    top: 30%;
-  }
-  .campaign--synergy .campaign-backdrop img {
-    object-position: 22% center;
+    height: 450px;
   }
   .campaign--synergy .campaign-wash {
-    background: linear-gradient(
-      #030c22 0%,
-      #030c22 26%,
-      #030c2244 46%,
-      transparent 72%,
-      #030c22 94%
-    );
+    background: linear-gradient(0deg, #061124 50%, #06112455 85%);
   }
   .campaign--synergy .campaign-product {
-    width: 37%;
-    left: 53%;
-    height: 71%;
-    top: 0;
+    inset: 0;
   }
-  .campaign--synergy .campaign-product-caption {
-    text-shadow: 0 2px 8px #000;
+  .vitamin-sun {
+    width: 275px;
   }
-  .campaign--vitamin-c .campaign-product {
-    height: 82%;
-    top: 1%;
+  .vitamin-sun > span {
+    font-size: 270px;
   }
-  .vitamin-big-c {
-    font-size: min(91vw, 52dvh);
+  .vitamin-volume {
+    width: 72px;
+    height: 72px;
+    left: 4%;
+    bottom: 10%;
   }
-  .vitamin-stamp {
-    width: 74px;
-    height: 74px;
-    left: 1%;
-    top: 5%;
+  .vitamin-volume b {
+    font-size: 25px;
   }
-  .vitamin-stamp b {
-    font-size: 20px;
-  }
-  .vitamin-stamp span {
-    font-size: 9px;
-  }
-  .vitamin-formula {
-    margin: 0 0 11px;
-    gap: 6px;
-    justify-content: center;
-  }
-  .vitamin-formula > span {
-    width: 28px;
-    height: 28px;
-    font-size: 17px;
-  }
-  .vitamin-formula small {
-    font-size: 11px;
-  }
-  .vitamin-formula small br {
-    display: none;
-  }
-  .vitamin-formula small br::after {
-    content: " ";
-  }
-  .campaign-footer {
-    height: auto;
-    max-height: none;
-    min-height: 0;
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 0 max(13px, env(safe-area-inset-bottom));
-  }
-  .campaign-selection {
-    width: 100%;
-    justify-content: center;
-  }
-  .campaign-options {
-    width: 100%;
-    justify-content: center;
-    gap: 5px;
-  }
-  .campaign-options button {
-    flex: 1;
-    padding: 8px 6px;
-    min-height: 42px;
-    font-size: 11px;
-  }
-  .campaign--aloe .campaign-options {
-    max-width: 250px;
-  }
-  .campaign-detail {
-    max-width: none;
-    font-size: 11px;
-  }
-  .vitamin-single {
-    gap: 10px;
-  }
-  .vitamin-single b {
-    font-size: 27px;
-  }
-  .vitamin-single span {
-    font-size: 11px;
-  }
-  .vitamin-single span br {
-    display: none;
-  }
-  .vitamin-single i {
-    margin: 0 5px;
-    height: 23px;
-  }
-}
-
-@media (max-height: 700px) and (min-width: 701px),
-  (max-height: 540px) and (orientation: landscape) {
-  .campaign-header {
-    min-height: 56px;
-    height: 12dvh;
-  }
-  .campaign-home img {
-    height: 36px;
-    width: 36px;
-  }
-  .campaign-footer {
-    min-height: 66px;
-    height: 15dvh;
-  }
-  .campaign-eyebrow {
-    margin-bottom: 8px;
+  .vitamin-volume span {
     font-size: 12px;
   }
-  .campaign-copy h1,
-  .campaign--vitamin-c .campaign-copy h1 {
-    font-size: clamp(25px, 7.8dvh, 50px);
-    margin-bottom: 8px;
+  .campaign--vitamin-c .campaign-copy h1 > span {
+    letter-spacing: 2px;
   }
-  .campaign-copy > p {
-    font-size: 13px;
-    line-height: 1.8;
-    margin-bottom: 14px;
+  .aloe-garden {
+    inset: 6% 5% 4%;
   }
-  .campaign-copy {
-    padding-bottom: 0;
-  }
-  .campaign-cta {
-    min-height: 40px;
-    padding: 7px 16px;
-    font-size: 12px;
-  }
-  .campaign-product-caption {
-    bottom: 2%;
-  }
-  .campaign-product-caption strong {
-    display: none;
-  }
-  .vitamin-formula {
-    margin: 0 0 12px;
-  }
-  .vitamin-formula > span {
-    height: 30px;
-    width: 30px;
-    font-size: 20px;
-  }
-  .vitamin-stamp {
-    height: 80px;
-    width: 80px;
-  }
-  .vitamin-stamp b {
-    font-size: 24px;
+  .campaign--aloe .campaign-product {
+    inset: 3% 0;
   }
 }
-@media (max-height: 540px) and (orientation: landscape) {
-  .campaign {
-    padding: 0 4%;
-  }
-  .campaign-header {
-    gap: 15px;
-    min-height: 48px;
-  }
-  .campaign-home span,
-  .campaign-detail,
-  .campaign-art-label,
-  .vitamin-formula,
-  .campaign-signature {
-    display: none;
-  }
+@media (max-width: 360px) {
   .campaign-nav {
-    font-size: 12px;
-    gap: 16px;
-  }
-  .campaign-wordmark,
-  .campaign--start .campaign-wordmark,
-  .campaign--synergy .campaign-wordmark {
-    font-size: 18px;
-  }
-  .campaign-copy > p {
-    display: none;
-  }
-  .campaign-copy h1,
-  .campaign--vitamin-c .campaign-copy h1 {
-    font-size: 8dvh;
-  }
-  .campaign-footer {
-    justify-content: center;
-    min-height: 56px;
-  }
-  .campaign-options button {
-    min-height: 36px;
-    padding: 7px 14px;
     font-size: 11px;
+    gap: 6px;
   }
-  .campaign-product-caption > span {
-    font-size: 11px;
+  .campaign-cart {
+    border: 0;
+    padding: 5px;
   }
-  .campaign--aloe .campaign-copy {
-    align-self: center;
-    padding-top: 0;
+  .campaign-art {
+    height: 290px;
   }
-  .vitamin-stamp {
-    display: none;
+  .campaign-copy h1 {
+    font-size: 30px;
+  }
+  .vitamin-sun {
+    width: 230px;
+  }
+  .vitamin-sun > span {
+    font-size: 225px;
   }
 }
-@media (max-height: 700px) and (max-width: 700px) and (orientation: portrait) {
-  .campaign-copy,
-  .campaign--aloe .campaign-copy {
-    padding-top: 11px;
-  }
-  .campaign-eyebrow {
-    display: none;
-  }
-  .campaign-footer {
-    gap: 6px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-  .campaign-copy h1,
-  .campaign--vitamin-c .campaign-copy h1 {
-    font-size: 28px;
+@media (max-height: 600px) and (min-width: 701px) {
+  .campaign-scene {
+    min-height: 510px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

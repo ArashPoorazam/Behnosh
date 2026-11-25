@@ -8,7 +8,6 @@ import {
   useState,
   type PointerEvent,
 } from "react";
-import { Rotate3D } from "lucide-react";
 import type { BrandProduct } from "@/lib/brand-experiences";
 import type { BrandPose } from "./brand-product-canvas";
 
@@ -20,14 +19,10 @@ export function BrandProductStage({
   products,
   product,
   brand,
-  spin,
-  onSpin,
 }: {
   products: BrandProduct[];
   product: BrandProduct;
   brand: string;
-  spin: number;
-  onSpin: () => void;
 }) {
   const [enabled, setEnabled] = useState(false);
   const [ready, setReady] = useState(false);
@@ -35,7 +30,6 @@ export function BrandProductStage({
   const [reduced, setReduced] = useState(true);
   const [active, setActive] = useState(true);
   const pose = useRef<BrandPose>({ turn: 0, tilt: 0, dragging: false });
-  const lastSpin = useRef(spin);
   const pointer = useRef<{ id: number; x: number; y: number } | null>(null);
   const onReady = useCallback(() => setReady(true), []);
   const onError = useCallback(() => {
@@ -66,11 +60,6 @@ export function BrandProductStage({
     pose.current.turn = 0;
     pose.current.tilt = 0;
   }, [product.id]);
-  useEffect(() => {
-    if (spin !== lastSpin.current && !reduced) pose.current.turn += Math.PI * 2;
-    lastSpin.current = spin;
-    pose.current.invalidate?.();
-  }, [spin, reduced]);
   const stop = (e: PointerEvent<HTMLDivElement>) => {
     if (pointer.current?.id !== e.pointerId) return;
     pointer.current = null;
@@ -140,7 +129,6 @@ export function BrandProductStage({
               selected={product.id}
               brand={brand}
               pose={pose}
-              spin={spin}
               reduced={reduced}
               active={active}
               onReady={onReady}
@@ -149,17 +137,6 @@ export function BrandProductStage({
           </div>
         )}
       </div>
-      {live && (
-        <button
-          className="brand-spin"
-          type="button"
-          onClick={onSpin}
-          aria-label="چرخاندن محصول"
-        >
-          <Rotate3D size={17} />
-          <span>بچرخون</span>
-        </button>
-      )}
     </div>
   );
 }
