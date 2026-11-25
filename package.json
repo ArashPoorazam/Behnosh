@@ -10,6 +10,7 @@
     "typecheck": "npm run typecheck -w apps/web",
     "test:e2e": "node tests/e2e.mjs",
     "test:catalog": "node tests/catalog-e2e.mjs",
+    "test:brands": "node tests/brand-e2e.mjs",
     "assets:catalog": "node scripts/prepare-catalog.mjs",
     "assets": "node scripts/optimize-assets.mjs",
     "api:types": "openapi-typescript api/openapi.json -o apps/web/lib/api-schema.d.ts",

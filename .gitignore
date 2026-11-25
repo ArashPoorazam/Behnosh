@@ -6,8 +6,17 @@ node_modules/
 .local/
 test-results/
 playwright-report/
+coverage/
+.cache/
+*.log
 *.tsbuildinfo
 api/behnosh-api
+
+# Workspace-local agent settings and cloud credentials are never project source.
+/.agents/
+/.codex/
+/.aws/
+/tmp/
 
 # Next.js regenerates environment and route declarations locally.
 apps/web/next-env.d.ts

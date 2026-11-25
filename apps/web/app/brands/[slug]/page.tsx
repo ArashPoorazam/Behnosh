@@ -3,7 +3,11 @@ import { notFound } from "next/navigation";
 import { brands } from "@/lib/brand-content";
 import { DadliExperience } from "@/components/dadli-experience";
 import { BrandMark, BrandFooter } from "@/components/brand-shell";
+import { BrandExperience } from "@/components/brand-experience";
+import { brandExperiences } from "@/lib/brand-experiences";
 import "@/styles/dadali-page.css";
+import "@/styles/brand-experiences.css";
+import "@/styles/brand-interactions.css";
 export function generateStaticParams() {
   return brands.map(({ slug }) => ({ slug }));
 }
@@ -24,6 +28,9 @@ export default async function BrandPage({
   const { slug } = await params;
   const brand = brands.find((b) => b.slug === slug);
   if (!brand) notFound();
+  if (brandExperiences[slug]) {
+    return <BrandExperience key={slug} brand={brandExperiences[slug]} />;
+  }
   if (slug === "dadali") {
     return (
       <main id="main" className="brand-site dadali-page">
