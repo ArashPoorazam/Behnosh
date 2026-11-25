@@ -115,12 +115,12 @@ export function AllProducts({
             <h1 id="catalog-title">
               هر سلیقه،
               <br />
-              <span>یک طعم تازه.</span>
+              <span>یک طعم تازه</span>
             </h1>
             <p className="shelf-hero-description">
               از طعم‌های آشنا تا کشف‌های تازه؛
               <br />
-              نوشیدنیِ حال‌وهوای خودت را پیدا کن.
+              نوشیدنیِ حال‌وهوای خودت را پیدا کن
             </p>
             <div className="shelf-hero-meta">
               <strong>{number(entries.length)}</strong> انتخاب <span />{" "}
@@ -136,7 +136,7 @@ export function AllProducts({
             <span className="shelf-hero-word" dir="ltr">
               GOOD
               <br />
-              MOOD.
+              MOOD
             </span>
             <img
               className="shelf-hero-bottle"
@@ -203,7 +203,7 @@ export function AllProducts({
             <span aria-hidden="true">
               <Asterisk />
             </span>{" "}
-            برای هر حال، یک انتخاب.
+            برای هر حال، یک انتخاب
           </p>
         </div>
         <div className="shelf-layout">
@@ -337,9 +337,9 @@ export function AllProducts({
             <Asterisk />
           </span>
           <p>
-            طعم‌ها فرق می‌کنند.
+            طعم‌ها فرق می‌کنند
             <br />
-            <strong>حالِ خوب، مشترک است.</strong>
+            <strong>حالِ خوب، مشترک است</strong>
           </p>
           <Link href="/">گشتی در دنیای بهنوش</Link>
         </section>
@@ -348,7 +348,7 @@ export function AllProducts({
         <Link href="/" className="delster-wordmark" dir="ltr">
           DELSTER<span>®</span>
         </Link>
-        <p>یک جرعه، یک حال‌وهوای تازه.</p>
+        <p>یک جرعه، یک حال‌وهوای تازه</p>
         <Link href="/orders">پیگیری سفارش‌ها</Link>
       </footer>
       <CartDrawer

@@ -95,7 +95,7 @@ export default function Storefront() {
           <a className="delster-wordmark" href="#delster" dir="ltr">
             DELSTER<span>®</span>
           </a>
-          <p>تنها دلستر، دلستر است.</p>
+          <p>تنها دلستر، دلستر است</p>
           <a href="#delster">بازگشت به بالا</a>
         </div>
         <div className="footer-bottom">

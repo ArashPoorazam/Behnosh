@@ -1,7 +1,9 @@
 "use client";
 import { CanvasTexture, SRGBColorSpace, RepeatWrapping } from "three";
 /** Deterministic procedural food surfaces; no downloaded textures or image edits. */
-export function fruitTexture(kind: "citrus" | "peach" | "shell" | "pit") {
+export function fruitTexture(
+  kind: "citrus" | "lemon" | "peach" | "shell" | "pit",
+) {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = 256;
   const ctx = canvas.getContext("2d")!;
@@ -12,6 +14,7 @@ export function fruitTexture(kind: "citrus" | "peach" | "shell" | "pit") {
   };
   const base = {
     citrus: "#ff9b16",
+    lemon: "#e5ed76",
     peach: "#ffb66c",
     shell: "#62402a",
     pit: "#934d2e",
@@ -22,7 +25,7 @@ export function fruitTexture(kind: "citrus" | "peach" | "shell" | "pit") {
     const x = random() * 256,
       y = random() * 256;
     ctx.fillStyle =
-      kind === "citrus"
+      kind === "citrus" || kind === "lemon"
         ? `rgba(255,237,143,${random() * 0.45})`
         : kind === "peach"
           ? `rgba(233,89,54,${random() * 0.16})`

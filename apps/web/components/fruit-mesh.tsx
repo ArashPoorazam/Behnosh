@@ -26,8 +26,8 @@ function useFoodTexture(kind: Parameters<typeof fruitTexture>[0]) {
   useEffect(() => () => map.dispose(), [map]);
   return map;
 }
-function Citrus() {
-  const map = useFoodTexture("citrus");
+function Citrus({ lemon = false }: { lemon?: boolean }) {
+  const map = useFoodTexture(lemon ? "lemon" : "citrus");
   const wedges = useMemo(
     () =>
       Array.from({ length: 10 }, (_, i) => {
@@ -47,7 +47,10 @@ function Citrus() {
     <group>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.64, 0.64, 0.18, 64]} />
-        <meshStandardMaterial color="#f39916" roughness={0.42} />
+        <meshStandardMaterial
+          color={lemon ? "#a5bc2b" : "#f39916"}
+          roughness={0.42}
+        />
       </mesh>
       <mesh position={[0, 0, 0.097]}>
         <circleGeometry args={[0.59, 64]} />
@@ -72,7 +75,7 @@ function Citrus() {
             map={map}
             bumpMap={map}
             bumpScale={0.025}
-            color={i % 2 ? "#ffffff" : "#ffcf80"}
+            color={i % 2 ? "#ffffff" : lemon ? "#f3f6aa" : "#ffcf80"}
             roughness={0.32}
             clearcoat={0.4}
           />
@@ -161,8 +164,8 @@ function Pineapple() {
   );
 }
 export function FruitMesh({ kind }: { kind: FruitKind }) {
-  return kind === "orange" ? (
-    <Citrus />
+  return kind === "orange" || kind === "lemon" ? (
+    <Citrus lemon={kind === "lemon"} />
   ) : kind === "peach" ? (
     <Peach />
   ) : kind === "coconut" ? (

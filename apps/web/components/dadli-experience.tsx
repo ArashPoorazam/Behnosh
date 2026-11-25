@@ -6,8 +6,9 @@ import {
   type CSSProperties,
   type KeyboardEvent,
 } from "react";
-import { dadliFlavors, posterUrl } from "@/lib/showcase";
+import { dadliFlavors } from "@/lib/showcase";
 import { ShowcaseStage } from "./showcase-stage";
+import { FlavorSelector } from "./flavor-selector";
 export function DadliExperience() {
   const section = useRef<HTMLElement>(null);
   const wipe = useRef<HTMLDivElement>(null);
@@ -115,12 +116,12 @@ export function DadliExperience() {
           <h2 id="dadli-title">
             رنگِ تازه،
             <br />
-            طعمِ تازه.
+            طعمِ تازه
           </h2>
           <p>
-            هر رنگ، یک طعم.
+            هر رنگ، یک طعم
             <br />
-            انتخاب کنید و از نزدیک بشناسید.
+            انتخاب کنید و از نزدیک بشناسید
           </p>
           <span className="volume-label">
             ۲۵۰ میلی‌لیتر <i /> شیشه‌ای
@@ -169,34 +170,11 @@ export function DadliExperience() {
           </div>
         </div>
       </div>
-      <div
-        className="flavor-selector"
-        role="tablist"
-        aria-label="انتخاب طعم دادلی"
-      >
-        {dadliFlavors.map((f, i) => (
-          <button
-            key={f.id}
-            id={`flavor-tab-${i}`}
-            role="tab"
-            aria-selected={i === selected}
-            aria-controls="flavor-panel"
-            tabIndex={i === selected ? 0 : -1}
-            onClick={() => select(i)}
-            onKeyDown={(e) => selectWithKeyboard(e, i)}
-          >
-            <img
-              src={posterUrl(`dadli-${f.id}`)}
-              alt=""
-              loading="lazy"
-              width={48}
-              height={60}
-            />
-            <span>{f.name}</span>
-            <i style={{ background: f.accent }} />
-          </button>
-        ))}
-      </div>
+      <FlavorSelector
+        selected={selected}
+        onSelect={select}
+        onKeyDown={selectWithKeyboard}
+      />
     </section>
   );
 }

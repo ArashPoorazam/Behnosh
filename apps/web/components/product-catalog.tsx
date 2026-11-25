@@ -61,7 +61,7 @@ export function ProductCatalog({
     >
       <div className="shop-heading">
         <div>
-          <span className="small-label">از اینجا، به جمع شما.</span>
+          <span className="small-label">از اینجا، به جمع شما</span>
           <h2 id="shop-heading">کدام طعم، حالِ توست؟</h2>
         </div>
         <button className="text-button" onClick={onCart}>

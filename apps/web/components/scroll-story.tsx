@@ -96,10 +96,10 @@ export function ScrollHero() {
         </h1>
         <ShowcaseStage hero progress={progress} />
         <div className="hero-orbit-copy">
-          <span className="small-label">دورِ هم، خوش‌طعم‌تر.</span>
+          <span className="small-label">دورِ هم، خوش‌طعم‌تر</span>
           <h2>
             <ScriptLine>یک دنیا طعم،</ScriptLine>
-            <ScriptLine>در مدارِ تو.</ScriptLine>
+            <ScriptLine>در مدارِ تو</ScriptLine>
           </h2>
           <a href="#shop" className="orbit-shop-link">
             طعم خودت را پیدا کن
@@ -107,8 +107,8 @@ export function ScrollHero() {
         </div>
         <div className="hero-foot">
           <div>
-            <p>تنها دلستر، دلستر است.</p>
-            <span>یک جرعه آشنا. یک حس تازه.</span>
+            <p>تنها دلستر، دلستر است</p>
+            <span>یک جرعه آشنا. یک حس تازه</span>
           </div>
           <a className="button dark" href="#shop">
             انتخاب و خرید <ShoppingBag size={18} />
@@ -231,11 +231,11 @@ export function FlavorStory() {
       <section className="editorial" aria-labelledby="editorial-heading">
         <div className="editorial-kicker">
           <span className="small-label">ریشه در خاطره، رو به تازگی</span>
-          <span dir="ltr">FAMILIAR. YET UNEXPECTED.</span>
+          <span dir="ltr">FAMILIAR. YET UNEXPECTED</span>
         </div>
         <h2 id="editorial-heading">
-          <ScriptLine>طعم آشنا.</ScriptLine>
-          <ScriptLine className="editorial-fresh">انتخاب‌های تازه.</ScriptLine>
+          <ScriptLine>طعم آشنا</ScriptLine>
+          <ScriptLine className="editorial-fresh">انتخاب‌های تازه</ScriptLine>
         </h2>
         <div className="editorial-bottom">
           <span className="editorial-seal" aria-hidden="true">
@@ -246,11 +246,11 @@ export function FlavorStory() {
             میوه
           </span>
           <p>
-            بعضی طعم‌ها خاطره‌اند.
+            بعضی طعم‌ها خاطره‌اند
             <br />
-            بعضی‌ها، شروع یک حال خوب تازه.
+            بعضی‌ها، شروع یک حال خوب تازه
             <br />
-            <strong>اینجا هر دو را پیدا می‌کنی.</strong>
+            <strong>اینجا هر دو را پیدا می‌کنی</strong>
           </p>
           <a href="#dadli">از دلستر تا دنیای دادلی</a>
         </div>
@@ -258,7 +258,7 @@ export function FlavorStory() {
       <section className="flavor-journey" aria-label="سفر طعم دلستر">
         <div className="journey-sticky">
           <span className="journey-watermark" aria-hidden="true" dir="ltr">
-            GOOD TASTE.
+            GOOD TASTE
           </span>
           <div className="journey-can">
             <ShowcaseStage asset="can-tropical" />
@@ -266,17 +266,17 @@ export function FlavorStory() {
           {[
             [
               "از یک طعم آشنا",
-              "اصالت، جرعه‌جرعه.",
+              "اصالت، جرعه‌جرعه",
               "طعم مالت، همان همراه آشنای لحظه‌های ساده. سر میز، کنار دوستان، وسط یک گفت‌وگوی خوب.",
             ],
             [
               "تا یک حال‌وهوای تازه",
-              "کمی میوه. کلی تازگی.",
+              "کمی میوه. کلی تازگی",
               "از لیموی سرزنده تا هلوی دلنشین؛ هر بار، دری به یک حس تازه باز کن.",
             ],
             [
               "و یک انتخاب برای تو",
-              "به سلیقهٔ خودت.",
+              "به سلیقهٔ خودت",
               "قوطی یا شیشه‌ای، مالت یا میوه‌ای. طعم محبوبت را پیدا کن و جمع خودت را بساز.",
             ],
           ].map(([label, title, copy], i) => (

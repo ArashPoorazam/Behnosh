@@ -5,12 +5,7 @@
     "source": "دلستر-قوطی-لیمویی-330-b995cc80.png",
     "color": "e6ba16",
     "center": 300,
-    "label": [
-      300,
-      319,
-      101,
-      128
-    ]
+    "label": [300, 319, 101, 128]
   },
   {
     "id": "can-peach",
@@ -18,12 +13,7 @@
     "source": "دلستر-قوطی-هلو-330.png",
     "color": "ee727c",
     "center": 300,
-    "label": [
-      300,
-      319,
-      103,
-      131
-    ]
+    "label": [300, 319, 103, 131]
   },
   {
     "id": "can-black",
@@ -31,12 +21,7 @@
     "source": "دلستر-قوطی-بلک-330.png",
     "color": "23272c",
     "center": 300,
-    "label": [
-      300,
-      320,
-      103,
-      127
-    ]
+    "label": [300, 320, 103, 127]
   },
   {
     "id": "dadli-orange",
@@ -79,12 +64,7 @@
     "source": "delster-tropical-original.png",
     "color": "2c9676",
     "center": 300,
-    "label": [
-      300,
-      320,
-      102,
-      130
-    ]
+    "label": [300, 320, 102, 130]
   },
   {
     "id": "can-pineapple",
@@ -92,11 +72,27 @@
     "source": "دلستر-قوطی-آناناس-330.png",
     "color": "b6bd36",
     "center": 300,
-    "label": [
-      300,
-      319,
-      103,
-      131
-    ]
+    "label": [300, 319, 103, 131]
+  },
+  {
+    "id": "dadli-lemon",
+    "kind": "dadli",
+    "source": "195.png",
+    "color": "c5d628",
+    "center": 302
+  },
+  {
+    "id": "dadli-pineapple",
+    "kind": "dadli",
+    "source": "131.png",
+    "color": "e8b62c",
+    "center": 300
+  },
+  {
+    "id": "dadli-multivitamin",
+    "kind": "dadli",
+    "source": "196.png",
+    "color": "e99437",
+    "center": 300
   }
 ]

@@ -118,9 +118,9 @@ export function CatalogFiltersPanel({
             <Asterisk size={36} />
           </span>
           <p>
-            از یک جرعه شروع می‌شه.
+            از یک جرعه شروع می‌شه
             <br />
-            <strong>طعمِ لحظه‌ات رو پیدا کن.</strong>
+            <strong>طعمِ لحظه‌ات رو پیدا کن</strong>
           </p>
         </div>
       </div>

@@ -59,7 +59,7 @@ export function ProductUniverse() {
     >
       <div className="universe-stage">
         <div className="universe-statements">
-          {["یک دنیا طعم.", "برای هر سلیقه.", "همراهِ لحظه‌ها."].map((text) => (
+          {["یک دنیا طعم", "برای هر سلیقه", "همراهِ لحظه‌ها"].map((text) => (
             <h2 className="universe-statement scroll-write" key={text}>
               {text}
             </h2>

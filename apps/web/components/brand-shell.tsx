@@ -20,7 +20,7 @@ export function BrandFooter() {
     <footer id="contact" className="brand-footer">
       <div className="footer-invite">
         <BrandMark className="footer-emblem" />
-        <h2>خاطره‌ها ادامه دارند.</h2>
+        <h2>خاطره‌ها ادامه دارند</h2>
         <a href="#main" className="round-link" aria-label="بازگشت به بالا">
           ↑
         </a>
@@ -54,7 +54,7 @@ export function BrandFooter() {
       </div>
       <div className="brand-colophon">
         <span>© ۱۴۰۵ شرکت بهنوش ایران</span>
-        <span dir="ltr">A LIFETIME OF GOOD TASTE.</span>
+        <span dir="ltr">A LIFETIME OF GOOD TASTE</span>
       </div>
     </footer>
   );

@@ -170,20 +170,20 @@ export default function BrandLanding() {
                 <BrandMark className="hero-emblem" />
               </div>
               <div className="opening-copy">
-                <h1 id="brand-title">به طعمِ زندگی.</h1>
-                <p>یک جرعه آشنا، یک حال تازه.</p>
+                <h1 id="brand-title">به طعمِ زندگی</h1>
+                <p>یک جرعه آشنا، یک حال تازه</p>
               </div>
               <ShowcaseStage hero progress={progress} />
               <div className="gather-copy">
                 <h2>
                   دورِ هم،
                   <br />
-                  خوش‌طعم‌تر.
+                  خوش‌طعم‌تر
                 </h2>
                 <p>
-                  برای هر سلیقه، یک طعم.
+                  برای هر سلیقه، یک طعم
                   <br />
-                  برای هر لحظه، یک بهنوش.
+                  برای هر لحظه، یک بهنوش
                 </p>
                 <Link className="brand-pill" href="/products">
                   طعم خودت را پیدا کن
@@ -205,7 +205,7 @@ export default function BrandLanding() {
             >
               <div className="brand-reveal">
                 <h2 id="families-title" className="scroll-write">
-                  کدام دنیا، دنیای توست؟
+                  بر‌ندهای خاص ما
                 </h2>
               </div>
               <div className="cap-grid">
@@ -249,7 +249,7 @@ export default function BrandLanding() {
               />
             ))}
             <span className="heritage-caption">
-              چهار انتخاب آشنا. شصت سال خاطره.
+              چهار انتخاب آشنا. شصت سال خاطره
             </span>
           </div>
           <div className="heritage-copy brand-reveal">
@@ -275,7 +275,7 @@ export default function BrandLanding() {
               گذشته، توسعه محصولات و نوآوری، مسیر خود را به سوی آینده ادامه
               می‌دهد.
             </p>
-            <strong>بهنوش؛ ۶۰ سال تجربه، یک دنیا طعم، یک عمر خاطره.</strong>
+            <strong>بهنوش؛ ۶۰ سال تجربه، یک دنیا طعم، یک عمر خاطره</strong>
           </div>
         </section>
         <BrandNews />
