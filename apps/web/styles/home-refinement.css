@@ -1,3 +1,46 @@
+/* The story shares a scroll-driven canvas; the footer has its own solid color. */
+.brand-homepage {
+  --home-cream: #fff8ed;
+  --home-mint: #dcece2;
+  --home-blue: #dce9f2;
+  --home-apricot: #f4e2cf;
+  --home-sage: #e0e9df;
+  --home-blush: #f2dfe0;
+  --home-background: var(--home-cream);
+  background: var(--home-background);
+}
+.brand-homepage .opening-world,
+.brand-homepage .brand-hero-surface,
+.brand-homepage .product-universe,
+.brand-homepage .brand-families,
+.brand-homepage .heritage,
+.brand-homepage .news-story,
+.brand-homepage .sky-world {
+  /* Also override the legacy reduced-motion sky fill. */
+  background: transparent !important;
+}
+.brand-homepage .sky-world::before {
+  display: none;
+}
+.brand-homepage .brand-families {
+  color: #294c60;
+}
+.brand-homepage .news-story {
+  margin-bottom: var(--news-wave-height);
+}
+.brand-homepage .news-wave {
+  background: var(--home-blush);
+}
+.brand-homepage .news-wave svg {
+  fill: var(--home-background);
+}
+.brand-homepage .news-date-rail button span {
+  background: var(--home-background);
+}
+.brand-homepage .news-date-rail button[aria-current] span {
+  background: #233e35;
+}
+
 /* Floating controls have no shared painted or interactive header surface. */
 .brand-header {
   position: fixed;
@@ -54,6 +97,25 @@
 .brand-header .brand-mark {
   width: 64px;
   height: 64px;
+}
+header .brand-mark {
+  border: 5px solid #fff;
+  background: #fff;
+  box-shadow: 0 3px 16px #35101b12;
+}
+.campaign-brand-home,
+.simple-home {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.campaign-brand-home .brand-mark {
+  width: 44px;
+  height: 44px;
+  border-width: 4px;
+}
+.simple-home .brand-mark {
+  width: 56px;
+  height: 56px;
 }
 .opening-world {
   position: relative;
@@ -275,19 +337,122 @@
   box-shadow: 0 0 0 6px #233e3510;
 }
 .brand-footer {
-  background: #fff8ed;
+  background: var(--home-blush, #f2dfe0);
   color: #641b2b;
-  padding: 65px 6% 30px;
+  padding: 24px 6% 30px;
 }
-.footer-emblem {
-  width: 90px;
-  height: 90px;
+.brand-footer .brand-footer-grid {
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  gap: 5%;
+  padding: 0 0 32px;
 }
-.footer-invite {
-  border-bottom: 0;
+.footer-content {
+  min-width: 0;
+  padding-block: 40px;
+}
+.footer-details {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 32px;
+}
+.footer-details h3 {
+  margin-top: 0;
+}
+.footer-socials {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #641b2b20;
+}
+.footer-social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-block: 8px;
+}
+.footer-socials .social-sticker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  border: 3px solid #fff;
+  border-radius: 20px;
+  background: #fff9;
+  color: #641b2b;
+  box-shadow:
+    0 6px 0 #641b2b0c,
+    0 12px 24px #641b2b08;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.footer-socials .social-sticker:nth-child(even) {
+  transform: rotate(2deg);
+}
+.footer-socials .social-sticker:hover,
+.footer-socials .social-sticker:focus-visible {
+  transform: translateY(-4px) rotate(0);
+  box-shadow:
+    0 8px 0 #641b2b0c,
+    0 16px 28px #641b2b12;
+}
+.social-sticker-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 48px;
+  height: 48px;
+  border-radius: 15px;
+}
+.social-sticker--instagram .social-sticker-icon {
+  background: linear-gradient(35deg, #ffb64b, #e83869 45%, #833ad0);
+}
+.social-sticker--castbox .social-sticker-icon {
+  background: #f47721;
+}
+.social-sticker--aparat .social-sticker-icon {
+  background: #ed145b;
+}
+.social-sticker-icon img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+.social-sticker-copy {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  line-height: 1.6;
+}
+.social-sticker-copy strong,
+.social-sticker-copy > span {
+  font-size: 14px;
+}
+.social-sticker-copy > span {
+  text-align: right;
+}
+.footer-bottle {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+}
+.footer-bottle > img {
+  width: 100%;
+  height: clamp(560px, 56vw, 850px);
+  object-fit: contain;
+  filter: drop-shadow(8px 14px 12px #6f36231a);
+}
+.footer-bottle .footer-signature {
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.footer-bottle .footer-signature strong {
+  font-size: 64px;
 }
 .brand-colophon {
   border-color: #641b2b25;
+  align-items: center;
 }
 .brand-footer-grid a,
 .brand-footer p,
@@ -302,7 +467,55 @@
 .round-link {
   border-color: #641b2b40;
 }
+@media (max-width: 1100px) {
+  .footer-socials .social-sticker {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  .social-sticker-icon {
+    flex-basis: auto;
+    width: 44px;
+    height: 44px;
+  }
+}
 @media (max-width: 800px) {
+  .brand-footer .brand-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .brand-footer {
+    padding-top: 16px;
+  }
+  .footer-content {
+    padding-block: 20px;
+  }
+  .footer-details {
+    grid-template-columns: 1.3fr 0.8fr;
+    gap: 20px;
+  }
+  .footer-social-grid {
+    gap: 14px;
+  }
+  .footer-bottle {
+    width: min(100%, 500px);
+    justify-self: center;
+  }
+  .footer-bottle > img {
+    height: clamp(440px, 130vw, 640px);
+  }
+  .brand-colophon {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .brand-colophon > [dir] {
+    flex-basis: 100%;
+  }
+  .campaign-brand-home .brand-mark {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
   .brand-header {
     padding: 14px 5%;
   }

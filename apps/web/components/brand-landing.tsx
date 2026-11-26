@@ -10,11 +10,13 @@ import { BrandNews } from "./brand-news";
 import { Bubbles } from "./brand-bubbles";
 import { ProductUniverse } from "./product-universe";
 import { brands } from "@/lib/brand-content";
+import { useHomeBackground } from "./use-home-background";
 export default function BrandLanding() {
   const root = useRef<HTMLDivElement>(null),
     progress = useRef(0);
   const [menu, setMenu] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
+  useHomeBackground(root);
   useEffect(() => {
     let last = window.scrollY;
     let accumulated = 0;
@@ -123,7 +125,7 @@ export default function BrandLanding() {
     return () => media.revert();
   }, []);
   return (
-    <div ref={root} className="brand-site">
+    <div ref={root} className="brand-site brand-homepage">
       <header
         className={`brand-header${headerVisible || menu ? "" : " is-hidden"}`}
       >

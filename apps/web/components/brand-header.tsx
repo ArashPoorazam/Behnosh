@@ -5,13 +5,14 @@ import { ShoppingBag } from "lucide-react";
 import { brands } from "@/lib/brand-content";
 import { number } from "@/lib/money";
 import { useBrandCommerce } from "./brand-commerce";
+import { BrandMark } from "./brand-shell";
 
 export function BrandHeader({ slug }: { slug: string }) {
   const { cart, openCart } = useBrandCommerce();
   return (
     <header className="campaign-header">
-      <Link href="/#brands" className="campaign-home">
-        خانواده بهنوش
+      <Link href="/" className="campaign-brand-home" aria-label="بهنوش، خانه">
+        <BrandMark />
       </Link>
       <nav className="campaign-nav" aria-label="برندهای بهنوش">
         {brands.map((item) => (

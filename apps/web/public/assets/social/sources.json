@@ -1,0 +1,9 @@
+{
+  "source": "Simple Icons 16.0.0",
+  "license": "CC0-1.0",
+  "icons": {
+    "instagram.svg": "https://cdn.jsdelivr.net/npm/simple-icons@16.0.0/icons/instagram.svg",
+    "castbox.svg": "https://cdn.jsdelivr.net/npm/simple-icons@16.0.0/icons/castbox.svg",
+    "aparat.svg": "https://cdn.jsdelivr.net/npm/simple-icons@16.0.0/icons/aparat.svg"
+  }
+}
