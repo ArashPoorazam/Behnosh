@@ -10,6 +10,7 @@ import "@/styles/dadali-page.css";
 import "@/styles/brand-experiences.css";
 import "@/styles/brand-interactions.css";
 import "@/styles/brand-purchase.css";
+import "@/styles/brand-viewport.css";
 export function generateStaticParams() {
   return brands.map(({ slug }) => ({ slug }));
 }

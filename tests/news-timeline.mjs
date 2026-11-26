@@ -79,9 +79,9 @@ try {
         .locator(".news-date-line > span")
         .evaluate((el) => getComputedStyle(el).transformOrigin.split(" ")[0]),
     ).toBe("0px");
-    expect((await page.locator(".news-wave").boundingBox()).y).toBeGreaterThan(
-      viewport.height,
-    );
+    const frame = await page.locator(".news-story-viewport").boundingBox();
+    expect(frame.x).toBeCloseTo(0, 0);
+    expect(frame.width).toBeCloseTo(viewport.width, 0);
     const activeDate = await dates.nth(2).boundingBox();
     expect(activeDate.x).toBeGreaterThanOrEqual(0);
     expect(activeDate.x + activeDate.width).toBeLessThanOrEqual(viewport.width);
@@ -97,9 +97,6 @@ try {
       .toBeCloseTo(3, 2);
     await position(1);
     await expect(dates.nth(5)).toHaveAttribute("aria-current", "step");
-    expect(
-      (await page.locator(".news-wave").boundingBox()).y,
-    ).toBeGreaterThanOrEqual(viewport.height - 1);
     await page.evaluate(() =>
       window.scrollBy({ top: 250, behavior: "instant" }),
     );
@@ -154,7 +151,7 @@ try {
     await position(0.8);
     await expect(dates.nth(4)).toHaveAttribute("aria-current", "step");
     console.log(
-      `PASS ${viewport.width}px: pinned slides, right-to-left slides, left-to-right dates, wave below viewport, date navigation, reverse, release, keyboard, resize`,
+      `PASS ${viewport.width}px: pinned slides, right-to-left slides, left-to-right dates, edge-to-edge viewport, date navigation, reverse, release, keyboard, resize`,
     );
     await page.close();
   }

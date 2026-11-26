@@ -6,7 +6,7 @@
 .shelf-header {
   max-width: 1600px;
   margin: auto;
-  min-height: 100px;
+  min-height: 96px;
   padding: 20px 5%;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
   max-width: 1440px;
   min-height: 370px;
   margin: 0 auto;
-  padding: 28px 5% 42px;
+  padding: 40px 5% 56px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -58,18 +58,7 @@
   margin: 0 0 14px;
 }
 .shelf-hero h1 > span {
-  position: relative;
-  isolation: isolate;
-}
-.shelf-hero h1 > span:after {
-  content: "";
-  position: absolute;
-  inset: auto -5px 13% -8px;
-  height: 22%;
-  background: #e2ef9c;
-  z-index: -1;
-  transform: rotate(-2deg);
-  border-radius: 40%;
+  color: #54705c;
 }
 .shelf-hero-description {
   font-size: 16px;
@@ -91,108 +80,39 @@
   isolation: isolate;
   direction: ltr;
 }
-.shelf-orbit {
-  position: absolute;
-  width: 330px;
-  height: 330px;
-  border-radius: 50%;
-  background: #e9efce;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -2;
-}
-.shelf-orbit-two {
-  width: 430px;
-  height: 290px;
-  border: 1px solid #c8d6b1;
-  background: none;
-  transform: translate(-50%, -50%) rotate(-25deg);
-}
-.shelf-hero-word {
-  position: absolute;
-  color: #d6e2b7;
-  font:
-    900 93px/0.84 Arial,
-    sans-serif;
-  letter-spacing: -7px;
-  top: 80px;
-  left: 10%;
-  z-index: -1;
-}
 .shelf-hero-art > img {
   position: absolute;
   object-fit: contain;
-  filter: drop-shadow(8px 18px 10px #183c3220);
+  filter: drop-shadow(0 18px 14px #183c321a);
+  bottom: 0;
+  height: 90%;
+  width: 36%;
 }
 .shelf-hero-bottle {
-  height: 290px;
-  width: 145px;
-  top: 12px;
-  left: 16%;
-  transform: rotate(-17deg);
+  left: 4%;
+  transform: rotate(-8deg);
 }
 .shelf-hero-can {
-  height: 230px;
-  width: 150px;
-  top: 108px;
-  left: 39%;
-  transform: rotate(8deg);
+  left: 32%;
+  height: 73% !important;
   z-index: 2;
 }
 .shelf-hero-lemon {
-  height: 190px;
-  width: 130px;
-  top: 50px;
-  left: 62%;
-  transform: rotate(20deg);
+  left: 60%;
+  transform: rotate(8deg);
 }
-.shelf-sticker {
-  position: absolute;
-  left: 5%;
-  bottom: 5px;
-  width: 115px;
-  height: 115px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #e8f5a3;
-  border: 1px solid #183c3240;
-  border-radius: 50%;
-  outline: 5px solid #e8f5a3;
-  font-size: 13px;
-  transform: rotate(-12deg);
-  direction: rtl;
-  line-height: 1.9;
-  z-index: 3;
+.shelf-home {
+  display: inline-flex;
+  flex-shrink: 0;
 }
-.shelf-sticker > span {
-  font-size: 25px;
-  line-height: 1.2;
+.shelf-home .brand-mark {
+  width: 64px;
+  height: 64px;
 }
-.shelf-bubble {
-  position: absolute;
-  border: 1px solid #83956a;
-  border-radius: 50%;
-  height: 12px;
-  width: 12px;
-}
-.bubble-one {
-  top: 14px;
-  left: 55%;
-}
-.bubble-two {
-  top: 120px;
-  left: 5%;
-  width: 8px;
-  height: 8px;
-}
-.bubble-three {
-  bottom: 10px;
-  right: 14%;
-  width: 20px;
-  height: 20px;
+.shelf-header a:focus-visible,
+.shelf-header button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
 }
 .shelf-search-bar {
   display: flex;
@@ -1005,5 +925,62 @@
   .shelf-signoff > span > svg {
     width: 60px;
     height: 60px;
+  }
+}
+/* Stack the introduction and product trio cleanly on narrow screens. */
+@media (max-width: 760px) {
+  .shelf-header {
+    gap: 12px;
+    padding-block: 12px;
+  }
+  .shelf-home .brand-mark {
+    width: 56px;
+    height: 56px;
+  }
+  .shelf-header nav {
+    font-size: 14px;
+    gap: 24px;
+  }
+  .shelf-hero {
+    grid-template-columns: 1fr;
+    padding: 24px 5% 32px;
+    gap: 20px;
+  }
+  .shelf-hero h1 {
+    font-size: clamp(32px, 7vw, 44px);
+  }
+  .shelf-eyebrow {
+    font-size: 14px;
+  }
+  .shelf-hero-description {
+    max-width: none;
+    font-size: 16px;
+  }
+  .shelf-hero-meta {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  .shelf-hero-art {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 230px;
+    transform: none;
+    margin: 0;
+  }
+  .shelf-hero-art > img {
+    top: auto;
+    bottom: 0;
+    width: 36%;
+    height: 95%;
+  }
+  .shelf-hero-bottle {
+    left: 4%;
+  }
+  .shelf-hero-can {
+    left: 32%;
+  }
+  .shelf-hero-lemon {
+    left: 60%;
   }
 }

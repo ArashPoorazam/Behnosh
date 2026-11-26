@@ -12,6 +12,7 @@ import {
   type CatalogEntry,
   type CatalogFilters,
 } from "@/lib/all-products";
+import { BrandMark } from "./brand-shell";
 import { CartDrawer } from "./cart-drawer";
 import { CatalogCard } from "./catalog-card";
 import { CatalogFiltersPanel } from "./catalog-filters";
@@ -80,14 +81,14 @@ export function AllProducts({
       <header className="shelf-header">
         <Link
           href="/"
-          className="delster-wordmark"
+          className="shelf-home"
           dir="ltr"
-          aria-label="دلستر، خانه"
+          aria-label="بهنوش، خانه"
         >
-          DELSTER<span>®</span>
+          <BrandMark />
         </Link>
         <nav aria-label="ناوبری اصلی">
-          <Link href="/">دنیای طعم‌ها</Link>
+          <Link href="/">خانه بهنوش</Link>
           <Link href="/products" aria-current="page">
             همه محصولات
           </Link>
@@ -113,34 +114,27 @@ export function AllProducts({
               دنیای نوشیدنی‌های بهنوش <span /> همه محصولات
             </p>
             <h1 id="catalog-title">
-              هر سلیقه،
+              نوشیدنی‌های بهنوش
               <br />
-              <span>یک طعم تازه</span>
+              <span>انتخاب شما</span>
             </h1>
             <p className="shelf-hero-description">
-              از طعم‌های آشنا تا کشف‌های تازه؛
+              مالت، نوشیدنی‌های میوه‌ای و انرژی‌زا.
               <br />
-              نوشیدنیِ حال‌وهوای خودت را پیدا کن
+              محصولات را بر اساس طعم، برند و بسته‌بندی بررسی کنید.
             </p>
             <div className="shelf-hero-meta">
               <strong>{number(entries.length)}</strong> انتخاب <span />{" "}
               <strong>
                 {number(new Set(entries.map((p) => p.brand)).size)}
               </strong>{" "}
-              برند <span /> یک دنیا طعم
+              برند
             </div>
           </div>
           <div className="shelf-hero-art" aria-hidden="true">
-            <div className="shelf-orbit" />
-            <div className="shelf-orbit shelf-orbit-two" />
-            <span className="shelf-hero-word" dir="ltr">
-              GOOD
-              <br />
-              MOOD
-            </span>
             <img
               className="shelf-hero-bottle"
-              src="/assets/catalog/199-v1.webp"
+              src="/assets/catalog/152-v1.webp"
               alt=""
               width={480}
               height={600}
@@ -154,22 +148,11 @@ export function AllProducts({
             />
             <img
               className="shelf-hero-lemon"
-              src="/assets/catalog/185-v1.webp"
+              src="/assets/catalog/136-v1.webp"
               alt=""
               width={480}
               height={600}
             />
-            <span className="shelf-sticker">
-              خنک بنوش،
-              <br />
-              <b>خوش بگذرون!</b>
-              <span>
-                <Asterisk size={26} />
-              </span>
-            </span>
-            <span className="shelf-bubble bubble-one" />
-            <span className="shelf-bubble bubble-two" />
-            <span className="shelf-bubble bubble-three" />
           </div>
         </section>
         <div className="shelf-search-bar">
@@ -345,8 +328,8 @@ export function AllProducts({
         </section>
       </main>
       <footer className="shelf-footer">
-        <Link href="/" className="delster-wordmark" dir="ltr">
-          DELSTER<span>®</span>
+        <Link href="/" className="shelf-home" aria-label="بهنوش، خانه">
+          <BrandMark />
         </Link>
         <p>یک جرعه، یک حال‌وهوای تازه</p>
         <Link href="/orders">پیگیری سفارش‌ها</Link>

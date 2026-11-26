@@ -1,0 +1,157 @@
+/* Header and selectors size to their content; the product stage uses the remainder. */
+.campaign,
+.dadali-page .dadli-experience {
+  height: 100svh;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.campaign-scene,
+.dadali-page .dadli-layout {
+  height: 100%;
+  min-height: 0;
+}
+.campaign-copy,
+.dadali-page .dadli-intro {
+  padding-block: 12px;
+}
+.campaign-footer {
+  min-height: 86px;
+  padding-block: 8px;
+}
+.dadali-page [role="tablist"] {
+  min-height: 86px;
+  padding-block: 8px;
+}
+@media (max-height: 800px) {
+  .campaign-copy h1,
+  .dadali-page .dadli-intro h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  .campaign-eyebrow,
+  .dadali-page .dadli-intro .small-label {
+    margin-bottom: 8px;
+  }
+  .campaign-product-info {
+    padding-bottom: 10px;
+  }
+  .dadali-page .dadli-selected-flavor {
+    margin-bottom: 10px;
+  }
+  .campaign .brand-purchase,
+  .dadali-page .brand-purchase {
+    padding: 12px 14px 6px;
+  }
+  .brand-pack-options,
+  .brand-price {
+    margin-bottom: 10px;
+  }
+  .brand-pack-options legend {
+    margin-bottom: 6px;
+  }
+  .brand-price strong {
+    font-size: 26px;
+  }
+}
+@media (max-width: 700px) {
+  .campaign-scene,
+  .dadali-page .dadli-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(80px, 1fr) auto;
+    gap: 0;
+  }
+  .campaign-art,
+  .dadali-page .dadli-visual {
+    grid-row: 1;
+    height: 100%;
+    min-height: 0;
+  }
+  .campaign-copy,
+  .dadali-page .dadli-intro {
+    grid-row: 2;
+    padding: 4px 0 8px;
+    max-width: none;
+  }
+  .campaign-copy h1,
+  .dadali-page .dadli-intro h2 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .campaign-eyebrow,
+  .dadali-page .dadli-intro .small-label {
+    display: none;
+  }
+  .campaign-product-info {
+    padding-bottom: 8px;
+  }
+  .campaign-footer,
+  .dadali-page [role="tablist"] {
+    min-height: 68px;
+    padding-block: 6px;
+  }
+  .dadali-page [role="tablist"] button {
+    height: 52px;
+    min-height: 44px;
+  }
+  .dadali-page [role="tablist"] img {
+    height: 48px;
+    width: auto;
+  }
+  .campaign .brand-purchase,
+  .dadali-page .brand-purchase {
+    padding: 10px 12px 4px;
+  }
+  .brand-pack-options,
+  .brand-price {
+    margin-bottom: 8px;
+  }
+  .brand-pack-options legend {
+    margin-bottom: 4px;
+  }
+  .brand-pack-options label {
+    padding: 7px 10px;
+  }
+  .brand-price strong {
+    font-size: 25px;
+  }
+  .brand-quantity button {
+    height: 44px;
+  }
+  .brand-add {
+    min-height: 46px;
+  }
+  .brand-purchase-note {
+    min-height: 24px;
+    margin-top: 4px;
+  }
+  .vitamin-sun {
+    width: min(220px, 30svh);
+  }
+  .vitamin-sun > span {
+    font-size: min(210px, 29svh);
+  }
+  .vitamin-volume {
+    display: none;
+  }
+  .dadali-page .flavor-orbit {
+    width: 180px;
+    height: 180px;
+    top: 0;
+  }
+  .dadali-page .dadli-ghost {
+    font-size: 70px;
+  }
+}
+/* Preserve access at high zoom and in short landscape windows. */
+@media (max-height: 560px) {
+  .campaign,
+  .dadali-page .dadli-experience {
+    height: auto;
+    min-height: 100svh;
+  }
+  .campaign-scene,
+  .dadali-page .dadli-layout {
+    min-height: 400px;
+  }
+}

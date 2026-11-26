@@ -112,7 +112,8 @@ export function BrandNews() {
     >
       <div ref={panel} className="news-story-panel">
         <header className="news-story-heading">
-          <h2 id="news-title">تازه‌های خانواده بهنوش</h2>
+          <h2 id="news-title">تازه‌های بهنوش</h2>
+          <span className="news-section-label">رویدادها · محصولات · خبرها</span>
         </header>
         <div
           className="news-story-viewport"
@@ -181,14 +182,6 @@ export function BrandNews() {
           </nav>
         </div>
       </div>
-      <svg
-        className="news-wave"
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path d="M0 60 C120 -20 180 -20 300 60 S480 140 600 60 S780 -20 900 60 S1080 140 1200 60 S1380 -20 1440 60 V-2 H0Z" />
-      </svg>
     </section>
   );
 }

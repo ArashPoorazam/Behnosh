@@ -63,10 +63,10 @@ export default function BrandLanding() {
             0.08,
           )
           .fromTo(
-            ".gather-copy > *",
+            ".gather-line",
             { autoAlpha: 0, y: 40 },
-            { autoAlpha: 1, y: 0, stagger: 0.035, duration: 0.12 },
-            0.68,
+            { autoAlpha: 1, y: 0, stagger: 0.09, duration: 0.12 },
+            0.55,
           );
         // Hold the completed composition; the sticky surface leaves with normal scrolling.
         tl.to({}, { duration: 0.2 }, 0.8);
@@ -170,24 +170,16 @@ export default function BrandLanding() {
                 <BrandMark className="hero-emblem" />
               </div>
               <div className="opening-copy">
-                <h1 id="brand-title">به طعمِ زندگی</h1>
-                <p>یک جرعه آشنا، یک حال تازه</p>
+                <h1 id="brand-title">بهنوش</h1>
+                <p>نوشیدنی برای سلیقه‌های متفاوت</p>
               </div>
               <ShowcaseStage hero progress={progress} />
               <div className="gather-copy">
                 <h2>
-                  دورِ هم،
-                  <br />
-                  خوش‌طعم‌تر
+                  <span className="gather-line">از مالت تا میوه.</span>
+                  <span className="gather-line">طعم‌های متفاوت.</span>
+                  <span className="gather-line">انتخاب با شما.</span>
                 </h2>
-                <p>
-                  برای هر سلیقه، یک طعم
-                  <br />
-                  برای هر لحظه، یک بهنوش
-                </p>
-                <Link className="brand-pill" href="/products">
-                  طعم خودت را پیدا کن
-                </Link>
               </div>
               <div className="hero-bottom">
                 <a href="#products-world">
