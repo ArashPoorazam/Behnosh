@@ -52,8 +52,8 @@
   top: -22.5%;
 }
 .brand-header .brand-mark {
-  width: 86px;
-  height: 86px;
+  width: 64px;
+  height: 64px;
 }
 .opening-world {
   position: relative;
@@ -101,10 +101,44 @@
 }
 /* Page scrolling drives the pinned stories and their date-line progress. */
 .news-story {
-  margin-bottom: 0;
+  --news-wave-height: clamp(80px, 11vw, 160px);
+  margin-bottom: var(--news-wave-height);
   position: relative;
   background: #e7eee8;
   color: #233e35;
+}
+/* Outside the sticky panel: the wave arrives only at the end of the news. */
+.news-wave {
+  direction: ltr;
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  width: 100%;
+  height: calc(var(--news-wave-height) + 1px);
+  overflow: hidden;
+  background: #fff8ed;
+  pointer-events: none;
+}
+.news-wave svg {
+  display: block;
+  width: 200%;
+  max-width: none;
+  height: 100%;
+  fill: #e7eee8;
+  animation: news-wave-drift 18s linear infinite;
+}
+@keyframes news-wave-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-wave svg {
+    animation: none;
+  }
 }
 .news-story[data-scroll-timeline="true"] {
   height: var(--news-height);
@@ -272,10 +306,6 @@
   .brand-header {
     padding: 14px 5%;
   }
-  .brand-header .brand-mark {
-    width: 64px;
-    height: 64px;
-  }
   .brand-header nav {
     background: transparent;
     box-shadow: none;
@@ -400,5 +430,12 @@
   }
   .gather-line {
     visibility: visible;
+  }
+}
+
+@media (max-width: 760px) {
+  .brand-header .brand-mark {
+    width: 56px;
+    height: 56px;
   }
 }

@@ -182,6 +182,19 @@ export function BrandNews() {
           </nav>
         </div>
       </div>
+      <div className="news-wave" aria-hidden="true">
+        <svg
+          viewBox="0 0 2880 160"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <path d="M0 0H1440V80C1320 20 1200 20 1080 80S840 140 720 80S480 20 360 80S120 140 0 80Z" />
+          <path
+            transform="translate(1440 0)"
+            d="M0 0H1440V80C1320 20 1200 20 1080 80S840 140 720 80S480 20 360 80S120 140 0 80Z"
+          />
+        </svg>
+      </div>
     </section>
   );
 }
